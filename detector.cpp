@@ -29,6 +29,32 @@ std::string cleanText(const std::string &text) {
   return cleaned;
 }
 
+std::vector<std::string> tokenize(const std::string &cleanedText) {
+  std::vector<std::string> words;
+  std::stringstream ss(cleanedText);
+  std::string word;
+  while (ss >> word) {
+    if (!word.empty())
+      words.push_back(word);
+  }
+  return words;
+}
+
+std::unordered_map<std::string, int>
+getNgramFrequencies(const std::vector<std::string> &words, int n) {
+  std::unordered_map<std::string, int> freq;
+  if ((int)words.size() < n)
+    return freq;
+  for (size_t i = 0; i + (size_t)n <= words.size(); ++i) {
+    std::string ngram = words[i];
+    for (int j = 1; j < n; ++j) {
+      ngram += " " + words[i + j];
+    }
+    freq[ngram]++;
+  }
+  return freq;
+}
+
 std::unordered_map<std::string, int> getWordFrequencies(const std::string &text,
                                                         bool removeStopwords) {
   std::unordered_map<std::string, int> frequencies;

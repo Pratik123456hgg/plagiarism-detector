@@ -1,43 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Plagiarism Report</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 2rem; }
-        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 1rem; margin-top: 0; }
-        .info { margin: 2rem 0; font-size: 1.1rem; }
-        .info p { margin: 0.8rem 0; }
-        .info strong { color: #555; display: inline-block; width: 60px; }
-        .file-name { background: #f0f4f8; padding: 0.2rem 0.5rem; border-radius: 4px; font-family: monospace; color: #0277bd; }
-        .percentage { font-size: 2.5rem; font-weight: bold; text-align: center; margin: 2rem 0; color: #1976d2; }
-        .result { padding: 1.5rem; text-align: center; border-radius: 8px; margin-top: 2rem; }
-        .yes { background-color: #ffebee; color: #c62828; border: 2px solid #ef9a9a; }
-        .no { background-color: #e8f5e9; color: #2e7d32; border: 2px solid #a5d6a7; }
-        .result h2 { margin: 0; font-size: 1.8rem; }
-        .common-terms { margin-top: 2rem; background: #fafafa; padding: 1.5rem; border-radius: 8px; border: 1px solid #eaeaea; }
-        .common-terms h3 { margin-top: 0; color: #444; font-size: 1.3rem; margin-bottom: 1rem; }
-        .term { display: inline-block; background: #e0f7fa; color: #006064; padding: 0.3rem 0.6rem; margin: 0.2rem; border-radius: 6px; font-size: 0.95rem; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plagiarism Analysis Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%);
+      min-height:100vh;padding:2rem 1rem;color:#fff;display:flex;justify-content:center;align-items:flex-start;}
+    .orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.14;pointer-events:none;z-index:0;
+      animation:pulse 9s ease-in-out infinite;}
+    .orb1{width:500px;height:500px;background:#7c3aed;top:-120px;left:-120px;}
+    .orb2{width:400px;height:400px;background:#2563eb;bottom:-80px;right:-80px;animation-delay:4.5s;}
+    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.18);}}
+    .container{position:relative;z-index:1;width:100%;max-width:700px;padding-bottom:3rem;}
+    .back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.4rem;
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:50px;
+      color:rgba(255,255,255,.8);text-decoration:none;font-size:.88rem;font-weight:500;
+      margin-bottom:1.5rem;backdrop-filter:blur(10px);transition:all .2s;}
+    .back-btn:hover{background:rgba(255,255,255,.14);transform:translateX(-3px);}
+    .card{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:2.5rem;margin-bottom:1rem;}
+    .header{text-align:center;margin-bottom:2rem;}
+    .header h1{font-size:1.7rem;font-weight:700;
+      background:linear-gradient(135deg,#a78bfa,#60a5fa);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.4rem;}
+    .header p{color:rgba(255,255,255,.4);font-size:.85rem;}
+    .files-row{display:flex;align-items:center;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap;}
+    .file-chip{flex:1;min-width:0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+      border-radius:12px;padding:.8rem 1rem;font-size:.83rem;color:rgba(255,255,255,.75);
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .file-chip .lbl{display:block;font-size:.68rem;color:rgba(255,255,255,.35);
+      text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem;}
+    .vs{flex-shrink:0;width:34px;height:34px;background:linear-gradient(135deg,#7c3aed,#2563eb);
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      font-size:.65rem;font-weight:700;}
+    .score-wrap{text-align:center;margin-bottom:2rem;}
+    .ring{position:relative;display:inline-block;width:150px;height:150px;margin-bottom:1rem;}
+    .ring svg{width:150px;height:150px;transform:rotate(-90deg);}
+    .ring circle{fill:none;stroke-width:10;}
+    .ring .bg{stroke:rgba(255,255,255,.07);}
+    .ring .prog{stroke-dasharray:408.4;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease;}
+    .ring-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+    .ring-pct{font-size:2rem;font-weight:800;line-height:1;}
+    .ring-lbl{font-size:.62rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;}
+    .verdict{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.6rem;
+      border-radius:50px;font-size:.95rem;font-weight:600;}
+    .plagiarized{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fca5a5;}
+    .original{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#86efac;}
+    .section-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;
+      color:rgba(255,255,255,.35);margin-bottom:1.2rem;}
+    .metric{display:grid;grid-template-columns:140px 1fr 52px;align-items:center;gap:1rem;margin-bottom:.9rem;}
+    .metric-name{font-size:.83rem;color:rgba(255,255,255,.7);font-weight:500;}
+    .metric-name small{display:block;font-size:.7rem;color:rgba(255,255,255,.3);font-weight:400;}
+    .bar-track{background:rgba(255,255,255,.07);border-radius:50px;height:7px;overflow:hidden;}
+    .bar-fill{height:100%;border-radius:50px;}
+    .metric-val{font-size:.83rem;font-weight:600;text-align:right;color:rgba(255,255,255,.8);}
+    .terms-wrap{display:flex;flex-wrap:wrap;gap:.45rem;}
+    .term{padding:.28rem .7rem;background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.32);
+      border-radius:50px;font-size:.78rem;color:#c4b5fd;font-family:monospace;}
+    .none{color:rgba(255,255,255,.3);font-style:italic;font-size:.88rem;}
+    .footer-btn{display:block;text-align:center;padding:1rem;
+      background:linear-gradient(135deg,#7c3aed,#2563eb);border-radius:14px;
+      color:#fff;text-decoration:none;font-weight:600;font-size:1rem;
+      transition:opacity .2s;margin-top:1rem;}
+    .footer-btn:hover{opacity:.82;}
+    @media(max-width:480px){.metric{grid-template-columns:100px 1fr 44px;}.card{padding:1.5rem;}}
+  </style>
 </head>
 <body>
-    <div class="container">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="container">
+    <a href="/" class="back-btn">&#8592; Analyze Again</a>
+    <div class="card">
+      <div class="header">
         <h1>Plagiarism Analysis Report</h1>
-        <div class="info">
-            <p><strong>File 1:</strong> <span class="file-name">/home/pratik/Code/plagiarism-detector/uploads/Equal_Occurence.cpp</span></p>
-            <p><strong>File 2:</strong> <span class="file-name">/home/pratik/Code/plagiarism-detector/uploads/Be_postive.cpp</span></p>
+        <p>Unigram &middot; Bigram &middot; Trigram cosine similarity</p>
+      </div>
+
+      <div class="files-row">
+        <div class="file-chip"><span class="lbl">Source File</span>new_year_string.cpp</div>
+        <div class="vs">VS</div>
+        <div class="file-chip"><span class="lbl">Target File</span>new_year_cake.cpp</div>
+      </div>
+
+      <div class="score-wrap">
+        <div class="ring">
+          <svg viewBox="0 0 150 150">
+            <circle class="bg" cx="75" cy="75" r="65"/>
+            <circle class="prog" cx="75" cy="75" r="65"
+              stroke="#22c55e" stroke-dashoffset="263.7"/>
+          </svg>
+          <div class="ring-inner">
+            <div class="ring-pct" style="color:#22c55e">35.4%</div>
+            <div class="ring-lbl">combined</div>
+          </div>
         </div>
-        <div class="percentage">
-            Similarity: 78.20%
-        </div>
-        <div class="result yes">
-            <h2>Plagiarism Detected: YES</h2>
-        </div>
-        <div class="common-terms">
-            <h3>Overlapping Terms:</h3>
-            <p><span class="term">cout</span> <span class="term">ans</span> <span class="term">x</span> <span class="term">i</span> <span class="term">using</span> <span class="term">cintienullptr</span> <span class="term">std</span> <span class="term">bitsstdch</span> <span class="term">namespace</span> <span class="term">0</span> <span class="term">1</span> <span class="term">main</span> <span class="term">t</span> <span class="term">iossyncwithstdiofalse</span> <span class="term">return</span> <span class="term">ifcin</span> <span class="term">int</span> <span class="term">include</span> <span class="term">n</span> <span class="term">cin</span> </p>
-        </div>
+        <div><span class="verdict original">&#10003; No Plagiarism Found</span></div>
+      </div>
+
+      <div class="section-title">&#128202; Score Breakdown</div>
+      <div class="metric">
+        <div class="metric-name">Word-Level<small>Unigrams</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:61.1%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
+        <div class="metric-val">61.1%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-name">Phrase-Level<small>Bigrams (2-word)</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:26.7%;background:linear-gradient(90deg,#2563eb,#60a5fa);"></div></div>
+        <div class="metric-val">26.7%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-name">Phrase-Level<small>Trigrams (3-word)</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:13.4%;background:linear-gradient(90deg,#0891b2,#38bdf8);"></div></div>
+        <div class="metric-val">13.4%</div>
+      </div>
     </div>
+
+    <div class="card">
+      <div class="section-title">&#128269; Overlapping Terms</div>
+      <div class="terms-wrap"><span class="term">return</span><span class="term">ifcint</span><span class="term">whilet</span><span class="term">t</span><span class="term">main</span><span class="term">using</span><span class="term">std</span><span class="term">0</span><span class="term">1</span><span class="term">int</span><span class="term">n</span><span class="term">cin</span><span class="term">namespace</span>
+      </div>
+    </div>
+
+    <a href="/" class="footer-btn">&#43; Analyze Another Document Pair</a>
+  </div>
 </body>
 </html>
