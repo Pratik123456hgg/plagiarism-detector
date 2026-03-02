@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plagiarism Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 2rem; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 1rem; margin-top: 0; }
+        .info { margin: 2rem 0; font-size: 1.1rem; }
+        .info p { margin: 0.8rem 0; }
+        .info strong { color: #555; display: inline-block; width: 60px; }
+        .file-name { background: #f0f4f8; padding: 0.2rem 0.5rem; border-radius: 4px; font-family: monospace; color: #0277bd; }
+        .percentage { font-size: 2.5rem; font-weight: bold; text-align: center; margin: 2rem 0; color: #1976d2; }
+        .result { padding: 1.5rem; text-align: center; border-radius: 8px; margin-top: 2rem; }
+        .yes { background-color: #ffebee; color: #c62828; border: 2px solid #ef9a9a; }
+        .no { background-color: #e8f5e9; color: #2e7d32; border: 2px solid #a5d6a7; }
+        .result h2 { margin: 0; font-size: 1.8rem; }
+        .common-terms { margin-top: 2rem; background: #fafafa; padding: 1.5rem; border-radius: 8px; border: 1px solid #eaeaea; }
+        .common-terms h3 { margin-top: 0; color: #444; font-size: 1.3rem; margin-bottom: 1rem; }
+        .term { display: inline-block; background: #e0f7fa; color: #006064; padding: 0.3rem 0.6rem; margin: 0.2rem; border-radius: 6px; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Plagiarism Analysis Report</h1>
+        <div class="info">
+            <p><strong>File 1:</strong> <span class="file-name">/home/pratik/study/plagiarism_detector/uploads/main.cpp</span></p>
+            <p><strong>File 2:</strong> <span class="file-name">/home/pratik/study/plagiarism_detector/uploads/hello.cpp</span></p>
+        </div>
+        <div class="percentage">
+            Similarity: 36.42%
+        </div>
+        <div class="result no">
+            <h2>Plagiarism Detected: NO</h2>
+        </div>
+        <div class="common-terms">
+            <h3>Overlapping Terms:</h3>
+            <p><span class="term">return</span> <span class="term">std</span> <span class="term">0</span> <span class="term">using</span> <span class="term">iostream</span> <span class="term">main</span> <span class="term">cout</span> <span class="term">namespace</span> <span class="term">int</span> <span class="term">include</span> </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Plagiarism Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-container {
+            background: white;
+            color: #333;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #1e3c72;
+            margin-top: 0;
+            font-size: 2.2rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .upload-area {
+            border: 2px dashed #90caf9;
+            background: #e3f2fd;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: #42a5f5;
+            background: #bbdefb;
+        }
+
+        .upload-area input[type="file"] {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .file-label {
+            font-weight: bold;
+            color: #1565c0;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .btn-analyze {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-analyze:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
+        }
+
+        .btn-analyze:active {
+            transform: translateY(0);
+        }
+
+        .loading {
+            display: none;
+            margin-top: 1rem;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <h1>Plagiarism Detector</h1>
+        <p>Powered by our custom C++ NLP engine.</p>
+
+        <form action="/analyze" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            <div class="upload-area">
+                <div class="upload-icon">📄</div>
+                <div>Select the First File (Source)</div>
+                <input type="file" name="file1" required onchange="updateLabel(this, 'label1')">
+                <span id="label1" class="file-label">No file selected</span>
+            </div>
+
+            <div class="upload-area">
+                <div class="upload-icon">📄</div>
+                <div>Select the Second File (Target)</div>
+                <input type="file" name="file2" required onchange="updateLabel(this, 'label2')">
+                <span id="label2" class="file-label">No file selected</span>
+            </div>
+
+            <button type="submit" class="btn-analyze" id="submitBtn">Compare Documents</button>
+            <div id="loadingText" class="loading">Analyzing documents using C++... Please wait.</div>
+        </form>
+    </div>
+
+    <script>
+        function updateLabel(input, labelId) {
+            const label = document.getElementById(labelId);
+            if (input.files && input.files.length > 0) {
+                label.textContent = input.files[0].name;
+            } else {
+                label.textContent = "No file selected";
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('loadingText').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
