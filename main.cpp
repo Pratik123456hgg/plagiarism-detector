@@ -34,47 +34,54 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  // --- 1. AST Structural Matching ---
+  auto ast1 = Detector::buildAST(text1);
+  auto ast2 = Detector::buildAST(text2);
+  auto astResult = Detector::calculateASTSimilarity(ast1, ast2);
+  delete ast1;
+  delete ast2;
+
+  // --- 2. N-Gram Text Matching ---
   std::string cleaned1 = Detector::cleanText(text1);
   std::string cleaned2 = Detector::cleanText(text2);
 
-  // Tokenize for n-gram building (keeps all words, no stopword removal)
   auto words1 = Detector::tokenize(cleaned1);
   auto words2 = Detector::tokenize(cleaned2);
 
-  // Unigram frequencies (with stopword removal for cleaner word-level score)
   auto freq1 = Detector::getWordFrequencies(cleaned1);
   auto freq2 = Detector::getWordFrequencies(cleaned2);
 
-  // Bigram (2-word phrase) frequencies
   auto bigram1 = Detector::getNgramFrequencies(words1, 2);
   auto bigram2 = Detector::getNgramFrequencies(words2, 2);
 
-  // Trigram (3-word phrase) frequencies
   auto trigram1 = Detector::getNgramFrequencies(words1, 3);
   auto trigram2 = Detector::getNgramFrequencies(words2, 3);
 
-  // Cosine similarity for each level
   auto unigramResult = Detector::calculateDetailedSimilarity(freq1, freq2);
   auto bigramResult = Detector::calculateDetailedSimilarity(bigram1, bigram2);
   auto trigramResult =
       Detector::calculateDetailedSimilarity(trigram1, trigram2);
 
+  double astPct = astResult.score * 100.0;
   double unigramPct = unigramResult.score * 100.0;
   double bigramPct = bigramResult.score * 100.0;
   double trigramPct = trigramResult.score * 100.0;
 
-  // Weighted combined score — adjust weights if short documents lack n-grams
+  // --- Calculate Combined Score ---
   bool hasBigrams = !bigram1.empty() && !bigram2.empty();
   bool hasTrigrams = !trigram1.empty() && !trigram2.empty();
 
-  double combinedScore;
+  double textScore;
   if (hasBigrams && hasTrigrams) {
-    combinedScore = 0.35 * unigramPct + 0.40 * bigramPct + 0.25 * trigramPct;
+    textScore = 0.35 * unigramPct + 0.40 * bigramPct + 0.25 * trigramPct;
   } else if (hasBigrams) {
-    combinedScore = 0.45 * unigramPct + 0.55 * bigramPct;
+    textScore = 0.45 * unigramPct + 0.55 * bigramPct;
   } else {
-    combinedScore = unigramPct;
+    textScore = unigramPct;
   }
+
+  // 70% Structure, 30% Text (Words & Phrases)
+  double combinedScore = 0.70 * astPct + 0.30 * textScore;
 
   const double PLAGIARISM_THRESHOLD = 60.0;
   bool isPlagiarized = combinedScore >= PLAGIARISM_THRESHOLD;
@@ -154,7 +161,7 @@ int main(int argc, char *argv[]) {
     .plagiarized{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fca5a5;}
     .original{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#86efac;}
     .section-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;
-      color:rgba(255,255,255,.35);margin-bottom:1.2rem;}
+      color:rgba(255,255,255,.35);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;}
     .metric{display:grid;grid-template-columns:140px 1fr 52px;align-items:center;gap:1rem;margin-bottom:.9rem;}
     .metric-name{font-size:.83rem;color:rgba(255,255,255,.7);font-weight:500;}
     .metric-name small{display:block;font-size:.7rem;color:rgba(255,255,255,.3);font-weight:400;}
@@ -170,6 +177,7 @@ int main(int argc, char *argv[]) {
       color:#fff;text-decoration:none;font-weight:600;font-size:1rem;
       transition:opacity .2s;margin-top:1rem;}
     .footer-btn:hover{opacity:.82;}
+    .sub-split{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);}
     @media(max-width:480px){.metric{grid-template-columns:100px 1fr 44px;}.card{padding:1.5rem;}}
   </style>
 </head>
@@ -181,20 +189,16 @@ int main(int argc, char *argv[]) {
     <div class="card">
       <div class="header">
         <h1>Plagiarism Analysis Report</h1>
-        <p>Unigram &middot; Bigram &middot; Trigram cosine similarity</p>
+        <p>Text N-Grams &middot; AST Structural Match</p>
       </div>
 
       <div class="files-row">
         <div class="file-chip"><span class="lbl">Source File</span>)HTML";
-
   out << name1;
-
   out << R"HTML(</div>
         <div class="vs">VS</div>
         <div class="file-chip"><span class="lbl">Target File</span>)HTML";
-
   out << name2;
-
   out << R"HTML(</div>
       </div>
 
@@ -202,8 +206,7 @@ int main(int argc, char *argv[]) {
         <div class="ring">
           <svg viewBox="0 0 150 150">
             <circle class="bg" cx="75" cy="75" r="65"/>
-            <circle class="prog" cx="75" cy="75" r="65"
-              stroke=")HTML";
+            <circle class="prog" cx="75" cy="75" r="65" stroke=")HTML";
   out << scoreColor;
   out << R"HTML(" stroke-dashoffset=")HTML";
   out << fmt(dashOffset);
@@ -222,7 +225,8 @@ int main(int argc, char *argv[]) {
       << R"HTML(</span></div>
       </div>
 
-      <div class="section-title">&#128202; Score Breakdown</div>
+      <div class="section-title">&#128202; Text &amp; Phrase Match <span style="font-size:0.6rem;opacity:0.5;font-weight:400;">30% Weight</span></div>
+      
       <div class="metric">
         <div class="metric-name">Word-Level<small>Unigrams</small></div>
         <div class="bar-track"><div class="bar-fill" style="width:)HTML";
@@ -231,6 +235,7 @@ int main(int argc, char *argv[]) {
         <div class="metric-val">)HTML"
       << fmt(unigramPct) << R"HTML(%</div>
       </div>
+
       <div class="metric">
         <div class="metric-name">Phrase-Level<small>Bigrams (2-word)</small></div>
         <div class="bar-track"><div class="bar-fill" style="width:)HTML";
@@ -239,6 +244,7 @@ int main(int argc, char *argv[]) {
         <div class="metric-val">)HTML"
       << fmt(bigramPct) << R"HTML(%</div>
       </div>
+
       <div class="metric">
         <div class="metric-name">Phrase-Level<small>Trigrams (3-word)</small></div>
         <div class="bar-track"><div class="bar-fill" style="width:)HTML";
@@ -247,25 +253,65 @@ int main(int argc, char *argv[]) {
         <div class="metric-val">)HTML"
       << fmt(trigramPct) << R"HTML(%</div>
       </div>
+
+      <div class="section-title" style="margin-top:1.5rem;">&#9961; Code Structure Match <span style="font-size:0.6rem;opacity:0.5;font-weight:400;">70% Weight</span></div>
+      
+      <div class="metric">
+        <div class="metric-name">AST Sequence<small>Logical flow</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:)HTML";
+  out << fmt(astPct);
+  out << R"HTML(%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
+        <div class="metric-val">)HTML"
+      << fmt(astPct) << R"HTML(%</div>
+      </div>
     </div>
 
+    <!-- Overlapping Terms Section -->
     <div class="card">
-      <div class="section-title">&#128269; Overlapping Terms</div>
+      <div class="section-title">&#128269; Overlapping Plagiarism Matches</div>
+      
+      <div style="font-size:0.75rem; color:rgba(255,255,255,.5); margin-bottom:0.6rem;">COMMON IDENTIFIERS &amp; TEXT TERMS</div>
       <div class="terms-wrap">)HTML";
 
   int count = 0;
   for (const auto &term : unigramResult.commonTerms) {
-    if (count++ >= 30) {
-      out << R"HTML(<span class="term">&#8230;</span>)HTML";
+    if (count++ >= 40) {
+      out << R"HTML(<span class="term" style="background:transparent;border:0;color:#999;">&#8230;</span>)HTML";
       break;
     }
     out << R"HTML(<span class="term">)HTML" << term << R"HTML(</span>)HTML";
   }
   if (unigramResult.commonTerms.empty()) {
-    out << R"HTML(<span class="none">No overlapping terms found.</span>)HTML";
+    out << R"HTML(<span class="none">No overlapping text found.</span>)HTML";
   }
 
   out << R"HTML(
+      </div>
+
+      <div class="sub-split">
+        <div style="font-size:0.75rem; color:rgba(255,255,255,.5); margin-bottom:0.6rem;">STRUCTURAL AST LOGIC FLOW</div>
+        <div class="terms-wrap">)HTML";
+
+  count = 0;
+  for (const auto &term : astResult.commonTerms) {
+    if (count++ >= 15) {
+      out << R"HTML(<span class="term" style="background:transparent;border:0;color:#999;">&#8230;</span>)HTML";
+      break;
+    }
+    // Clean string for UI
+    std::string safeTerm = term;
+    auto pos = safeTerm.find("├── ");
+    if (pos != std::string::npos)
+      safeTerm = safeTerm.substr(pos + 6);
+    out << R"HTML(<span class="term" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#6ee7b7;">)HTML"
+        << safeTerm << R"HTML(</span>)HTML";
+  }
+  if (astResult.commonTerms.empty()) {
+    out << R"HTML(<span class="none">No structural overlap found.</span>)HTML";
+  }
+
+  out << R"HTML(
+        </div>
       </div>
     </div>
 

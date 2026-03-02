@@ -51,7 +51,7 @@
     .plagiarized{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fca5a5;}
     .original{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#86efac;}
     .section-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;
-      color:rgba(255,255,255,.35);margin-bottom:1.2rem;}
+      color:rgba(255,255,255,.35);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;}
     .metric{display:grid;grid-template-columns:140px 1fr 52px;align-items:center;gap:1rem;margin-bottom:.9rem;}
     .metric-name{font-size:.83rem;color:rgba(255,255,255,.7);font-weight:500;}
     .metric-name small{display:block;font-size:.7rem;color:rgba(255,255,255,.3);font-weight:400;}
@@ -67,6 +67,7 @@
       color:#fff;text-decoration:none;font-weight:600;font-size:1rem;
       transition:opacity .2s;margin-top:1rem;}
     .footer-btn:hover{opacity:.82;}
+    .sub-split{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);}
     @media(max-width:480px){.metric{grid-template-columns:100px 1fr 44px;}.card{padding:1.5rem;}}
   </style>
 </head>
@@ -78,51 +79,70 @@
     <div class="card">
       <div class="header">
         <h1>Plagiarism Analysis Report</h1>
-        <p>Unigram &middot; Bigram &middot; Trigram cosine similarity</p>
+        <p>Text N-Grams &middot; AST Structural Match</p>
       </div>
 
       <div class="files-row">
-        <div class="file-chip"><span class="lbl">Source File</span>new_year_string.cpp</div>
+        <div class="file-chip"><span class="lbl">Source File</span>test1.cpp</div>
         <div class="vs">VS</div>
-        <div class="file-chip"><span class="lbl">Target File</span>new_year_cake.cpp</div>
+        <div class="file-chip"><span class="lbl">Target File</span>test2.cpp</div>
       </div>
 
       <div class="score-wrap">
         <div class="ring">
           <svg viewBox="0 0 150 150">
             <circle class="bg" cx="75" cy="75" r="65"/>
-            <circle class="prog" cx="75" cy="75" r="65"
-              stroke="#22c55e" stroke-dashoffset="263.7"/>
+            <circle class="prog" cx="75" cy="75" r="65" stroke="#ef4444" stroke-dashoffset="96.8"/>
           </svg>
           <div class="ring-inner">
-            <div class="ring-pct" style="color:#22c55e">35.4%</div>
+            <div class="ring-pct" style="color:#ef4444">76.3%</div>
             <div class="ring-lbl">combined</div>
           </div>
         </div>
-        <div><span class="verdict original">&#10003; No Plagiarism Found</span></div>
+        <div><span class="verdict plagiarized">&#9888; Plagiarism Detected</span></div>
       </div>
 
-      <div class="section-title">&#128202; Score Breakdown</div>
+      <div class="section-title">&#128202; Text &amp; Phrase Match <span style="font-size:0.6rem;opacity:0.5;font-weight:400;">30% Weight</span></div>
+      
       <div class="metric">
         <div class="metric-name">Word-Level<small>Unigrams</small></div>
-        <div class="bar-track"><div class="bar-fill" style="width:61.1%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
-        <div class="metric-val">61.1%</div>
+        <div class="bar-track"><div class="bar-fill" style="width:93.3%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
+        <div class="metric-val">93.3%</div>
       </div>
+
       <div class="metric">
         <div class="metric-name">Phrase-Level<small>Bigrams (2-word)</small></div>
-        <div class="bar-track"><div class="bar-fill" style="width:26.7%;background:linear-gradient(90deg,#2563eb,#60a5fa);"></div></div>
-        <div class="metric-val">26.7%</div>
+        <div class="bar-track"><div class="bar-fill" style="width:62.5%;background:linear-gradient(90deg,#2563eb,#60a5fa);"></div></div>
+        <div class="metric-val">62.5%</div>
       </div>
+
       <div class="metric">
         <div class="metric-name">Phrase-Level<small>Trigrams (3-word)</small></div>
-        <div class="bar-track"><div class="bar-fill" style="width:13.4%;background:linear-gradient(90deg,#0891b2,#38bdf8);"></div></div>
-        <div class="metric-val">13.4%</div>
+        <div class="bar-track"><div class="bar-fill" style="width:40.0%;background:linear-gradient(90deg,#0891b2,#38bdf8);"></div></div>
+        <div class="metric-val">40.0%</div>
+      </div>
+
+      <div class="section-title" style="margin-top:1.5rem;">&#9961; Code Structure Match <span style="font-size:0.6rem;opacity:0.5;font-weight:400;">70% Weight</span></div>
+      
+      <div class="metric">
+        <div class="metric-name">AST Sequence<small>Logical flow</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:80.0%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
+        <div class="metric-val">80.0%</div>
       </div>
     </div>
 
+    <!-- Overlapping Terms Section -->
     <div class="card">
-      <div class="section-title">&#128269; Overlapping Terms</div>
-      <div class="terms-wrap"><span class="term">return</span><span class="term">ifcint</span><span class="term">whilet</span><span class="term">t</span><span class="term">main</span><span class="term">using</span><span class="term">std</span><span class="term">0</span><span class="term">1</span><span class="term">int</span><span class="term">n</span><span class="term">cin</span><span class="term">namespace</span>
+      <div class="section-title">&#128269; Overlapping Plagiarism Matches</div>
+      
+      <div style="font-size:0.75rem; color:rgba(255,255,255,.5); margin-bottom:0.6rem;">COMMON IDENTIFIERS &amp; TEXT TERMS</div>
+      <div class="terms-wrap"><span class="term">return</span><span class="term">cout</span><span class="term">5</span><span class="term">0</span><span class="term">i</span><span class="term">std</span><span class="term">main</span><span class="term">using</span><span class="term">int</span><span class="term">iostream</span><span class="term">namespace</span><span class="term">include</span>
+      </div>
+
+      <div class="sub-split">
+        <div style="font-size:0.75rem; color:rgba(255,255,255,.5); margin-bottom:0.6rem;">STRUCTURAL AST LOGIC FLOW</div>
+        <div class="terms-wrap"><span class="term" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#6ee7b7;">─ Function: main()</span><span class="term" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#6ee7b7;">─ Declaration: int i</span><span class="term" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#6ee7b7;">─ Assignment</span><span class="term" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#6ee7b7;">─ Return</span>
+        </div>
       </div>
     </div>
 
