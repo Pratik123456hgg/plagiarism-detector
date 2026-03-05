@@ -9,7 +9,7 @@ A text and code plagiarism detection tool built with **C++** (core engine) and *
 1. The C++ engine reads two files, cleans the text, and computes **word frequency vectors**.
 2. It calculates a **cosine-similarity-based score** to determine how alike the two documents are.
 3. If the similarity is **≥ 60%**, it flags the pair as plagiarised.
-4. Results are rendered in a styled `report.html` which is served back by Flask.
+4. Results are rendered in a styled `report.html` which ies served back by Flask.
 
 ---
 
