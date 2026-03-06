@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plagiarism Detector — AI-Powered Document Analysis</title>
-    <meta name="description"
-        content="Detect plagiarism between two documents using advanced C++ NLP with unigram, bigram, and trigram phrase detection.">
+    <title>AI Plagiarism Detector</title>
+    <meta name="description" content="Detect plagiarism between two documents using advanced C++ NLP.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -20,65 +19,42 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #0f0c29;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #020617 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2.5rem 1rem;
+            padding: 3rem 1rem;
+            color: #f8fafc;
             overflow-x: hidden;
-            color: #fff;
         }
 
-        /* — Animated background — */
-        .bg {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 55%, #24243e 100%);
-            z-index: 0;
-        }
-
+        /* Orbs for glassmorphism background */
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(110px);
-            opacity: 0;
+            filter: blur(120px);
+            opacity: 0.15;
             pointer-events: none;
             z-index: 0;
-            animation: orb-in 1.2s ease forwards, pulse 10s ease-in-out 1.2s infinite;
+            animation: pulse 10s ease-in-out infinite;
         }
 
         .orb1 {
-            width: 650px;
-            height: 650px;
-            background: #6d28d9;
-            top: -160px;
-            left: -180px;
-            animation-delay: 0s, 1.2s;
+            width: 600px;
+            height: 600px;
+            background: #4f46e5;
+            top: -100px;
+            left: -100px;
         }
 
         .orb2 {
-            width: 450px;
-            height: 450px;
-            background: #1d4ed8;
-            bottom: -120px;
-            right: -120px;
-            animation-delay: .3s, 1.5s;
-        }
-
-        .orb3 {
-            width: 280px;
-            height: 280px;
-            background: #0e7490;
-            top: 40%;
-            right: 10%;
-            animation-delay: .6s, 1.8s;
-        }
-
-        @keyframes orb-in {
-            to {
-                opacity: .18;
-            }
+            width: 500px;
+            height: 500px;
+            background: #0891b2;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 2s;
         }
 
         @keyframes pulse {
@@ -89,140 +65,121 @@
             }
 
             50% {
-                transform: scale(1.18);
+                transform: scale(1.1);
             }
         }
 
-        /* — Main layout — */
         .page {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 660px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* — Hero header — */
         .hero {
             text-align: center;
             margin-bottom: 2.5rem;
         }
 
-        .pill {
+        .badge {
             display: inline-flex;
             align-items: center;
-            gap: .45rem;
-            padding: .38rem 1.1rem;
-            border-radius: 50px;
-            background: rgba(109, 40, 217, .22);
-            border: 1px solid rgba(109, 40, 217, .45);
-            font-size: .72rem;
-            font-weight: 700;
-            color: #c4b5fd;
+            gap: 0.5rem;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            color: #818cf8;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: .1em;
+            letter-spacing: 0.05em;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
             margin-bottom: 1.2rem;
-            animation: fade-up .7s ease both;
         }
 
-        .pill span {
-            width: 7px;
-            height: 7px;
+        .badge span {
+            width: 6px;
+            height: 6px;
+            background: #818cf8;
             border-radius: 50%;
-            background: #a78bfa;
             display: inline-block;
-            animation: blink 1.6s ease infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: .3;
-            }
+            box-shadow: 0 0 10px #818cf8;
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 6vw, 3rem);
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
             font-weight: 800;
-            line-height: 1.12;
-            background: linear-gradient(135deg, #e9d5ff 0%, #93c5fd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: .9rem;
-            animation: fade-up .7s .1s ease both;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
         .hero p {
-            color: rgba(255, 255, 255, .45);
-            font-size: 1rem;
-            line-height: 1.65;
-            animation: fade-up .7s .2s ease both;
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        @keyframes fade-up {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-
-            to {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        /* — Card — */
         .card {
-            background: rgba(255, 255, 255, .045);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(255, 255, 255, .09);
-            border-radius: 26px;
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
             padding: 2.5rem;
-            animation: fade-up .7s .3s ease both;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        /* — Upload zones — */
+        .zones-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .vs-circle {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #4f46e5, #0891b2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+        }
+
         .zone {
             position: relative;
-            border: 2px dashed rgba(109, 40, 217, .38);
-            background: rgba(109, 40, 217, .04);
-            border-radius: 18px;
-            padding: 2rem 1.5rem;
+            border: 2px dashed rgba(99, 102, 241, 0.3);
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
             text-align: center;
             cursor: pointer;
-            transition: border-color .22s, background .22s, transform .22s, box-shadow .22s;
-            margin-bottom: 1.2rem;
+            transition: all 0.2s ease;
         }
 
         .zone:hover {
-            border-color: rgba(109, 40, 217, .8);
-            background: rgba(109, 40, 217, .1);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(109, 40, 217, .18);
+            border-color: #6366f1;
+            background: rgba(30, 41, 59, 0.6);
+            transform: translateY(-2px);
         }
 
         .zone.drag-over {
-            border-color: #a78bfa;
-            background: rgba(109, 40, 217, .16);
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 16px 50px rgba(109, 40, 217, .28);
+            border-color: #38bdf8;
+            background: rgba(30, 41, 59, 0.8);
         }
 
         .zone.done {
-            border-color: rgba(34, 197, 94, .45);
-            background: rgba(34, 197, 94, .05);
-        }
-
-        .zone.done:hover {
-            border-color: rgba(34, 197, 94, .8);
-            background: rgba(34, 197, 94, .1);
-            box-shadow: 0 12px 40px rgba(34, 197, 94, .15);
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
         }
 
         .zone input[type="file"] {
@@ -235,153 +192,121 @@
         }
 
         .zone-icon {
-            font-size: 2.6rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             display: block;
-            margin-bottom: .7rem;
-            transition: transform .25s;
-            line-height: 1;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
         }
 
-        .zone:hover .zone-icon {
-            transform: translateY(-5px);
+        .zone-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 0.25rem;
         }
 
-        .zone-tag {
-            font-size: .68rem;
-            font-weight: 700;
+        .zone-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .zone-formats {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #4f46e5;
             text-transform: uppercase;
-            letter-spacing: .09em;
-            color: rgba(255, 255, 255, .3);
-            margin-bottom: .4rem;
+            letter-spacing: 0.05em;
         }
 
-        .zone-hint {
-            font-size: .95rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, .6);
-            margin-bottom: .3rem;
-        }
-
-        .zone-sub {
-            font-size: .76rem;
-            color: rgba(255, 255, 255, .28);
-        }
-
-        .file-badge {
+        .badge-file {
             display: none;
             align-items: center;
-            gap: .45rem;
-            margin-top: .85rem;
-            padding: .4rem 1rem;
-            background: rgba(34, 197, 94, .14);
-            border: 1px solid rgba(34, 197, 94, .28);
+            justify-content: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
             border-radius: 50px;
-            font-size: .82rem;
-            color: #86efac;
-            font-weight: 500;
-            max-width: 100%;
+            font-size: 0.75rem;
+            color: #34d399;
         }
 
-        .file-badge.show {
+        .badge-file.show {
             display: inline-flex;
         }
 
-        .file-badge .fname {
+        .badge-file span.fname {
+            max-width: 120px;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
-        /* — Divider — */
-        .divider {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: -.2rem 0 1.2rem;
-            color: rgba(255, 255, 255, .2);
-            font-size: .78rem;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, .08);
-        }
-
-        /* — Submit button — */
-        .btn {
+        .btn-submit {
             width: 100%;
-            padding: 1.1rem 2rem;
-            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #0891b2 100%);
             color: #fff;
             border: none;
-            border-radius: 14px;
-            font-size: 1.05rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
             font-weight: 700;
-            font-family: 'Inter', sans-serif;
             cursor: pointer;
-            letter-spacing: .02em;
-            transition: transform .22s, box-shadow .22s, opacity .22s;
-            box-shadow: 0 8px 30px rgba(124, 58, 237, .35);
-            margin-top: .5rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 44px rgba(124, 58, 237, .5);
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
         }
 
-        .btn:active {
+        .btn-submit:active {
             transform: translateY(0);
         }
 
-        .btn:disabled {
-            opacity: .45;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* — Feature tags — */
         .features {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
-            margin-top: 1.8rem;
-            animation: fade-up .7s .4s ease both;
+            margin-top: 2rem;
         }
 
-        .feat {
+        .feat-tag {
             display: flex;
             align-items: center;
-            gap: .4rem;
-            font-size: .75rem;
-            color: rgba(255, 255, 255, .35);
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .feat-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #7c3aed;
-            flex-shrink: 0;
+        .feat-tag svg {
+            width: 14px;
+            height: 14px;
+            color: #818cf8;
         }
 
-        /* — Loading overlay — */
         .loader {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(15, 12, 41, .92);
-            backdrop-filter: blur(14px);
-            z-index: 200;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1.4rem;
         }
 
         .loader.show {
@@ -389,184 +314,188 @@
         }
 
         .spinner {
-            width: 58px;
-            height: 58px;
-            border: 3px solid rgba(255, 255, 255, .08);
-            border-top-color: #7c3aed;
-            border-right-color: #3b82f6;
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #4f46e5;
             border-radius: 50%;
-            animation: spin .85s linear infinite;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1.5rem;
         }
 
         @keyframes spin {
-            to {
+            100% {
                 transform: rotate(360deg);
             }
         }
 
-        .loader-text {
-            font-size: 1.05rem;
+        .loader h2 {
+            font-size: 1.25rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, .8);
+            margin-bottom: 0.5rem;
         }
 
-        .loader-sub {
-            font-size: .83rem;
-            color: rgba(255, 255, 255, .38);
-            margin-top: -.9rem;
+        .loader p {
+            color: #64748b;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 480px) {
-            .card {
-                padding: 1.6rem;
+        @media (max-width: 768px) {
+            .zones-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .vs-circle {
+                margin: 0 auto;
+            }
+
+            .card {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Backgrounds -->
-    <div class="bg"></div>
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
 
-    <!-- Loading overlay -->
     <div class="loader" id="loader">
         <div class="spinner"></div>
-        <div class="loader-text">Analyzing Documents…</div>
-        <div class="loader-sub">Running C++ NLP engine &mdash; unigram · bigram · trigram</div>
+        <h2>Analyzing Code Similarity...</h2>
+        <p>Running N-gram text analysis and AST structural matching.</p>
     </div>
 
     <div class="page">
-        <!-- Hero -->
-        <header class="hero">
-            <div class="pill"><span></span> C++ NLP Engine</div>
-            <h1>Plagiarism<br>Detector</h1>
-            <p>Upload two documents for instant similarity analysis using<br>
-                unigram, bigram &amp; trigram phrase detection.</p>
-        </header>
+        <div class="hero">
+            <div class="badge"><span></span> C++ NLP Engine</div>
+            <h1>Plagiarism Detector</h1>
+            <p>Upload two C++ files to analyze similarity instantly using Unigram, Bigram, Trigram and AST sequence
+                matching algorithms.</p>
+        </div>
 
-        <!-- Upload card -->
         <div class="card">
-            <form id="form" action="/analyze" method="post" enctype="multipart/form-data">
+            <form id="uploadForm" action="/analyze" method="post" enctype="multipart/form-data">
+                <div class="zones-grid">
+                    <!-- Zone 1 -->
+                    <div class="zone" id="zone1" ondragover="onDragOver(event,'zone1')"
+                        ondragleave="onDragLeave('zone1')" ondrop="onDrop(event,'zone1','file1','badge1','fname1')">
+                        <input type="file" id="file1" name="file1" accept=".cpp,.h,.txt,.py,.js,.java,.md" required
+                            onchange="onSelect(this,'zone1','badge1','fname1')">
+                        <span class="zone-icon">📄</span>
+                        <div class="zone-title">Source File</div>
+                        <div class="zone-desc">Original code to check against</div>
+                        <div class="zone-formats">.cpp &middot; .h &middot; .txt</div>
+                        <div class="badge-file" id="badge1">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="fname" id="fname1"></span>
+                        </div>
+                    </div>
 
-                <!-- Zone 1 -->
-                <div class="zone" id="zone1" ondragover="onDragOver(event,'zone1')" ondragleave="onDragLeave('zone1')"
-                    ondrop="onDrop(event,'zone1','file1','badge1','fname1','icon1')">
-                    <input type="file" id="file1" name="file1" required
-                        onchange="onSelect(this,'zone1','badge1','fname1','icon1')">
-                    <span class="zone-icon" id="icon1">📄</span>
-                    <div class="zone-tag">Document 1 — Source</div>
-                    <div class="zone-hint">Drop file here or click to browse</div>
-                    <div class="zone-sub">.txt · .cpp · .py · .js · .java · .md</div>
-                    <div class="file-badge" id="badge1">
-                        <span>✓</span>
-                        <span class="fname" id="fname1"></span>
+                    <div class="vs-circle">VS</div>
+
+                    <!-- Zone 2 -->
+                    <div class="zone" id="zone2" ondragover="onDragOver(event,'zone2')"
+                        ondragleave="onDragLeave('zone2')" ondrop="onDrop(event,'zone2','file2','badge2','fname2')">
+                        <input type="file" id="file2" name="file2" accept=".cpp,.h,.txt,.py,.js,.java,.md" required
+                            onchange="onSelect(this,'zone2','badge2','fname2')">
+                        <span class="zone-icon">📋</span>
+                        <div class="zone-title">Target File</div>
+                        <div class="zone-desc">The document to analyze</div>
+                        <div class="zone-formats">.cpp &middot; .h &middot; .txt</div>
+                        <div class="badge-file" id="badge2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="fname" id="fname2"></span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="divider">vs</div>
-
-                <!-- Zone 2 -->
-                <div class="zone" id="zone2" ondragover="onDragOver(event,'zone2')" ondragleave="onDragLeave('zone2')"
-                    ondrop="onDrop(event,'zone2','file2','badge2','fname2','icon2')">
-                    <input type="file" id="file2" name="file2" required
-                        onchange="onSelect(this,'zone2','badge2','fname2','icon2')">
-                    <span class="zone-icon" id="icon2">📑</span>
-                    <div class="zone-tag">Document 2 — Target</div>
-                    <div class="zone-hint">Drop file here or click to browse</div>
-                    <div class="zone-sub">.txt · .cpp · .py · .js · .java · .md</div>
-                    <div class="file-badge" id="badge2">
-                        <span>✓</span>
-                        <span class="fname" id="fname2"></span>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn" id="submitBtn">
-                    🔍&nbsp; Detect Plagiarism
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Detect Plagiarism
                 </button>
             </form>
         </div>
 
-        <!-- Feature tags -->
         <div class="features">
-            <div class="feat">
-                <div class="feat-dot"></div> Unigram Analysis
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Unigram Analysis
             </div>
-            <div class="feat">
-                <div class="feat-dot"></div> Bigram Phrases
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Bigram Detection
             </div>
-            <div class="feat">
-                <div class="feat-dot"></div> Trigram Matching
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Trigram Matching
             </div>
-            <div class="feat">
-                <div class="feat-dot"></div> Cosine Similarity
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Cosine Similarity
+            </div>
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                AST Structural Match
             </div>
         </div>
     </div>
 
     <script>
-        function setFile(inputEl, zoneId, badgeId, fnameId, iconId, file) {
-            const zone = document.getElementById(zoneId);
-            const badge = document.getElementById(badgeId);
-            const fname = document.getElementById(fnameId);
-            const icon = document.getElementById(iconId);
-            const num = zoneId.replace('zone', '');
-
+        function setFileState(zoneId, badgeId, fnameId, file) {
             if (file) {
-                fname.textContent = file.name;
-                badge.classList.add('show');
-                zone.classList.add('done');
-                icon.textContent = '✅';
+                document.getElementById(fnameId).textContent = file.name;
+                document.getElementById(badgeId).classList.add('show');
+                document.getElementById(zoneId).classList.add('done');
             } else {
-                badge.classList.remove('show');
-                zone.classList.remove('done');
-                icon.textContent = num === '1' ? '📄' : '📑';
+                document.getElementById(badgeId).classList.remove('show');
+                document.getElementById(zoneId).classList.remove('done');
             }
         }
-
-        function onSelect(input, zoneId, badgeId, fnameId, iconId) {
-            const file = input.files && input.files[0] ? input.files[0] : null;
-            setFile(input, zoneId, badgeId, fnameId, iconId, file);
+        function onSelect(input, z, b, f) {
+            setFileState(z, b, f, input.files?.[0]);
         }
-
-        function onDragOver(e, zoneId) {
-            e.preventDefault(); e.stopPropagation();
-            document.getElementById(zoneId).classList.add('drag-over');
+        function onDragOver(e, z) { e.preventDefault(); document.getElementById(z).classList.add('drag-over'); }
+        function onDragLeave(z) { document.getElementById(z).classList.remove('drag-over'); }
+        function onDrop(e, z, i, b, f) {
+            e.preventDefault(); document.getElementById(z).classList.remove('drag-over');
+            if (e.dataTransfer.files.length) {
+                const input = document.getElementById(i);
+                input.files = e.dataTransfer.files;
+                setFileState(z, b, f, e.dataTransfer.files[0]);
+            }
         }
-
-        function onDragLeave(zoneId) {
-            document.getElementById(zoneId).classList.remove('drag-over');
-        }
-
-        function onDrop(e, zoneId, inputId, badgeId, fnameId, iconId) {
-            e.preventDefault(); e.stopPropagation();
-            document.getElementById(zoneId).classList.remove('drag-over');
-            const files = e.dataTransfer.files;
-            if (!files.length) return;
-            const input = document.getElementById(inputId);
-            const dt = new DataTransfer();
-            dt.items.add(files[0]);
-            input.files = dt.files;
-            setFile(input, zoneId, badgeId, fnameId, iconId, files[0]);
-        }
-
-        document.getElementById('form').addEventListener('submit', function (e) {
-            const f1 = document.getElementById('file1').files.length;
-            const f2 = document.getElementById('file2').files.length;
-            if (!f1 || !f2) {
-                e.preventDefault();
-                alert('Please select both files before analyzing.');
-                return;
+        document.getElementById('uploadForm').addEventListener('submit', (e) => {
+            if (!document.getElementById('file1').files.length || !document.getElementById('file2').files.length) {
+                e.preventDefault(); alert('Please provide both files.'); return;
             }
             document.getElementById('loader').classList.add('show');
-            document.getElementById('submitBtn').disabled = true;
         });
     </script>
 </body>

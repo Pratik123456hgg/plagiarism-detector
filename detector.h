@@ -55,7 +55,7 @@ getNgramFrequencies(const std::vector<std::string> &words, int n);
 SimilarityResult
 calculateDetailedSimilarity(const std::unordered_map<std::string, int> &freq1,
                             const std::unordered_map<std::string, int> &freq2);
-
+                            
 } // namespace Detector
 
 #endif // DETECTOR_H
