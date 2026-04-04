@@ -1,13 +1,9 @@
 #include "detector.h"
-#include <algorithm>
-#include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <unordered_set>
-
-namespace fs = std::filesystem;
 
 static std::string basename(const std::string &path) {
   size_t pos = path.find_last_of("/\\");
@@ -90,20 +86,24 @@ getHighlighted(const std::string &text,
   return res.str();
 }
 
-// Forward declaration for batch report
-void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult);
+int main(int argc, char *argv[]) {
+  if (argc != 3) {
+    std::cerr << "Usage: " << argv[0] << " <file1> <file2>" << std::endl;
+    return 1;
+  }
 
-// Helper: Generate 2-file report (existing mode, unchanged)
-void generateTwoFileReport(const std::string &file1, const std::string &file2) {
+  std::string file1 = argv[1];
+  std::string file2 = argv[2];
+
   std::string text1 = Detector::readFile(file1);
   std::string text2 = Detector::readFile(file2);
 
   if (text1.empty() && text2.empty()) {
     std::cerr << "Both files are empty or could not be read." << std::endl;
-    return;
+    return 1;
   }
 
- auto ast1 = Detector::buildAST(text1);
+  auto ast1 = Detector::buildAST(text1);
   auto ast2 = Detector::buildAST(text2);
   auto astResult = Detector::calculateASTSimilarity(ast1, ast2);
   delete ast1;
@@ -111,18 +111,23 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
 
   std::string cleaned1 = Detector::cleanText(text1);
   std::string cleaned2 = Detector::cleanText(text2);
+
   auto words1 = Detector::tokenize(cleaned1);
   auto words2 = Detector::tokenize(cleaned2);
+
   auto freq1 = Detector::getWordFrequencies(cleaned1);
   auto freq2 = Detector::getWordFrequencies(cleaned2);
+
   auto bigram1 = Detector::getNgramFrequencies(words1, 2);
   auto bigram2 = Detector::getNgramFrequencies(words2, 2);
+
   auto trigram1 = Detector::getNgramFrequencies(words1, 3);
   auto trigram2 = Detector::getNgramFrequencies(words2, 3);
 
   auto unigramResult = Detector::calculateDetailedSimilarity(freq1, freq2);
   auto bigramResult = Detector::calculateDetailedSimilarity(bigram1, bigram2);
-  auto trigramResult = Detector::calculateDetailedSimilarity(trigram1, trigram2);
+  auto trigramResult =
+      Detector::calculateDetailedSimilarity(trigram1, trigram2);
 
   double astPct = astResult.score * 100.0;
   double unigramPct = unigramResult.score * 100.0;
@@ -179,7 +184,7 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
   std::ofstream out("report.html");
   if (!out.is_open()) {
     std::cerr << "Error: Could not create report.html" << std::endl;
-    return;
+    return 1;
   }
 
   out << R"HTML(<!DOCTYPE html>
@@ -212,12 +217,14 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
     
     .grid-2{display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;}
     
+    /* Files Comparison */
     .files-compare{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2.5rem;padding:1.5rem;background:rgba(15,23,42,.4);border-radius:12px;}
     .file-box{flex:1;text-align:center;width:100%;overflow:hidden;}
     .file-box .lbl{display:block;font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}
     .file-box .name{font-size:.95rem;font-family:monospace;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,.05);padding:.5rem;border-radius:6px;border:1px solid rgba(255,255,255,.05);}
     .vs-circ{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#4f46e5,#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;box-shadow:0 0 15px rgba(79,70,229,.4);}
 
+    /* Score Ring */
     .score-ui{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;}
     .ring{position:relative;width:160px;height:160px;}
     .ring svg{width:160px;height:160px;transform:rotate(-90deg);}
@@ -232,6 +239,7 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
     .plagiarized{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#fca5a5;}
     .original{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;}
 
+    /* Analytics Bars */
     .analytics h3{font-size:.9rem;color:#cbd5e1;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:.05em;}
     .metric-group{margin-bottom:2rem;}
     .metric{display:grid;grid-template-columns:130px 1fr 50px;align-items:center;gap:1rem;margin-bottom:1rem;}
@@ -240,11 +248,13 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
     .bar-fg{height:100%;border-radius:50px;}
     .m-val{font-size:.85rem;font-weight:700;color:#e2e8f0;text-align:right;}
     
+    /* Tags Insights */
     .insights{margin-top:1.5rem;}
     .insights h3{font-size:.85rem;color:#94a3b8;margin-bottom:1rem;}
     .tags{display:flex;flex-wrap:wrap;gap:.5rem;}
     .tag{background:rgba(79,70,229,.15);border:1px solid rgba(79,70,229,.3);color:#a5b4fc;padding:.3rem .8rem;border-radius:6px;font-family:monospace;font-size:.8rem;}
     
+    /* Split Screen */
     .split-title{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#e2e8f0;}
     .code-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);}
     .code-pane{background:rgba(15,23,42,.8);height:500px;overflow:auto;font-family:monospace;font-size:.8rem;line-height:1.6;}
@@ -294,6 +304,7 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
     </div>
 
     <div class="card grid-2">
+      <!-- Score Ring -->
       <div class="score-ui">
         <div class="ring">
           <svg viewBox="0 0 160 160">
@@ -317,6 +328,7 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
       << R"HTML(</span></div>
       </div>
 
+      <!-- Analytics -->
       <div class="analytics">
         <div class="metric-group">
           <h3>Text Similarity Analysis</h3>
@@ -360,6 +372,7 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
       </div>
     </div>
 
+    <!-- Insights Panel -->
     <div class="card insights">
       <h3>Plagiarism Match Insights (Overlapping Terms)</h3>
       <div class="tags">)HTML";
@@ -380,6 +393,7 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
       </div>
     </div>
     
+    <!-- Code Comparison Viewer -->
     <div class="split-title">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
       Code Comparison Viewer
@@ -411,336 +425,5 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
 
   out.close();
   std::cout << "Report generated: report.html" << std::endl;
-}
-
-// Helper: Get all supported files from directory
-std::vector<std::string> getFilesFromDirectory(const std::string &dirPath) {
-  std::vector<std::string> files;
-  if (!fs::is_directory(dirPath)) {
-    std::cerr << "Error: " << dirPath << " is not a valid directory." << std::endl;
-    return files;
-  }
-
-  for (const auto &entry : fs::directory_iterator(dirPath)) {
-    if (entry.is_regular_file()) {
-      std::string ext = entry.path().extension().string();
-      if (ext == ".cpp" || ext == ".h" || ext == ".txt" || ext == ".c" ||
-          ext == ".cc" || ext == ".cxx") {
-        files.push_back(entry.path().string());
-      }
-    }
-  }
-  
-  if (files.empty()) {
-    std::cerr << "No supported files (.cpp, .h, .txt, .c) found in " << dirPath
-             << std::endl;
-  }
-  
-  return files;
-}
-
-void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult);
-
-int main(int argc, char *argv[]) {
-  if (argc < 2) {
-    std::cerr << "Usage:" << std::endl;
-    std::cerr << "  Two-file mode:  " << argv[0] << " <file1> <file2>"
-             << std::endl;
-    std::cerr << "  Batch mode:     " << argv[0] << " --batch <directory>"
-             << std::endl;
-    return 1;
-  }
-
-  // Check for batch mode
-  if (argc >= 3 && std::string(argv[1]) == "--batch") {
-    std::string dirPath = argv[2];
-    std::cout << "Running batch analysis on directory: " << dirPath << std::endl;
-
-    auto files = getFilesFromDirectory(dirPath);
-    if (files.empty()) {
-      return 1;
-    }
-
-    std::cout << "Found " << files.size() << " files. Starting analysis..."
-             << std::endl;
-
-    auto batchResult = Detector::conductBatchAnalysis(files);
-    generateBatchReport(batchResult);
-    return 0;
-  }
-
-  // Standard 2-file mode
-  if (argc != 3) {
-    std::cerr << "Usage: " << argv[0] << " <file1> <file2>" << std::endl;
-    return 1;
-  }
-
-  generateTwoFileReport(argv[1], argv[2]);
   return 0;
-}
-
-void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
-  std::ofstream out("batch_report.html");
-  if (!out.is_open()) {
-    std::cerr << "Error: Could not create batch_report.html" << std::endl;
-    return;
-  }
-
-  out << R"HTML(<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Batch Plagiarism Analysis Report</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 55%,#020617 100%);
-      min-height:100vh;padding:2rem 1.5rem;color:#f8fafc;}
-    
-    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.12;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}
-    .orb1{width:600px;height:600px;background:#4f46e5;top:-100px;left:-100px;}
-    .orb2{width:500px;height:500px;background:#0891b2;bottom:-100px;right:-100px;animation-delay:3s;}
-    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
-    
-    .container{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding-bottom:3rem;}
-    
-    .header{margin-bottom:2.5rem;}
-    .header h1{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#e2e8f0,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;}
-    .header p{color:#94a3b8;font-size:1rem;}
-    
-    .card{background:rgba(30,41,59,.4);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.2);}
-    
-    .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:2rem;}
-    .stat-box{background:rgba(15,23,42,.4);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:1.5rem;text-align:center;}
-    .stat-val{font-size:2.5rem;font-weight:800;color:#4f46e5;line-height:1;}
-    .stat-lbl{font-size:.85rem;color:#94a3b8;margin-top:.5rem;text-transform:uppercase;letter-spacing:.05em;}
-    
-    .cluster-section{margin-bottom:2rem;}
-    .cluster-title{display:flex;align-items:center;gap:.75rem;font-size:1.2rem;font-weight:700;margin-bottom:1.25rem;color:#e2e8f0;}
-    .cluster-badge{background:#ef4444;color:#fff;padding:.3rem .8rem;border-radius:6px;font-size:.8rem;font-weight:600;}
-    
-    .member-list{background:rgba(15,23,42,.4);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
-    .member-item{display:flex;align-items:center;justify-content:space-between;padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05);}
-    .member-item:last-child{border-bottom:none;}
-    .member-name{display:flex;align-items:center;gap:.5rem;font-family:monospace;color:#e2e8f0;}
-    .badge-original{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;}
-    
-    .pairs-table{width:100%;border-collapse:collapse;font-size:.9rem;}
-    .pairs-table th{background:rgba(15,23,42,.6);padding:.75rem;text-align:left;color:#94a3b8;font-weight:600;border-bottom:1px solid rgba(255,255,255,.1);}
-    .pairs-table td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05);color:#cbd5e1;}
-    .pairs-table tbody tr:hover{background:rgba(255,255,255,.03);}
-    .score-cell{font-weight:600;color:#fca5a5;}
-    
-    .matrix-container{overflow-x:auto;background:rgba(15,23,42,.4);border-radius:12px;padding:1.5rem;}
-    .matrix-table{width:100%;border-collapse:collapse;font-size:.8rem;font-family:monospace;}
-    .matrix-table th,.matrix-table td{padding:.5rem;text-align:center;border:1px solid rgba(255,255,255,.1);}
-    .matrix-table th{background:rgba(79,70,229,.2);color:#818cf8;font-weight:600;}
-    .matrix-table td{color:#cbd5e1;}
-    .matrix-high{background:rgba(239,68,68,.2);color:#fca5a5;font-weight:600;}
-    .matrix-med{background:rgba(234,179,8,.15);color:#fde047;}
-    .matrix-low{background:rgba(16,185,129,.15);color:#6ee7b7;}
-    
-    @media(max-width:768px){
-      .summary{grid-template-columns:1fr;}
-      .pairs-table{font-size:.8rem;}
-      .matrix-table{font-size:.7rem;}
-    }
-  </style>
-</head>
-<body>
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-
-  <div class="container">
-    <div class="header">
-      <h1>Batch Plagiarism Analysis Report</h1>
-      <p>Analyzed )HTML";
-  out << batchResult.totalFiles;
-  out << R"HTML( files • )HTML";
-  out << batchResult.totalSuspiciousPairs;
-  out << R"HTML( suspicious pairs • )HTML";
-  out << batchResult.clusters.size();
-  out << R"HTML( clusters detected</p>
-    </div>
-
-    <div class="card">
-      <div class="summary">
-        <div class="stat-box">
-          <div class="stat-val">)HTML";
-  out << batchResult.totalFiles;
-  out << R"HTML(</div>
-          <div class="stat-lbl">Total Files</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val">)HTML";
-  out << batchResult.totalSuspiciousPairs;
-  out << R"HTML(</div>
-          <div class="stat-lbl">Suspicious Pairs</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val">)HTML";
-  out << batchResult.clusters.size();
-  out << R"HTML(</div>
-          <div class="stat-lbl">Clusters Found</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val">)HTML";
-  if (batchResult.totalFiles > 1) {
-    out << fmt(100.0 * batchResult.totalSuspiciousPairs / (batchResult.totalFiles * (batchResult.totalFiles - 1) / 2));
-  } else {
-    out << "0";
-  }
-  out << R"HTML(%</div>
-          <div class="stat-lbl">Suspicion Rate</div>
-        </div>
-      </div>
-    </div>
-
-    )HTML";
-
-  int clusterNum = 1;
-  for (const auto &cluster : batchResult.clusters) {
-    out << R"HTML(
-    <div class="card cluster-section">
-      <div class="cluster-title">
-        <span class="cluster-badge">Cluster )HTML";
-    out << clusterNum++;
-    out << R"HTML(</span>
-        <span>)HTML" << cluster.members.size() << R"HTML( files</span>
-      </div>
-      
-      <div class="member-list">
-        <div style="font-size:.9rem;font-weight:600;color:#94a3b8;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;">Member Files</div>)HTML";
-
-    for (const auto &member : cluster.members) {
-      out << R"HTML(
-        <div class="member-item">
-          <div class="member-name">
-            <span>)HTML" << escapeHTML(member.filename) << R"HTML(</span>
-            )HTML";
-      if (member.isProbableOriginal) {
-        out << R"HTML(<span class="badge-original">Probable Original</span>)HTML";
-      }
-      out << R"HTML(
-          </div>
-          <div style="color:#64748b;font-size:.85rem;">)HTML";
-      out << member.degree;
-      out << R"HTML( match)HTML" << (member.degree != 1 ? "es" : "")
-          << R"HTML(</div>
-        </div>)HTML";
-    }
-
-    out << R"HTML(
-      </div>
-      
-      <div style="margin-top:1.5rem;">
-        <div style="font-size:.9rem;font-weight:600;color:#94a3b8;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;">Pairwise Similarity</div>
-        <table class="pairs-table">
-          <thead>
-            <tr>
-              <th>File 1</th>
-              <th>File 2</th>
-              <th>Similarity</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>)HTML";
-
-    for (const auto &pair : cluster.internalPairs) {
-      double score = 100.0 * pair.similarity;
-      std::string status = score >= 60.0 ? "Plagiarism" : "Suspicious";
-      std::string statusColor = score >= 60.0 ? "#ef4444" : "#eab308";
-      
-      out << R"HTML(
-            <tr>
-              <td>)HTML" << escapeHTML(batchResult.filenames[pair.fileIdx1])
-          << R"HTML(</td>
-              <td>)HTML" << escapeHTML(batchResult.filenames[pair.fileIdx2])
-          << R"HTML(</td>
-              <td class="score-cell">)HTML" << fmt(score) << R"HTML(%</td>
-              <td><span style="background:)HTML" << statusColor << R"HTML(20;border:1px solid )HTML"
-          << statusColor << R"HTML(40;color:)HTML" << statusColor << R"HTML(;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;">)HTML"
-          << status << R"HTML(</span></td>
-            </tr>)HTML";
-    }
-
-    out << R"HTML(
-          </tbody>
-        </table>
-      </div>
-    </div>)HTML";
-  }
-
-  out << R"HTML(
-
-    <!-- Full Similarity Matrix -->
-    <div class="card">
-      <div style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;color:#e2e8f0;">Complete Similarity Matrix (All Files)</div>
-      <div class="matrix-container">
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th style="text-align:right;">File</th>)HTML";
-
-  for (size_t i = 0; i < batchResult.filenames.size(); ++i) {
-    out << R"HTML(<th>)HTML" << (i + 1) << R"HTML(</th>)HTML";
-  }
-  out << R"HTML(
-            </tr>
-          </thead>
-          <tbody>)HTML";
-
-  for (size_t i = 0; i < batchResult.filenames.size(); ++i) {
-    out << R"HTML(
-            <tr>
-              <td style="text-align:right;font-weight:600;">)HTML" << (i + 1)
-        << R"HTML(</td>)HTML";
-    for (size_t j = 0; j < batchResult.filenames.size(); ++j) {
-      double score = 100.0 * batchResult.matrix[i][j];
-      std::string scoreClass = "matrix-low";
-      if (score >= 60.0) scoreClass = "matrix-high";
-      else if (score >= 30.0) scoreClass = "matrix-med";
-      
-      out << R"HTML(<td class=")HTML" << scoreClass << R"HTML(">)HTML"
-          << fmt(score) << R"HTML(%</td>)HTML";
-    }
-    out << R"HTML(
-            </tr>)HTML";
-  }
-
-  out << R"HTML(
-          </tbody>
-        </table>
-      </div>
-      
-      <div style="margin-top:1rem;padding:1rem;background:rgba(15,23,42,.4);border-radius:8px;font-size:.85rem;color:#94a3b8;">
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <div style="display:flex;align-items:center;gap:.5rem;">
-            <span style="width:20px;height:20px;background:rgba(239,68,68,.2);border:1px solid rgba(239,68,68,.4);border-radius:4px;"></span>
-            <span>High Risk (≥60%)</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:.5rem;">
-            <span style="width:20px;height:20px;background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);border-radius:4px;"></span>
-            <span>Medium Risk (30-60%)</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:.5rem;">
-            <span style="width:20px;height:20px;background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);border-radius:4px;"></span>
-            <span>Low Risk (<30%)</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);">
-      <p style="color:#64748b;font-size:.9rem;">Generated by C++ Plagiarism Detector | Fingerprint threshold: 30% | Full analysis threshold: 60%</p>
-    </div>
-
-  </div>
-</body>
-</html>)HTML";
-
-  out.close();
-  std::cout << "Report generated: batch_report.html" << std::endl;
 }

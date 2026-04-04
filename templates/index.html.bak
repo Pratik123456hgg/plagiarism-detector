@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Plagiarism Detector</title>
+    <meta name="description" content="Detect plagiarism between two documents using advanced C++ NLP.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #020617 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Orbs for glassmorphism background */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 600px;
+            height: 600px;
+            background: #4f46e5;
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb2 {
+            width: 500px;
+            height: 500px;
+            background: #0891b2;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            color: #818cf8;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.2rem;
+        }
+
+        .badge span {
+            width: 6px;
+            height: 6px;
+            background: #818cf8;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #818cf8;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .zones-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .vs-circle {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #4f46e5, #0891b2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .zone {
+            position: relative;
+            border: 2px dashed rgba(99, 102, 241, 0.3);
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .zone:hover {
+            border-color: #6366f1;
+            background: rgba(30, 41, 59, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .zone.drag-over {
+            border-color: #38bdf8;
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .zone.done {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .zone-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        .zone-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 0.25rem;
+        }
+
+        .zone-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .zone-formats {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #4f46e5;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-file {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: #34d399;
+        }
+
+        .badge-file.show {
+            display: inline-flex;
+        }
+
+        .badge-file span.fname {
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #0891b2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feat-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feat-tag svg {
+            width: 14px;
+            height: 14px;
+            color: #818cf8;
+        }
+
+        .loader {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader.show {
+            display: flex;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .loader p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .zones-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .vs-circle {
+                margin: 0 auto;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <h2>Analyzing Code Similarity...</h2>
+        <p>Running N-gram text analysis and AST structural matching.</p>
+    </div>
+
+    <div class="page">
+        <div class="hero">
+            <div class="badge"><span></span> C++ NLP Engine</div>
+            <h1>Plagiarism Detector</h1>
+            <p>Upload two C++ files to analyze similarity instantly using Unigram, Bigram, Trigram and AST sequence
+                matching algorithms.</p>
+        </div>
+
+        <div class="card">
+            <form id="uploadForm" action="/analyze" method="post" enctype="multipart/form-data">
+                <div class="zones-grid">
+                    <!-- Zone 1 -->
+                    <div class="zone" id="zone1" ondragover="onDragOver(event,'zone1')"
+                        ondragleave="onDragLeave('zone1')" ondrop="onDrop(event,'zone1','file1','badge1','fname1')">
+                        <input type="file" id="file1" name="file1" accept=".cpp,.h,.txt,.py,.js,.java,.md" required
+                            onchange="onSelect(this,'zone1','badge1','fname1')">
+                        <span class="zone-icon">📄</span>
+                        <div class="zone-title">Source File</div>
+                        <div class="zone-desc">Original code to check against</div>
+                        <div class="zone-formats">.cpp &middot; .h &middot; .txt</div>
+                        <div class="badge-file" id="badge1">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="fname" id="fname1"></span>
+                        </div>
+                    </div>
+
+                    <div class="vs-circle">VS</div>
+
+                    <!-- Zone 2 -->
+                    <div class="zone" id="zone2" ondragover="onDragOver(event,'zone2')"
+                        ondragleave="onDragLeave('zone2')" ondrop="onDrop(event,'zone2','file2','badge2','fname2')">
+                        <input type="file" id="file2" name="file2" accept=".cpp,.h,.txt,.py,.js,.java,.md" required
+                            onchange="onSelect(this,'zone2','badge2','fname2')">
+                        <span class="zone-icon">📋</span>
+                        <div class="zone-title">Target File</div>
+                        <div class="zone-desc">The document to analyze</div>
+                        <div class="zone-formats">.cpp &middot; .h &middot; .txt</div>
+                        <div class="badge-file" id="badge2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="fname" id="fname2"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Detect Plagiarism
+                </button>
+            </form>
+        </div>
+
+        <div class="features">
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Unigram Analysis
+            </div>
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Bigram Detection
+            </div>
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Trigram Matching
+            </div>
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Cosine Similarity
+            </div>
+            <div class="feat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                AST Structural Match
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setFileState(zoneId, badgeId, fnameId, file) {
+            if (file) {
+                document.getElementById(fnameId).textContent = file.name;
+                document.getElementById(badgeId).classList.add('show');
+                document.getElementById(zoneId).classList.add('done');
+            } else {
+                document.getElementById(badgeId).classList.remove('show');
+                document.getElementById(zoneId).classList.remove('done');
+            }
+        }
+        function onSelect(input, z, b, f) {
+            setFileState(z, b, f, input.files?.[0]);
+        }
+        function onDragOver(e, z) { e.preventDefault(); document.getElementById(z).classList.add('drag-over'); }
+        function onDragLeave(z) { document.getElementById(z).classList.remove('drag-over'); }
+        function onDrop(e, z, i, b, f) {
+            e.preventDefault(); document.getElementById(z).classList.remove('drag-over');
+            if (e.dataTransfer.files.length) {
+                const input = document.getElementById(i);
+                input.files = e.dataTransfer.files;
+                setFileState(z, b, f, e.dataTransfer.files[0]);
+            }
+        }
+        document.getElementById('uploadForm').addEventListener('submit', (e) => {
+            if (!document.getElementById('file1').files.length || !document.getElementById('file2').files.length) {
+                e.preventDefault(); alert('Please provide both files.'); return;
+            }
+            document.getElementById('loader').classList.add('show');
+        });
+    </script>
+</body>
+
+</html>

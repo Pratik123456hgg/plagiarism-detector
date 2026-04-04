@@ -28,14 +28,12 @@
     
     .grid-2{display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;}
     
-    /* Files Comparison */
     .files-compare{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2.5rem;padding:1.5rem;background:rgba(15,23,42,.4);border-radius:12px;}
     .file-box{flex:1;text-align:center;width:100%;overflow:hidden;}
     .file-box .lbl{display:block;font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}
     .file-box .name{font-size:.95rem;font-family:monospace;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,.05);padding:.5rem;border-radius:6px;border:1px solid rgba(255,255,255,.05);}
     .vs-circ{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#4f46e5,#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;box-shadow:0 0 15px rgba(79,70,229,.4);}
 
-    /* Score Ring */
     .score-ui{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;}
     .ring{position:relative;width:160px;height:160px;}
     .ring svg{width:160px;height:160px;transform:rotate(-90deg);}
@@ -50,7 +48,6 @@
     .plagiarized{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#fca5a5;}
     .original{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;}
 
-    /* Analytics Bars */
     .analytics h3{font-size:.9rem;color:#cbd5e1;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:.05em;}
     .metric-group{margin-bottom:2rem;}
     .metric{display:grid;grid-template-columns:130px 1fr 50px;align-items:center;gap:1rem;margin-bottom:1rem;}
@@ -59,13 +56,11 @@
     .bar-fg{height:100%;border-radius:50px;}
     .m-val{font-size:.85rem;font-weight:700;color:#e2e8f0;text-align:right;}
     
-    /* Tags Insights */
     .insights{margin-top:1.5rem;}
     .insights h3{font-size:.85rem;color:#94a3b8;margin-bottom:1rem;}
     .tags{display:flex;flex-wrap:wrap;gap:.5rem;}
     .tag{background:rgba(79,70,229,.15);border:1px solid rgba(79,70,229,.3);color:#a5b4fc;padding:.3rem .8rem;border-radius:6px;font-family:monospace;font-size:.8rem;}
     
-    /* Split Screen */
     .split-title{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#e2e8f0;}
     .code-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);}
     .code-pane{background:rgba(15,23,42,.8);height:500px;overflow:auto;font-family:monospace;font-size:.8rem;line-height:1.6;}
@@ -101,49 +96,47 @@
     <div class="files-compare">
       <div class="file-box">
         <span class="lbl">Source File</span>
-        <div class="name">Be_postive.cpp</div>
+        <div class="name">ass2.cpp</div>
       </div>
       <div class="vs-circ">VS</div>
       <div class="file-box">
         <span class="lbl">Target File</span>
-        <div class="name">new_year_cake.cpp</div>
+        <div class="name">ass1.cpp</div>
       </div>
     </div>
 
     <div class="card grid-2">
-      <!-- Score Ring -->
       <div class="score-ui">
         <div class="ring">
           <svg viewBox="0 0 160 160">
             <circle class="bg" cx="80" cy="80" r="70"/>
-            <circle class="prog" cx="80" cy="80" r="70" stroke="#eab308" stroke-dashoffset="175.2"/>
+            <circle class="prog" cx="80" cy="80" r="70" stroke="#10b981" stroke-dashoffset="394.7"/>
           </svg>
           <div class="ring-inner">
-            <div class="ring-pct" style="color:#eab308">57.1%</div>
+            <div class="ring-pct" style="color:#10b981">3.4%</div>
             <div class="ring-lbl">Match</div>
           </div>
         </div>
         <div class="verdict original"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> <span>Low Similarity</span></div>
       </div>
 
-      <!-- Analytics -->
       <div class="analytics">
         <div class="metric-group">
           <h3>Text Similarity Analysis</h3>
           <div class="metric">
             <div class="m-label">Unigram (Words)</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:64.1%;background:linear-gradient(90deg,#4f46e5,#818cf8);"></div></div>
-            <div class="m-val">64.1%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:22.1%;background:linear-gradient(90deg,#4f46e5,#818cf8);"></div></div>
+            <div class="m-val">22.1%</div>
           </div>
           <div class="metric">
             <div class="m-label">Bigram (Phrases)</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:16.5%;background:linear-gradient(90deg,#0891b2,#22d3ee);"></div></div>
-            <div class="m-val">16.5%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:3.7%;background:linear-gradient(90deg,#0891b2,#22d3ee);"></div></div>
+            <div class="m-val">3.7%</div>
           </div>
           <div class="metric">
             <div class="m-label">Trigram (Logic)</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:6.6%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);"></div></div>
-            <div class="m-val">6.6%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:1.5%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);"></div></div>
+            <div class="m-val">1.5%</div>
           </div>
         </div>
 
@@ -151,74 +144,330 @@
           <h3>Code Structure Analysis</h3>
           <div class="metric">
             <div class="m-label">AST Structure</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:68.4%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
-            <div class="m-val">68.4%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:0.7%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
+            <div class="m-val">0.7%</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Insights Panel -->
     <div class="card insights">
       <h3>Plagiarism Match Insights (Overlapping Terms)</h3>
-      <div class="tags"><span class="tag">2</span><span class="tag">else</span><span class="tag">cin</span><span class="tag">n</span><span class="tag">1</span><span class="tag">namespace</span><span class="tag">0</span><span class="tag">using</span><span class="tag">main</span><span class="tag">int</span><span class="tag">t</span><span class="tag">std</span><span class="tag">return</span>
+      <div class="tags"><span class="tag">return</span><span class="tag">namespace</span><span class="tag">int</span><span class="tag">using</span><span class="tag">main</span><span class="tag">0</span><span class="tag">std</span>
       </div>
     </div>
     
-    <!-- Code Comparison Viewer -->
     <div class="split-title">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
       Code Comparison Viewer
     </div>
     <div class="code-split">
       <div class="code-pane">
-        <div class="pane-header">Be_postive.cpp</div>
-        <div class="code-line"><span class="ln">1</span><span class="code-content">#include &lt;bits/stdc++.h&gt;</span></div>
-<div class="code-line hl"><span class="ln">2</span><span class="code-content">using namespace std;</span></div>
-<div class="code-line hl"><span class="ln">3</span><span class="code-content">int main() {</span></div>
-<div class="code-line"><span class="ln">4</span><span class="code-content">    ios::sync_with_stdio(false);</span></div>
-<div class="code-line"><span class="ln">5</span><span class="code-content">    cin.tie(nullptr);</span></div>
-<div class="code-line hl"><span class="ln">6</span><span class="code-content">    int t; </span></div>
-<div class="code-line"><span class="ln">7</span><span class="code-content">    if(!(cin &gt;&gt; t)) return 0;</span></div>
-<div class="code-line"><span class="ln">8</span><span class="code-content">    while (t--) {</span></div>
-<div class="code-line"><span class="ln">9</span><span class="code-content">        int n; cin &gt;&gt; n;</span></div>
-<div class="code-line"><span class="ln">10</span><span class="code-content">        int zeros = 0, neg = 0;</span></div>
-<div class="code-line"><span class="ln">11</span><span class="code-content">        for (int i = 0; i &lt; n; ++i) {</span></div>
-<div class="code-line"><span class="ln">12</span><span class="code-content">            int x; cin &gt;&gt; x;</span></div>
-<div class="code-line"><span class="ln">13</span><span class="code-content">            if (!x) ++zeros;</span></div>
-<div class="code-line"><span class="ln">14</span><span class="code-content">            else if (x == -1) ++neg;</span></div>
-<div class="code-line"><span class="ln">15</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">16</span><span class="code-content">        int ans = zeros + (neg % 2) * 2;</span></div>
-<div class="code-line"><span class="ln">17</span><span class="code-content">        cout &lt;&lt; ans &lt;&lt; &apos;\n&apos;;</span></div>
-<div class="code-line"><span class="ln">18</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">19</span><span class="code-content">}</span></div>
+        <div class="pane-header">ass2.cpp</div>
+        <div class="code-line"><span class="ln">1</span><span class="code-content">#include &lt;iostream&gt;</span></div>
+<div class="code-line"><span class="ln">2</span><span class="code-content">#include &lt;cstdlib&gt;</span></div>
+<div class="code-line"><span class="ln">3</span><span class="code-content"></span></div>
+<div class="code-line hl"><span class="ln">4</span><span class="code-content">using namespace std;</span></div>
+<div class="code-line"><span class="ln">5</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">6</span><span class="code-content">struct node {</span></div>
+<div class="code-line"><span class="ln">7</span><span class="code-content">    int key;</span></div>
+<div class="code-line"><span class="ln">8</span><span class="code-content">    node *left, *right, *parent;</span></div>
+<div class="code-line"><span class="ln">9</span><span class="code-content">    int bf;</span></div>
+<div class="code-line"><span class="ln">10</span><span class="code-content">};</span></div>
+<div class="code-line"><span class="ln">11</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">12</span><span class="code-content">struct bstnode {</span></div>
+<div class="code-line"><span class="ln">13</span><span class="code-content">    int key;</span></div>
+<div class="code-line"><span class="ln">14</span><span class="code-content">    bstnode *left, *right;   </span></div>
+<div class="code-line"><span class="ln">15</span><span class="code-content">    bstnode(int v) : key{v}, left(nullptr), right(nullptr) {}   </span></div>
+<div class="code-line"><span class="ln">16</span><span class="code-content">};</span></div>
+<div class="code-line"><span class="ln">17</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">18</span><span class="code-content">class AVL {</span></div>
+<div class="code-line"><span class="ln">19</span><span class="code-content">    node *root;</span></div>
+<div class="code-line"><span class="ln">20</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">21</span><span class="code-content">    int max(int a, int b) { return a &gt; b ? a : b; }</span></div>
+<div class="code-line"><span class="ln">22</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">23</span><span class="code-content">    int ht(node *p) {</span></div>
+<div class="code-line"><span class="ln">24</span><span class="code-content">        if (!p) return -1;</span></div>
+<div class="code-line"><span class="ln">25</span><span class="code-content">        return 1 + max(ht(p-&gt;left), ht(p-&gt;right));</span></div>
+<div class="code-line"><span class="ln">26</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">27</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">28</span><span class="code-content">    void update_bf(node *p) {</span></div>
+<div class="code-line"><span class="ln">29</span><span class="code-content">        while (p) {</span></div>
+<div class="code-line"><span class="ln">30</span><span class="code-content">            p-&gt;bf = ht(p-&gt;left) - ht(p-&gt;right);</span></div>
+<div class="code-line"><span class="ln">31</span><span class="code-content">            p = p-&gt;parent;</span></div>
+<div class="code-line"><span class="ln">32</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">33</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">34</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">35</span><span class="code-content">    void transplant(node *par, node *old_child, node *new_child) {</span></div>
+<div class="code-line"><span class="ln">36</span><span class="code-content">        if (!par)</span></div>
+<div class="code-line"><span class="ln">37</span><span class="code-content">            root = new_child;</span></div>
+<div class="code-line"><span class="ln">38</span><span class="code-content">        else if (par-&gt;left == old_child)</span></div>
+<div class="code-line"><span class="ln">39</span><span class="code-content">            par-&gt;left = new_child;</span></div>
+<div class="code-line"><span class="ln">40</span><span class="code-content">        else</span></div>
+<div class="code-line"><span class="ln">41</span><span class="code-content">            par-&gt;right = new_child;</span></div>
+<div class="code-line"><span class="ln">42</span><span class="code-content">        if (new_child) new_child-&gt;parent = par;</span></div>
+<div class="code-line"><span class="ln">43</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">44</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">45</span><span class="code-content">    void LLRotate(node *i) {</span></div>
+<div class="code-line"><span class="ln">46</span><span class="code-content">        node *iL  = i-&gt;left;</span></div>
+<div class="code-line"><span class="ln">47</span><span class="code-content">        noe *iLR = iL-&gt;right;</span></div>
+<div class="code-line"><span class="ln">48</span><span class="code-content">        node *ip  = i-&gt;parent;d</span></div>
+<div class="code-line"><span class="ln">49</span><span class="code-content">        transplant(ip, i, iL);</span></div>
+<div class="code-line"><span class="ln">50</span><span class="code-content">        iL-&gt;right = i;</span></div>
+<div class="code-line"><span class="ln">51</span><span class="code-content">        i-&gt;parent = iL;</span></div>
+<div class="code-line"><span class="ln">52</span><span class="code-content">        i-&gt;left   = iLR;</span></div>
+<div class="code-line"><span class="ln">53</span><span class="code-content">        if (iLR) iLR-&gt;parent = i;</span></div>
+<div class="code-line"><span class="ln">54</span><span class="code-content">        update_bf(i);</span></div>
+<div class="code-line"><span class="ln">55</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">56</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">57</span><span class="code-content">    void RRRotate(node *i) {</span></div>
+<div class="code-line"><span class="ln">58</span><span class="code-content">        node *iR  = i-&gt;right;</span></div>
+<div class="code-line"><span class="ln">59</span><span class="code-content">        node *iRL = iR-&gt;left;</span></div>
+<div class="code-line"><span class="ln">60</span><span class="code-content">        node *ip  = i-&gt;parent;</span></div>
+<div class="code-line"><span class="ln">61</span><span class="code-content">        transplant(ip, i, iR);</span></div>
+<div class="code-line"><span class="ln">62</span><span class="code-content">        iR-&gt;left  = i;</span></div>
+<div class="code-line"><span class="ln">63</span><span class="code-content">        i-&gt;parent = iR;</span></div>
+<div class="code-line"><span class="ln">64</span><span class="code-content">        i-&gt;right  = iRL;</span></div>
+<div class="code-line"><span class="ln">65</span><span class="code-content">        if (iRL) iRL-&gt;parent = i;</span></div>
+<div class="code-line"><span class="ln">66</span><span class="code-content">        update_bf(i);</span></div>
+<div class="code-line"><span class="ln">67</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">68</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">69</span><span class="code-content">    void LRRotate(node *i) {</span></div>
+<div class="code-line"><span class="ln">70</span><span class="code-content">        RRRotate(i-&gt;left);</span></div>
+<div class="code-line"><span class="ln">71</span><span class="code-content">        LLRotate(i);</span></div>
+<div class="code-line"><span class="ln">72</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">73</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">74</span><span class="code-content">    void RLRotate(node *i) {</span></div>
+<div class="code-line"><span class="ln">75</span><span class="code-content">        LLRotate(i-&gt;right);</span></div>
+<div class="code-line"><span class="ln">76</span><span class="code-content">        RRRotate(i);</span></div>
+<div class="code-line"><span class="ln">77</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">78</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">79</span><span class="code-content">    void rebalance_up(node *p) {</span></div>
+<div class="code-line"><span class="ln">80</span><span class="code-content">        while (p) {</span></div>
+<div class="code-line"><span class="ln">81</span><span class="code-content">            p-&gt;bf = ht(p-&gt;left) - ht(p-&gt;right);</span></div>
+<div class="code-line"><span class="ln">82</span><span class="code-content">            if (p-&gt;bf == 2) {</span></div>
+<div class="code-line"><span class="ln">83</span><span class="code-content">                if (p-&gt;left &amp;&amp; p-&gt;left-&gt;bf &gt;= 0)</span></div>
+<div class="code-line"><span class="ln">84</span><span class="code-content">                    LLRotate(p);</span></div>
+<div class="code-line"><span class="ln">85</span><span class="code-content">                else</span></div>
+<div class="code-line"><span class="ln">86</span><span class="code-content">                    LRRotate(p);</span></div>
+<div class="code-line"><span class="ln">87</span><span class="code-content">                return;</span></div>
+<div class="code-line"><span class="ln">88</span><span class="code-content">            } else if (p-&gt;bf == -2) {</span></div>
+<div class="code-line"><span class="ln">89</span><span class="code-content">                if (p-&gt;right &amp;&amp; p-&gt;right-&gt;bf &lt;= 0)</span></div>
+<div class="code-line"><span class="ln">90</span><span class="code-content">                    RRRotate(p);</span></div>
+<div class="code-line"><span class="ln">91</span><span class="code-content">                else</span></div>
+<div class="code-line"><span class="ln">92</span><span class="code-content">                    RLRotate(p);</span></div>
+<div class="code-line"><span class="ln">93</span><span class="code-content">                return;</span></div>
+<div class="code-line"><span class="ln">94</span><span class="code-content">            }</span></div>
+<div class="code-line"><span class="ln">95</span><span class="code-content">            p = p-&gt;parent;</span></div>
+<div class="code-line"><span class="ln">96</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">97</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">98</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">99</span><span class="code-content">    node* min_node(node *p) {</span></div>
+<div class="code-line"><span class="ln">100</span><span class="code-content">        while (p-&gt;left) p = p-&gt;left;</span></div>
+<div class="code-line"><span class="ln">101</span><span class="code-content">        return p;</span></div>
+<div class="code-line"><span class="ln">102</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">103</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">104</span><span class="code-content">    void delete_node(node *p) {</span></div>
+<div class="code-line"><span class="ln">105</span><span class="code-content">        if (!p-&gt;left &amp;&amp; !p-&gt;right) {</span></div>
+<div class="code-line"><span class="ln">106</span><span class="code-content">            node *par = p-&gt;parent;</span></div>
+<div class="code-line"><span class="ln">107</span><span class="code-content">            transplant(par, p, nullptr);</span></div>
+<div class="code-line"><span class="ln">108</span><span class="code-content">            delete p;</span></div>
+<div class="code-line"><span class="ln">109</span><span class="code-content">            rebalance_up(par);</span></div>
+<div class="code-line"><span class="ln">110</span><span class="code-content">        } else if (!p-&gt;left) {</span></div>
+<div class="code-line"><span class="ln">111</span><span class="code-content">            node *par = p-&gt;parent;</span></div>
+<div class="code-line"><span class="ln">112</span><span class="code-content">            transplant(par, p, p-&gt;right);</span></div>
+<div class="code-line"><span class="ln">113</span><span class="code-content">            delete p;</span></div>
+<div class="code-line"><span class="ln">114</span><span class="code-content">            rebalance_up(par);</span></div>
+<div class="code-line"><span class="ln">115</span><span class="code-content">        } else if (!p-&gt;right) {</span></div>
+<div class="code-line"><span class="ln">116</span><span class="code-content">            node *par = p-&gt;parent;</span></div>
+<div class="code-line"><span class="ln">117</span><span class="code-content">            transplant(par, p, p-&gt;left);</span></div>
+<div class="code-line"><span class="ln">118</span><span class="code-content">            delete p;</span></div>
+<div class="code-line"><span class="ln">119</span><span class="code-content">            rebalance_up(par);</span></div>
+<div class="code-line"><span class="ln">120</span><span class="code-content">        } else {</span></div>
+<div class="code-line"><span class="ln">121</span><span class="code-content">            node *succ = min_node(p-&gt;right);</span></div>
+<div class="code-line"><span class="ln">122</span><span class="code-content">            p-&gt;key = succ-&gt;key;</span></div>
+<div class="code-line"><span class="ln">123</span><span class="code-content">            delete_node(succ);</span></div>
+<div class="code-line"><span class="ln">124</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">125</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">126</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">127</span><span class="code-content">    node* search_node(int data) {</span></div>
+<div class="code-line"><span class="ln">128</span><span class="code-content">        node *ptr = root;</span></div>
+<div class="code-line"><span class="ln">129</span><span class="code-content">        while (ptr) {</span></div>
+<div class="code-line"><span class="ln">130</span><span class="code-content">            if (ptr-&gt;key == data) return ptr;</span></div>
+<div class="code-line"><span class="ln">131</span><span class="code-content">            ptr = (ptr-&gt;key &lt; data) ? ptr-&gt;right : ptr-&gt;left;</span></div>
+<div class="code-line"><span class="ln">132</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">133</span><span class="code-content">        return nullptr;</span></div>
+<div class="code-line"><span class="ln">134</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">135</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">136</span><span class="code-content">    void inorder_rec(node *p) {</span></div>
+<div class="code-line"><span class="ln">137</span><span class="code-content">        if (!p) return;</span></div>
+<div class="code-line"><span class="ln">138</span><span class="code-content">        inorder_rec(p-&gt;left);</span></div>
+<div class="code-line"><span class="ln">139</span><span class="code-content">        cout &lt;&lt; p-&gt;key &lt;&lt; &quot;\t(bf=&quot; &lt;&lt; p-&gt;bf &lt;&lt; &quot;)\n&quot;;</span></div>
+<div class="code-line"><span class="ln">140</span><span class="code-content">        inorder_rec(p-&gt;right);</span></div>
+<div class="code-line"><span class="ln">141</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">142</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">143</span><span class="code-content">public:</span></div>
+<div class="code-line"><span class="ln">144</span><span class="code-content">    AVL() { root = nullptr; }</span></div>
+<div class="code-line"><span class="ln">145</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">146</span><span class="code-content">    int height() { return ht(root); }</span></div>
+<div class="code-line"><span class="ln">147</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">148</span><span class="code-content">    void insert(int data) {</span></div>
+<div class="code-line"><span class="ln">149</span><span class="code-content">        node *nn = new node;</span></div>
+<div class="code-line"><span class="ln">150</span><span class="code-content">        nn-&gt;key = data;</span></div>
+<div class="code-line"><span class="ln">151</span><span class="code-content">        nn-&gt;left = nn-&gt;right = nn-&gt;parent = nullptr;</span></div>
+<div class="code-line"><span class="ln">152</span><span class="code-content">        nn-&gt;bf = 0;</span></div>
+<div class="code-line"><span class="ln">153</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">154</span><span class="code-content">        if (!root) { root = nn; return; }</span></div>
+<div class="code-line"><span class="ln">155</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">156</span><span class="code-content">        node *ptr = root;</span></div>
+<div class="code-line"><span class="ln">157</span><span class="code-content">        while (ptr) {</span></div>
+<div class="code-line"><span class="ln">158</span><span class="code-content">            if (ptr-&gt;key == data) { delete nn; return; }</span></div>
+<div class="code-line"><span class="ln">159</span><span class="code-content">            if (ptr-&gt;key &lt; data) {</span></div>
+<div class="code-line"><span class="ln">160</span><span class="code-content">                if (!ptr-&gt;right) { ptr-&gt;right = nn; nn-&gt;parent = ptr; break; }</span></div>
+<div class="code-line"><span class="ln">161</span><span class="code-content">                ptr = ptr-&gt;right;</span></div>
+<div class="code-line"><span class="ln">162</span><span class="code-content">            } else {</span></div>
+<div class="code-line"><span class="ln">163</span><span class="code-content">                if (!ptr-&gt;left) { ptr-&gt;left = nn; nn-&gt;parent = ptr; break; }</span></div>
+<div class="code-line"><span class="ln">164</span><span class="code-content">                ptr = ptr-&gt;left;</span></div>
+<div class="code-line"><span class="ln">165</span><span class="code-content">            }</span></div>
+<div class="code-line"><span class="ln">166</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">167</span><span class="code-content">        rebalance_up(nn);</span></div>
+<div class="code-line"><span class="ln">168</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">169</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">170</span><span class="code-content">    void remove(int data) {</span></div>
+<div class="code-line"><span class="ln">171</span><span class="code-content">        node *p = search_node(data);</span></div>
+<div class="code-line"><span class="ln">172</span><span class="code-content">        if (!p) { cout &lt;&lt; &quot;Key &quot; &lt;&lt; data &lt;&lt; &quot; not found.\n&quot;; return; }</span></div>
+<div class="code-line"><span class="ln">173</span><span class="code-content">        delete_node(p);</span></div>
+<div class="code-line"><span class="ln">174</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">175</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">176</span><span class="code-content">    void search(int data) {</span></div>
+<div class="code-line"><span class="ln">177</span><span class="code-content">        if (!root) { cout &lt;&lt; &quot;Empty tree.\n&quot;; return; }</span></div>
+<div class="code-line"><span class="ln">178</span><span class="code-content">        int cmp = 0;</span></div>
+<div class="code-line"><span class="ln">179</span><span class="code-content">        node *ptr = root;</span></div>
+<div class="code-line"><span class="ln">180</span><span class="code-content">        while (ptr) {</span></div>
+<div class="code-line"><span class="ln">181</span><span class="code-content">            if (ptr-&gt;key == data) {</span></div>
+<div class="code-line"><span class="ln">182</span><span class="code-content">                cout &lt;&lt; &quot;Found &quot; &lt;&lt; data &lt;&lt; &quot; after &quot; &lt;&lt; cmp &lt;&lt; &quot; comparisons.\n&quot;;</span></div>
+<div class="code-line"><span class="ln">183</span><span class="code-content">                return;</span></div>
+<div class="code-line"><span class="ln">184</span><span class="code-content">            }</span></div>
+<div class="code-line"><span class="ln">185</span><span class="code-content">            ptr = (ptr-&gt;key &lt; data) ? ptr-&gt;right : ptr-&gt;left;</span></div>
+<div class="code-line"><span class="ln">186</span><span class="code-content">            cmp++;</span></div>
+<div class="code-line"><span class="ln">187</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">188</span><span class="code-content">        cout &lt;&lt; &quot;Key &quot; &lt;&lt; data &lt;&lt; &quot; not found.\n&quot;;</span></div>
+<div class="code-line"><span class="ln">189</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">190</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">191</span><span class="code-content">    void inorder() {</span></div>
+<div class="code-line"><span class="ln">192</span><span class="code-content">        inorder_rec(root);</span></div>
+<div class="code-line"><span class="ln">193</span><span class="code-content">        cout &lt;&lt; endl;</span></div>
+<div class="code-line"><span class="ln">194</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">195</span><span class="code-content">};</span></div>
+<div class="code-line"><span class="ln">196</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="ln">197</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">198</span><span class="code-content">class BST {</span></div>
+<div class="code-line"><span class="ln">199</span><span class="code-content">        void inorder_rec(bstnode* ptr) {</span></div>
+<div class="code-line"><span class="ln">200</span><span class="code-content">            if(!ptr) return;</span></div>
+<div class="code-line"><span class="ln">201</span><span class="code-content">            inorder_rec(ptr-&gt;left);</span></div>
+<div class="code-line"><span class="ln">202</span><span class="code-content">            cout &lt;&lt; ptr-&gt;key &lt;&lt; &quot; &quot;; </span></div>
+<div class="code-line"><span class="ln">203</span><span class="code-content">            inorder_rec(ptr-&gt;right);</span></div>
+<div class="code-line"><span class="ln">204</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">205</span><span class="code-content">        bstnode* root;</span></div>
+<div class="code-line"><span class="ln">206</span><span class="code-content">    public: </span></div>
+<div class="code-line"><span class="ln">207</span><span class="code-content">        BST() {</span></div>
+<div class="code-line"><span class="ln">208</span><span class="code-content">            root = nullptr;</span></div>
+<div class="code-line"><span class="ln">209</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">210</span><span class="code-content">        void insert(int val) {</span></div>
+<div class="code-line"><span class="ln">211</span><span class="code-content">            bstnode* nn = new bstnode(val);</span></div>
+<div class="code-line"><span class="ln">212</span><span class="code-content">            if(root == nullptr) {</span></div>
+<div class="code-line"><span class="ln">213</span><span class="code-content">                root = nn;</span></div>
+<div class="code-line"><span class="ln">214</span><span class="code-content">                return;</span></div>
+<div class="code-line"><span class="ln">215</span><span class="code-content">            }</span></div>
+<div class="code-line"><span class="ln">216</span><span class="code-content">            bstnode* ptr = root;</span></div>
+<div class="code-line"><span class="ln">217</span><span class="code-content">            while(ptr) {</span></div>
+<div class="code-line"><span class="ln">218</span><span class="code-content">                if(ptr-&gt;key == val) </span></div>
+<div class="code-line"><span class="ln">219</span><span class="code-content">                    return;</span></div>
+<div class="code-line"><span class="ln">220</span><span class="code-content">                if(ptr-&gt;key &gt; val) {</span></div>
+<div class="code-line"><span class="ln">221</span><span class="code-content">                    if(!ptr-&gt;left) {</span></div>
+<div class="code-line"><span class="ln">222</span><span class="code-content">                        ptr-&gt;left = nn;</span></div>
+<div class="code-line"><span class="ln">223</span><span class="code-content">                        return;</span></div>
+<div class="code-line"><span class="ln">224</span><span class="code-content">                    }</span></div>
+<div class="code-line"><span class="ln">225</span><span class="code-content">                    ptr = ptr-&gt;left;</span></div>
+<div class="code-line"><span class="ln">226</span><span class="code-content">                }</span></div>
+<div class="code-line"><span class="ln">227</span><span class="code-content">                else {</span></div>
+<div class="code-line"><span class="ln">228</span><span class="code-content">                    if(!ptr-&gt;right) {</span></div>
+<div class="code-line"><span class="ln">229</span><span class="code-content">                        ptr-&gt;right = nn;</span></div>
+<div class="code-line"><span class="ln">230</span><span class="code-content">                        return;</span></div>
+<div class="code-line"><span class="ln">231</span><span class="code-content">                    }</span></div>
+<div class="code-line"><span class="ln">232</span><span class="code-content">                    ptr = ptr-&gt;right;</span></div>
+<div class="code-line"><span class="ln">233</span><span class="code-content">                }</span></div>
+<div class="code-line"><span class="ln">234</span><span class="code-content">            }</span></div>
+<div class="code-line"><span class="ln">235</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">236</span><span class="code-content">        </span></div>
+<div class="code-line"><span class="ln">237</span><span class="code-content">        void inorder() {</span></div>
+<div class="code-line"><span class="ln">238</span><span class="code-content">            inorder_rec(root);</span></div>
+<div class="code-line"><span class="ln">239</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">240</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">241</span><span class="code-content">        bstnode* search(int data) {</span></div>
+<div class="code-line"><span class="ln">242</span><span class="code-content">            if(!root) {</span></div>
+<div class="code-line"><span class="ln">243</span><span class="code-content">                cout &lt;&lt; &quot;Empty tree&quot; &lt;&lt; endl;</span></div>
+<div class="code-line"><span class="ln">244</span><span class="code-content">                return nullptr;</span></div>
+<div class="code-line"><span class="ln">245</span><span class="code-content">            }</span></div>
+<div class="code-line"><span class="ln">246</span><span class="code-content">            bstnode* ptr = root;</span></div>
+<div class="code-line"><span class="ln">247</span><span class="code-content">            int32_t cmp = 0;</span></div>
+<div class="code-line"><span class="ln">248</span><span class="code-content">            while (ptr) {</span></div>
+<div class="code-line"><span class="ln">249</span><span class="code-content">                if(ptr-&gt;key == data) {</span></div>
+<div class="code-line"><span class="ln">250</span><span class="code-content">                    cout &lt;&lt; &quot;Found &quot; &lt;&lt; data &lt;&lt; &quot; after &quot; &lt;&lt; cmp &lt;&lt; &quot; comparisons.\n&quot;;</span></div>
+<div class="code-line"><span class="ln">251</span><span class="code-content">                    return  ptr;</span></div>
+<div class="code-line"><span class="ln">252</span><span class="code-content">                }</span></div>
+<div class="code-line"><span class="ln">253</span><span class="code-content">                if(ptr-&gt;key &gt; data) ptr = ptr-&gt;left;</span></div>
+<div class="code-line"><span class="ln">254</span><span class="code-content">                else ptr = ptr-&gt;right;</span></div>
+<div class="code-line"><span class="ln">255</span><span class="code-content">                cmp++;</span></div>
+<div class="code-line"><span class="ln">256</span><span class="code-content">            }         </span></div>
+<div class="code-line"><span class="ln">257</span><span class="code-content">            cout &lt;&lt; &quot;Key &quot;  &lt;&lt; data &lt;&lt; &quot; Not found&quot; &lt;&lt; endl;</span></div>
+<div class="code-line"><span class="ln">258</span><span class="code-content">            return nullptr;</span></div>
+<div class="code-line"><span class="ln">259</span><span class="code-content">        }</span></div>
+<div class="code-line"><span class="ln">260</span><span class="code-content">};</span></div>
+<div class="code-line"><span class="ln">261</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">262</span><span class="code-content">int32_t main() {</span></div>
+<div class="code-line"><span class="ln">263</span><span class="code-content">    BST b1;</span></div>
+<div class="code-line"><span class="ln">264</span><span class="code-content">    AVL a1;</span></div>
+<div class="code-line"><span class="ln">265</span><span class="code-content">    srand(time(0));</span></div>
+<div class="code-line"><span class="ln">266</span><span class="code-content">    int32_t n;</span></div>
+<div class="code-line"><span class="ln">267</span><span class="code-content">    int32_t N = 1000;</span></div>
+<div class="code-line"><span class="ln">268</span><span class="code-content">    cout.flush() &lt;&lt; &quot;Enter no.of Nodes -&gt; &quot;;</span></div>
+<div class="code-line"><span class="ln">269</span><span class="code-content">    cin &gt;&gt; n;</span></div>
+<div class="code-line"><span class="ln">270</span><span class="code-content">    cout &lt;&lt; endl;</span></div>
+<div class="code-line"><span class="ln">271</span><span class="code-content">    for(int i = 0; i &lt; n; i++) {</span></div>
+<div class="code-line"><span class="ln">272</span><span class="code-content">        int z = (rand() % N)  + 1;</span></div>
+<div class="code-line"><span class="ln">273</span><span class="code-content">        b1.insert(z);</span></div>
+<div class="code-line"><span class="ln">274</span><span class="code-content">        a1.insert(z);</span></div>
+<div class="code-line"><span class="ln">275</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">276</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">277</span><span class="code-content">    cout &lt;&lt; &quot;Tree Nodes&quot; &lt;&lt; endl;</span></div>
+<div class="code-line"><span class="ln">278</span><span class="code-content">    b1.inorder();</span></div>
+<div class="code-line"><span class="ln">279</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">280</span><span class="code-content">    cout &lt;&lt; &quot;\n\nEnter data to search in trees - &quot; ;</span></div>
+<div class="code-line"><span class="ln">281</span><span class="code-content">    int j; </span></div>
+<div class="code-line"><span class="ln">282</span><span class="code-content">    cin &gt;&gt; j;</span></div>
+<div class="code-line"><span class="ln">283</span><span class="code-content">    cout.flush() &lt;&lt; endl;</span></div>
+<div class="code-line"><span class="ln">284</span><span class="code-content">    cout &lt;&lt; &quot;AVL\n&quot;;</span></div>
+<div class="code-line"><span class="ln">285</span><span class="code-content">    a1.search(j);</span></div>
+<div class="code-line"><span class="ln">286</span><span class="code-content">    cout &lt;&lt; &quot;BST\n&quot;;</span></div>
+<div class="code-line"><span class="ln">287</span><span class="code-content">    b1.search(j);   </span></div>
+<div class="code-line"><span class="ln">288</span><span class="code-content">    </span></div>
+<div class="code-line hl"><span class="ln">289</span><span class="code-content">    return 0;</span></div>
+<div class="code-line"><span class="ln">290</span><span class="code-content">}</span></div>
 
       </div>
       <div class="code-pane">
-        <div class="pane-header">new_year_cake.cpp</div>
-        <div class="code-line"><span class="ln">1</span><span class="code-content">#include&lt;iostream&gt;</span></div>
-<div class="code-line hl"><span class="ln">2</span><span class="code-content">using namespace std;</span></div>
-<div class="code-line"><span class="ln">3</span><span class="code-content"></span></div>
-<div class="code-line hl"><span class="ln">4</span><span class="code-content">int main() {</span></div>
-<div class="code-line hl"><span class="ln">5</span><span class="code-content">    int t;</span></div>
-<div class="code-line"><span class="ln">6</span><span class="code-content">    if(!(cin&gt;&gt;t)) return 0;</span></div>
-<div class="code-line"><span class="ln">7</span><span class="code-content">    int n = 1;</span></div>
-<div class="code-line"><span class="ln">8</span><span class="code-content">    while(t--) {</span></div>
-<div class="code-line"><span class="ln">9</span><span class="code-content">        int a, b;</span></div>
-<div class="code-line"><span class="ln">10</span><span class="code-content">        cin &gt;&gt; a;</span></div>
-<div class="code-line"><span class="ln">11</span><span class="code-content">        cin &gt;&gt; b;</span></div>
-<div class="code-line"><span class="ln">12</span><span class="code-content">        int cnt{0};</span></div>
-<div class="code-line"><span class="ln">13</span><span class="code-content">        while(a &gt; 0 &amp;&amp; b &gt; 0) {</span></div>
-<div class="code-line"><span class="ln">14</span><span class="code-content">            if(cnt &amp; 1)</span></div>
-<div class="code-line"><span class="ln">15</span><span class="code-content">                a = a % n;</span></div>
-<div class="code-line"><span class="ln">16</span><span class="code-content">            else</span></div>
-<div class="code-line"><span class="ln">17</span><span class="code-content">                b = b % n;</span></div>
-<div class="code-line"><span class="ln">18</span><span class="code-content">            cnt++</span></div>
-<div class="code-line"><span class="ln">19</span><span class="code-content">            n *= 2;</span></div>
-<div class="code-line"><span class="ln">20</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">21</span><span class="code-content">    } </span></div>
-<div class="code-line"><span class="ln">22</span><span class="code-content">    return 0;</span></div>
-<div class="code-line"><span class="ln">23</span><span class="code-content">}</span></div>
+        <div class="pane-header">ass1.cpp</div>
+        <div class="code-line"><span class="ln">1</span><span class="code-content">#include&lt;iostream&gt;</span></div>
+<div class="code-line"><span class="ln">2</span><span class="code-content"></span></div>
+<div class="code-line hl"><span class="ln">3</span><span class="code-content">using namespace std;</span></div>
+<div class="code-line"><span class="ln">4</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">5</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">6</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">7</span><span class="code-content">int main (){</span></div>
+<div class="code-line"><span class="ln">8</span><span class="code-content">    </span></div>
+<div class="code-line hl"><span class="ln">9</span><span class="code-content">    return 0;</span></div>
+<div class="code-line"><span class="ln">10</span><span class="code-content">}</span></div>
 
       </div>
     </div>

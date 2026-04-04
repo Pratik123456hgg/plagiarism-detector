@@ -55,6 +55,57 @@ getNgramFrequencies(const std::vector<std::string> &words, int n);
 SimilarityResult
 calculateDetailedSimilarity(const std::unordered_map<std::string, int> &freq1,
                             const std::unordered_map<std::string, int> &freq2);
+
+// --- Batch Mode Declarations ---
+
+struct FilePair {
+  int fileIdx1;
+  int fileIdx2;
+  double similarity;
+};
+
+struct FileFingerprint {
+  std::string filepath;
+  std::string filename;
+  std::unordered_map<std::string, int> unigramFreq;
+  double norm; // Magnitude for quick distance computation
+};
+
+struct ClusterNode {
+  int fileIdx;
+  std::string filename;
+  bool isProbableOriginal;
+  int degree; // Number of suspicious pairs
+};
+
+struct PlagiarismCluster {
+  std::vector<ClusterNode> members;
+  std::vector<FilePair> internalPairs;
+};
+
+struct BatchSimilarityMatrix {
+  std::vector<std::string> filenames;
+  std::vector<std::vector<double>> matrix; // NxN similarity scores
+  std::vector<FilePair> suspiciousPairs;   // Above 30% threshold
+  std::vector<PlagiarismCluster> clusters;
+  int totalFiles;
+  int totalSuspiciousPairs;
+};
+
+// Batch processing functions
+FileFingerprint createFingerprint(const std::string &filepath,
+                                 const std::string &filename);
+double computeFingerprintSimilarity(const FileFingerprint &fp1,
+                                   const FileFingerprint &fp2);
+std::vector<FilePair>
+filterCandidatePairs(const std::vector<FileFingerprint> &fingerprints);
+BatchSimilarityMatrix
+conductBatchAnalysis(const std::vector<std::string> &filepaths,
+                     double fingerprint_threshold = 0.30,
+                     double full_analysis_threshold = 0.60);
+void findConnectedComponents(const std::vector<FilePair> &pairs,
+                            std::vector<PlagiarismCluster> &clusters,
+                            const std::vector<std::string> &filenames);
                             
 } // namespace Detector
 
