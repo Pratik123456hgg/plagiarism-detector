@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -18,34 +19,34 @@
             background: #f5f5f5;
             padding: 40px 20px;
         }
-        
+
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .header {
             border-bottom: 4px solid #4f46e5;
             padding-bottom: 20px;
             margin-bottom: 30px;
             text-align: center;
         }
-        
+
         .header h1 {
             font-size: 2.5em;
             color: #4f46e5;
             margin-bottom: 10px;
         }
-        
+
         .header p {
             color: #666;
             font-size: 1.1em;
         }
-        
+
         .meta {
             background: #f0f4ff;
             padding: 15px;
@@ -53,15 +54,15 @@
             margin-bottom: 30px;
             font-size: 0.95em;
         }
-        
+
         .meta div {
             margin: 5px 0;
         }
-        
+
         .meta strong {
             color: #4f46e5;
         }
-        
+
         h2 {
             color: #4f46e5;
             font-size: 2em;
@@ -70,14 +71,14 @@
             border-left: 5px solid #4f46e5;
             padding-left: 15px;
         }
-        
+
         h3 {
             color: #0891b2;
             font-size: 1.3em;
             margin-top: 25px;
             margin-bottom: 15px;
         }
-        
+
         .algorithm-box {
             background: #f9fafb;
             border-left: 4px solid #0891b2;
@@ -85,27 +86,27 @@
             margin-bottom: 25px;
             border-radius: 5px;
         }
-        
+
         .algorithm-box h4 {
             color: #0891b2;
             margin-bottom: 10px;
             font-size: 1.1em;
         }
-        
+
         .algorithm-box p {
             margin-bottom: 10px;
             line-height: 1.7;
         }
-        
+
         .algorithm-box ul {
             margin-left: 20px;
             margin-top: 10px;
         }
-        
+
         .algorithm-box li {
             margin-bottom: 8px;
         }
-        
+
         .algorithm-box .code {
             background: #f0f0f0;
             padding: 10px;
@@ -115,13 +116,13 @@
             margin: 10px 0;
             overflow-x: auto;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-        
+
         table th {
             background: #4f46e5;
             color: white;
@@ -129,16 +130,16 @@
             text-align: left;
             font-weight: 600;
         }
-        
+
         table td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
         }
-        
+
         table tr:nth-child(even) {
             background: #f9fafb;
         }
-        
+
         .scoring-method {
             background: #fffbeb;
             border-left: 4px solid #f59e0b;
@@ -146,30 +147,30 @@
             margin: 15px 0;
             border-radius: 5px;
         }
-        
+
         .scoring-method h4 {
             color: #d97706;
             margin-bottom: 10px;
         }
-        
+
         .feature-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin: 20px 0;
         }
-        
+
         .feature-item {
             background: #f0fdf4;
             border-left: 4px solid #10b981;
             padding: 15px;
             border-radius: 5px;
         }
-        
+
         .feature-item strong {
             color: #10b981;
         }
-        
+
         .footer {
             margin-top: 50px;
             padding-top: 20px;
@@ -178,7 +179,7 @@
             color: #666;
             font-size: 0.9em;
         }
-        
+
         .section-intro {
             background: #e0f2fe;
             border-left: 4px solid #0891b2;
@@ -187,7 +188,7 @@
             border-radius: 5px;
             color: #0c4a6e;
         }
-        
+
         .performance-metric {
             background: #fef2f2;
             padding: 15px;
@@ -195,36 +196,39 @@
             margin: 10px 0;
             border-left: 4px solid #ef4444;
         }
-        
+
         @media print {
             body {
                 background: white;
                 padding: 0;
             }
+
             .container {
                 box-shadow: none;
                 border-radius: 0;
             }
+
             h2 {
                 page-break-after: avoid;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>🔍 Plagiarism Detection Analysis Report</h1>
             <p>Comprehensive Documentation of Detection Algorithms & Methodologies</p>
         </div>
-        
+
         <div class="meta">
             <div><strong>Project:</strong> AI Plagiarism Detector (C++ + Python)</div>
             <div><strong>Detection Engine:</strong> C++17 with Multi-Algorithm Analysis</div>
             <div><strong>Supported Formats:</strong> .cpp, .h, .txt, .py, .js, .java, .c, .cc, .cxx</div>
             <div><strong>Report Generated:</strong> April 2026</div>
         </div>
-        
+
         <h2>Executive Summary</h2>
         <p>This plagiarism detector employs a multi-layered approach combining:</p>
         <ul style="margin-left: 20px;">
@@ -233,22 +237,26 @@
             <li>Cosine similarity scoring using TF-IDF methodology</li>
             <li>Batch clustering for multi-file analysis</li>
         </ul>
-        
+
         <h2>Detection Methods</h2>
-        
+
         <h3>1. Abstract Syntax Tree (AST) Analysis</h3>
         <div class="section-intro">
-            The AST analyzer parses source code into a tree representation, capturing program structure independently of variable names and formatting.
+            The AST analyzer parses source code into a tree representation, capturing program structure independently of
+            variable names and formatting.
         </div>
-        
+
         <div class="algorithm-box">
             <h4>Algorithm Overview</h4>
-            <p><strong>Purpose:</strong> Detect structural plagiarism by comparing code organization and control flow.</p>
-            <p><strong>Method:</strong> Longest Common Subsequence (LCS) matching on AST nodes with penalties for size mismatches.</p>
-            
+            <p><strong>Purpose:</strong> Detect structural plagiarism by comparing code organization and control flow.
+            </p>
+            <p><strong>Method:</strong> Longest Common Subsequence (LCS) matching on AST nodes with penalties for size
+                mismatches.</p>
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Processing Steps:</h5>
             <ol style="margin-left: 30px;">
-                <li><strong>Tokenization:</strong> Break source code into meaningful tokens (keywords, operators, identifiers)</li>
+                <li><strong>Tokenization:</strong> Break source code into meaningful tokens (keywords, operators,
+                    identifiers)</li>
                 <li><strong>AST Building:</strong> Construct abstract syntax tree from token stream, identifying:
                     <ul style="margin-left: 20px; margin-top: 5px;">
                         <li>Functions and declarations</li>
@@ -261,7 +269,7 @@
                 <li><strong>LCS Matching:</strong> Find longest common subsequence of nodes between two files</li>
                 <li><strong>Similarity Scoring:</strong> Apply penalties for structural differences</li>
             </ol>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Node Types Detected:</h5>
             <table>
                 <tr>
@@ -310,20 +318,20 @@
                     <td><code>a + b * c</code></td>
                 </tr>
             </table>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Scoring Formula:</h5>
             <div class="code">
-finalScore = (matched_nodes / max_size) × size_penalty × conservative_scale
+                finalScore = (matched_nodes / max_size) × size_penalty × conservative_scale
 
-Where:
-- matched_nodes = Length of longest common subsequence
-- max_size = Maximum AST node count between files
-- size_penalty = 1.0 (perfect) when size ratio ≥ 80%
+                Where:
+                - matched_nodes = Length of longest common subsequence
+                - max_size = Maximum AST node count between files
+                - size_penalty = 1.0 (perfect) when size ratio ≥ 80%
                 = 0.75-1.0 (scaled) when structures differ
-- conservative_scale = 0.85 (to reduce false positives)
-- Special case: Perfect matches (99%+ similarity) return 100%
+                - conservative_scale = 0.85 (to reduce false positives)
+                - Special case: Perfect matches (99%+ similarity) return 100%
             </div>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Advantages:</h5>
             <ul style="margin-left: 30px;">
                 <li>Detects structural plagiarism even with variable name changes</li>
@@ -331,23 +339,24 @@ Where:
                 <li>Identifies control flow restructuring (if→switch substitution)</li>
                 <li>Works across different programming languages with same logic</li>
             </ul>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Limitations:</h5>
             <ul style="margin-left: 30px;">
                 <li>Requires compilable/parseable code</li>
                 <li>May miss plagiarism in functionally equivalent but structurally different code</li>
             </ul>
         </div>
-        
+
         <h3>2. N-Gram Analysis (Unigram, Bigram, Trigram)</h3>
         <div class="section-intro">
-            N-gram analysis breaks text into overlapping sequences of n words, capturing semantic and syntactic patterns.
+            N-gram analysis breaks text into overlapping sequences of n words, capturing semantic and syntactic
+            patterns.
         </div>
-        
+
         <div class="algorithm-box">
             <h4>Algorithm Overview</h4>
             <p><strong>Purpose:</strong> Detect textual similarity through word sequence and phrase matching.</p>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Processing Steps:</h5>
             <ol style="margin-left: 30px;">
                 <li><strong>Text Cleaning:</strong> Remove non-alphanumeric characters, convert to lowercase</li>
@@ -363,26 +372,26 @@ Where:
                 <li><strong>Frequency Counting:</strong> Track occurrence of each n-gram</li>
                 <li><strong>Similarity Calculation:</strong> Cosine similarity on frequency vectors</li>
             </ol>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Example:</h5>
             <div class="code">
-Text: "The quick brown fox jumps over the lazy dog"
+                Text: "The quick brown fox jumps over the lazy dog"
 
-Unigrams:  [quick, brown, fox, jumps, lazy, dog]
-Bigrams:   [quick brown, brown fox, fox jumps, jumps over, lazy dog]
-Trigrams:  [quick brown fox, brown fox jumps, fox jumps over, jumps over lazy]
+                Unigrams: [quick, brown, fox, jumps, lazy, dog]
+                Bigrams: [quick brown, brown fox, fox jumps, jumps over, lazy dog]
+                Trigrams: [quick brown fox, brown fox jumps, fox jumps over, jumps over lazy]
             </div>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Scoring Formula (Cosine Similarity):</h5>
             <div class="code">
-similarity = (A · B) / (||A|| × ||B||)
+                similarity = (A · B) / (||A|| × ||B||)
 
-Where:
-- A · B = Dot product of frequency vectors
-- ||A||, ||B|| = Magnitude (L2 norm) of vectors
-- Result: 0 (no match) to 1.0 (identical)
+                Where:
+                - A · B = Dot product of frequency vectors
+                - ||A||, ||B|| = Magnitude (L2 norm) of vectors
+                - Result: 0 (no match) to 1.0 (identical)
             </div>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Advantages:</h5>
             <ul style="margin-left: 30px;">
                 <li>Captures semantic similarity through phrase patterns</li>
@@ -391,21 +400,21 @@ Where:
                 <li>Fast computation even for large documents</li>
             </ul>
         </div>
-        
+
         <h3>3. Cosine Similarity & TF-IDF Scoring</h3>
         <div class="algorithm-box">
             <h4>Algorithm Overview</h4>
             <p><strong>Method:</strong> Vector space model treating documents as high-dimensional vectors.</p>
             <p><strong>Purpose:</strong> Quantify how similar two text documents are numerically.</p>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Calculation Method:</h5>
             <div class="code">
-For each document, compute frequency vector:
-vector = [freq_word1, freq_word2, ..., freq_wordN]
+                For each document, compute frequency vector:
+                vector = [freq_word1, freq_word2, ..., freq_wordN]
 
-Cosine similarity = dot_product(v1, v2) / (norm(v1) × norm(v2))
+                Cosine similarity = dot_product(v1, v2) / (norm(v1) × norm(v2))
             </div>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Interpretation:</h5>
             <ul style="margin-left: 30px;">
                 <li><strong>1.0:</strong> Perfect semantic match</li>
@@ -414,22 +423,22 @@ Cosine similarity = dot_product(v1, v2) / (norm(v1) × norm(v2))
                 <li><strong>0.0-0.4:</strong> Low similarity (different documents)</li>
             </ul>
         </div>
-        
+
         <h2>Scoring & Thresholds</h2>
-        
+
         <div class="scoring-method">
             <h4>Overall Similarity Score Calculation</h4>
             <p>The final plagiarism risk is determined by combining multiple algorithms:</p>
             <div class="code">
-final_score = WEIGHTED_AVERAGE(
-    ast_similarity × 0.30,          // 30% weight - structural match
-    unigram_similarity × 0.20,      // 20% weight - individual words
-    bigram_similarity × 0.25,       // 25% weight - two-word phrases
-    trigram_similarity × 0.25       // 25% weight - three-word sequences
-)
+                final_score = WEIGHTED_AVERAGE(
+                ast_similarity × 0.30, // 30% weight - structural match
+                unigram_similarity × 0.20, // 20% weight - individual words
+                bigram_similarity × 0.25, // 25% weight - two-word phrases
+                trigram_similarity × 0.25 // 25% weight - three-word sequences
+                )
             </div>
         </div>
-        
+
         <h3>Risk Classification</h3>
         <table>
             <tr>
@@ -463,45 +472,49 @@ final_score = WEIGHTED_AVERAGE(
                 <td>No action required</td>
             </tr>
         </table>
-        
+
         <h2>Batch Analysis Mode</h2>
         <div class="section-intro">
             For analyzing multiple files simultaneously to identify clusters of similar documents.
         </div>
-        
+
         <div class="algorithm-box">
             <h4>Batch Processing Algorithm</h4>
-            <p><strong>Purpose:</strong> Efficiently compare N files against each other and identify plagiarism clusters.</p>
-            
+            <p><strong>Purpose:</strong> Efficiently compare N files against each other and identify plagiarism
+                clusters.</p>
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Process:</h5>
             <ol style="margin-left: 30px;">
-                <li><strong>Fingerprinting:</strong> Create lightweight signature for each file (unigram frequencies)</li>
-                <li><strong>Candidate Filtering:</strong> Quickly identify file pairs exceeding 30% fingerprint similarity</li>
+                <li><strong>Fingerprinting:</strong> Create lightweight signature for each file (unigram frequencies)
+                </li>
+                <li><strong>Candidate Filtering:</strong> Quickly identify file pairs exceeding 30% fingerprint
+                    similarity</li>
                 <li><strong>Full Analysis:</strong> Run complete multilayer analysis on candidate pairs</li>
                 <li><strong>Cluster Detection:</strong> Group files with suspicious similarities into clusters</li>
-                <li><strong>Graph Analysis:</strong> Build connected components to identify probable original vs copies</li>
+                <li><strong>Graph Analysis:</strong> Build connected components to identify probable original vs copies
+                </li>
             </ol>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Output Data Structures:</h5>
             <div class="code">
-PlagiarismCluster {
-    members: [FileNode, ...]           // Files in cluster
-    internalPairs: [FilePair, ...]     // Suspicious file pairs
-}
+                PlagiarismCluster {
+                members: [FileNode, ...] // Files in cluster
+                internalPairs: [FilePair, ...] // Suspicious file pairs
+                }
 
-FilePair {
-    fileIdx1: int
-    fileIdx2: int
-    similarity: double                 // Overall similarity score
-}
+                FilePair {
+                fileIdx1: int
+                fileIdx2: int
+                similarity: double // Overall similarity score
+                }
 
-FileNode {
-    filename: string
-    isProbableOriginal: bool           // Heuristic based on degree
-    suspiciousPairCount: int
-}
+                FileNode {
+                filename: string
+                isProbableOriginal: bool // Heuristic based on degree
+                suspiciousPairCount: int
+                }
             </div>
-            
+
             <h5 style="color: #666; margin-top: 15px; margin-bottom: 10px;">Advantages:</h5>
             <ul style="margin-left: 30px;">
                 <li>Fast preliminary filtering with fingerprinting</li>
@@ -510,7 +523,7 @@ FileNode {
                 <li>Scales to handle hundreds of files</li>
             </ul>
         </div>
-        
+
         <h2>Key Features</h2>
         <div class="feature-list">
             <div class="feature-item">
@@ -546,29 +559,29 @@ FileNode {
                 Adjust plagiarism detection sensitivity via batch mode threshold slider
             </div>
         </div>
-        
+
         <h2>Performance Characteristics</h2>
-        
+
         <div class="performance-metric">
             <strong>Single File Pair Analysis:</strong><br>
             ~50-200ms for typical source files (< 5000 lines)<br>
-            Bottleneck: AST building and LCS computation
+                Bottleneck: AST building and LCS computation
         </div>
-        
+
         <div class="performance-metric">
             <strong>Batch Mode (50 files):</strong><br>
             ~2-5 seconds with fingerprinting optimization<br>
             Fingerprinting phase filters 70-80% of non-suspicious pairs
         </div>
-        
+
         <div class="performance-metric">
             <strong>Memory Usage:</strong><br>
             ~5-10MB per 1000 files during batch analysis<br>
             AST nodes and similarity matrix dominate memory consumption
         </div>
-        
+
         <h2>Technical Implementation</h2>
-        
+
         <div class="algorithm-box">
             <h4>Technology Stack</h4>
             <ul style="margin-left: 30px;">
@@ -578,7 +591,7 @@ FileNode {
                 <li><strong>Compiler:</strong> g++ with C++17 standard (-std=c++17)</li>
                 <li><strong>Build System:</strong> Makefile-based compilation</li>
             </ul>
-            
+
             <h4>Code Structure</h4>
             <ul style="margin-left: 30px;">
                 <li><code>detector.cpp/h</code> - Core plagiarism detection algorithms</li>
@@ -587,7 +600,7 @@ FileNode {
                 <li><code>templates/index.html</code> - Web UI</li>
             </ul>
         </div>
-        
+
         <h2>Use Cases</h2>
         <ul style="margin-left: 20px;">
             <li><strong>Academic:</strong> Detect student submissions plagiarized from internet or peers</li>
@@ -596,7 +609,7 @@ FileNode {
             <li><strong>Plagiarism Prevention:</strong> Create citations reports for similar sources</li>
             <li><strong>Security:</strong> Identify malicious code variants and trojans</li>
         </ul>
-        
+
         <h2>Limitations & Considerations</h2>
         <ul style="margin-left: 20px;">
             <li>Cannot detect plagiarism if code is heavily refactored with different algorithms</li>
@@ -605,14 +618,18 @@ FileNode {
             <li>Does not detect plagiarism from non-textual sources (images, diagrams)</li>
             <li>Language-specific constructs may affect accuracy across different languages</li>
         </ul>
-        
+
         <h2>Conclusion</h2>
-        <p>This plagiarism detector provides a robust, multi-faceted approach to detecting code and document plagiarism. By combining structural analysis (AST), textual similarity (N-grams), and statistical methods (cosine similarity), it achieves high accuracy while remaining computationally efficient. The batch mode with clustering enables detection of plagiarism chains across large document sets.</p>
-        
+        <p>This plagiarism detector provides a robust, multi-faceted approach to detecting code and document plagiarism.
+            By combining structural analysis (AST), textual similarity (N-grams), and statistical methods (cosine
+            similarity), it achieves high accuracy while remaining computationally efficient. The batch mode with
+            clustering enables detection of plagiarism chains across large document sets.</p>
+
         <div class="footer">
             <p>Plagiarism Detection Report | C++ NLP Engine<br>
-            For more information, visit the project repository or documentation</p>
+                For more information, visit the project repository or documentation</p>
         </div>
     </div>
 </body>
+
 </html>
