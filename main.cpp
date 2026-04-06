@@ -1,5 +1,6 @@
 #include "detector.h"
 #include <algorithm>
+#include <cmath>
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
@@ -169,7 +170,11 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
             "1-5.93-9.14\"></path><polyline "
             "points=\"22 4 12 14.01 9 11.01\"></polyline></svg>";
 
-  double dashOffset = 408.4 * (1.0 - combinedScore / 100.0);
+  // Fix circular gauge at 100%: calculate correct circumference and clamp score
+  const double SVG_RADIUS = 70.0;
+  const double SVG_CIRCUMFERENCE = 2.0 * M_PI * SVG_RADIUS;  // ~439.82
+  const double clampedScore = std::min(combinedScore, 100.0);
+  double dashOffset = SVG_CIRCUMFERENCE - (clampedScore / 100.0) * SVG_CIRCUMFERENCE;
 
   auto lines1 = extractLines(text1);
   auto lines2 = extractLines(text2);
@@ -192,10 +197,10 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 55%,#020617 100%);
-      min-height:100vh;padding:2rem 1.5rem;color:#f8fafc;display:flex;justify-content:center;align-items:flex-start;}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#e8edf5 0%,#f5f7fa 50%,#eef1f8 100%);
+      min-height:100vh;padding:2rem 1.5rem;color:#1a1a2e;display:flex;justify-content:center;align-items:flex-start;}
     
-    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.12;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}
+    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.06;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}
     .orb1{width:500px;height:500px;background:#4f46e5;top:-100px;left:-100px;}
     .orb2{width:400px;height:400px;background:#0891b2;bottom:-100px;right:-100px;animation-delay:3s;}
     @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
@@ -203,58 +208,58 @@ void generateTwoFileReport(const std::string &file1, const std::string &file2) {
     .container{position:relative;z-index:1;width:100%;max-width:1100px;padding-bottom:3rem;}
     
     .header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;}
-    .header-bar h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;background:linear-gradient(135deg,#e2e8f0,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .header-bar h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;color:#1a1a2e;}
     
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e2e8f0;text-decoration:none;font-size:.9rem;font-weight:600;transition:all .2s;}
-    .btn:hover{background:rgba(255,255,255,.1);transform:translateY(-1px);}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:#2563eb;border:1px solid #1e40af;border-radius:8px;color:#ffffff;text-decoration:none;font-size:.9rem;font-weight:600;transition:all .2s;}
+    .btn:hover{background:#1d4ed8;transform:translateY(-1px);}
 
-    .card{background:rgba(30,41,59,.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.2);}
+    .card{background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.08);}
     
     .grid-2{display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;}
     
-    .files-compare{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2.5rem;padding:1.5rem;background:rgba(15,23,42,.4);border-radius:12px;}
+    .files-compare{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2.5rem;padding:1.5rem;background:#f9fafb;border-radius:12px;}
     .file-box{flex:1;text-align:center;width:100%;overflow:hidden;}
-    .file-box .lbl{display:block;font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}
-    .file-box .name{font-size:.95rem;font-family:monospace;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,.05);padding:.5rem;border-radius:6px;border:1px solid rgba(255,255,255,.05);}
-    .vs-circ{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#4f46e5,#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;box-shadow:0 0 15px rgba(79,70,229,.4);}
+    .file-box .lbl{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}
+    .file-box .name{font-size:.95rem;font-family:monospace;color:#1a1a2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#f3f4f6;padding:.5rem;border-radius:6px;border:1px solid #e5e7eb;}
+    .vs-circ{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#4f46e5,#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#ffffff;box-shadow:0 4px 12px rgba(79,70,229,.3);}
 
     .score-ui{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;}
     .ring{position:relative;width:160px;height:160px;}
     .ring svg{width:160px;height:160px;transform:rotate(-90deg);}
     .ring circle{fill:none;stroke-width:10;}
-    .ring .bg{stroke:rgba(255,255,255,.05);}
-    .ring .prog{stroke-dasharray:408.4;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;}
+    .ring .bg{stroke:#e5e7eb;}
+    .ring .prog{stroke-dasharray:439.82;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;}
     .ring-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-    .ring-pct{font-size:2.5rem;font-weight:800;line-height:1;letter-spacing:-.03em;}
-    .ring-lbl{font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem;}
+    .ring-pct{font-size:1.8rem;font-weight:800;line-height:1;letter-spacing:-.03em;color:#1a1a2e;}
+    .ring-lbl{font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem;}
     
     .verdict{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;}
-    .plagiarized{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#fca5a5;}
-    .original{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;}
+    .plagiarized{background:#fee2e2;border:1px solid #fecaca;color:#991b1b;}
+    .original{background:#dcfce7;border:1px solid #bbf7d0;color:#166534;}
 
-    .analytics h3{font-size:.9rem;color:#cbd5e1;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:.05em;}
+    .analytics h3{font-size:.9rem;color:#4a5568;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:.05em;}
     .metric-group{margin-bottom:2rem;}
     .metric{display:grid;grid-template-columns:130px 1fr 50px;align-items:center;gap:1rem;margin-bottom:1rem;}
-    .m-label{font-size:.85rem;color:#94a3b8;font-weight:500;}
-    .bar-bg{background:rgba(255,255,255,.05);border-radius:50px;height:8px;overflow:hidden;}
+    .m-label{font-size:.85rem;color:#6b7280;font-weight:500;}
+    .bar-bg{background:#e2e8f0;border-radius:50px;height:8px;overflow:hidden;}
     .bar-fg{height:100%;border-radius:50px;}
-    .m-val{font-size:.85rem;font-weight:700;color:#e2e8f0;text-align:right;}
+    .m-val{font-size:.85rem;font-weight:700;color:#1a1a2e;text-align:right;}
     
     .insights{margin-top:1.5rem;}
-    .insights h3{font-size:.85rem;color:#94a3b8;margin-bottom:1rem;}
+    .insights h3{font-size:.85rem;color:#4a5568;margin-bottom:1rem;}
     .tags{display:flex;flex-wrap:wrap;gap:.5rem;}
-    .tag{background:rgba(79,70,229,.15);border:1px solid rgba(79,70,229,.3);color:#a5b4fc;padding:.3rem .8rem;border-radius:6px;font-family:monospace;font-size:.8rem;}
+    .tag{background:#eef2ff;border:1px solid #e0e7ff;color:#4338ca;padding:.3rem .8rem;border-radius:6px;font-family:monospace;font-size:.8rem;}
     
-    .split-title{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#e2e8f0;}
-    .code-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);}
-    .code-pane{background:rgba(15,23,42,.8);height:500px;overflow:auto;font-family:monospace;font-size:.8rem;line-height:1.6;}
-    .pane-header{background:#0f172a;padding:.75rem 1rem;font-size:.8rem;font-weight:600;color:#94a3b8;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:0;}
+    .split-title{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#1a1a2e;}
+    .code-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#f3f4f6;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;}
+    .code-pane{background:#fafafa;height:500px;overflow:auto;font-family:monospace;font-size:.8rem;line-height:1.6;}
+    .pane-header{background:#f3f4f6;padding:.75rem 1rem;font-size:.8rem;font-weight:600;color:#4a5568;border-bottom:1px solid #e5e7eb;position:sticky;top:0;}
     .code-line{display:flex;padding:0 .5rem;}
-    .code-line:hover{background:rgba(255,255,255,.03);}
-    .hl{background:rgba(239,68,68,.15);}
-    .hl .code-content{color:#fca5a5;}
-    .code-line .ln{width:35px;flex-shrink:0;text-align:right;padding-right:10px;color:#475569;user-select:none;border-right:1px solid rgba(255,255,255,.05);margin-right:10px;}
-    .code-content{white-space:pre;color:#cbd5e1;word-break:break-all;}
+    .code-line:hover{background:#f9fafb;}
+    .hl{background:rgba(255,220,0,0.2);}
+    .hl .code-content{color:#b8860b;font-weight:500;}
+    .code-line .ln{width:35px;flex-shrink:0;text-align:right;padding-right:10px;color:#9ca3af;user-select:none;border-right:1px solid #e5e7eb;margin-right:10px;}
+    .code-content{white-space:pre;color:#1f2937;word-break:break-all;}
 
     @media(max-width:768px){
       .grid-2{grid-template-columns:1fr;}
@@ -496,10 +501,10 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 55%,#020617 100%);
-      min-height:100vh;padding:2rem 1.5rem;color:#f8fafc;}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#e8edf5 0%,#f5f7fa 50%,#eef1f8 100%);
+      min-height:100vh;padding:2rem 1.5rem;color:#1a1a2e;}
     
-    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.12;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}
+    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.06;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}
     .orb1{width:600px;height:600px;background:#4f46e5;top:-100px;left:-100px;}
     .orb2{width:500px;height:500px;background:#0891b2;bottom:-100px;right:-100px;animation-delay:3s;}
     @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
@@ -507,40 +512,40 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
     .container{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding-bottom:3rem;}
     
     .header{margin-bottom:2.5rem;}
-    .header h1{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#e2e8f0,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;}
-    .header p{color:#94a3b8;font-size:1rem;}
+    .header h1{font-size:2rem;font-weight:800;color:#1a1a2e;margin-bottom:.5rem;}
+    .header p{color:#4a5568;font-size:1rem;}
     
-    .card{background:rgba(30,41,59,.4);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.2);}
+    .card{background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.08);}
     
     .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:2rem;}
-    .stat-box{background:rgba(15,23,42,.4);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:1.5rem;text-align:center;}
-    .stat-val{font-size:2.5rem;font-weight:800;color:#4f46e5;line-height:1;}
-    .stat-lbl{font-size:.85rem;color:#94a3b8;margin-top:.5rem;text-transform:uppercase;letter-spacing:.05em;}
+    .stat-box{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;text-align:center;}
+    .stat-val{font-size:2.5rem;font-weight:800;color:#2563eb;line-height:1;}
+    .stat-lbl{font-size:.85rem;color:#6b7280;margin-top:.5rem;text-transform:uppercase;letter-spacing:.05em;}
     
     .cluster-section{margin-bottom:2rem;}
-    .cluster-title{display:flex;align-items:center;gap:.75rem;font-size:1.2rem;font-weight:700;margin-bottom:1.25rem;color:#e2e8f0;}
+    .cluster-title{display:flex;align-items:center;gap:.75rem;font-size:1.2rem;font-weight:700;margin-bottom:1.25rem;color:#1a1a2e;}
     .cluster-badge{background:#ef4444;color:#fff;padding:.3rem .8rem;border-radius:6px;font-size:.8rem;font-weight:600;}
     
-    .member-list{background:rgba(15,23,42,.4);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
-    .member-item{display:flex;align-items:center;justify-content:space-between;padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05);}
+    .member-list{background:#f9fafb;border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;border:1px solid #e5e7eb;}
+    .member-item{display:flex;align-items:center;justify-content:space-between;padding:.75rem;border-bottom:1px solid #e5e7eb;}
     .member-item:last-child{border-bottom:none;}
-    .member-name{display:flex;align-items:center;gap:.5rem;font-family:monospace;color:#e2e8f0;}
-    .badge-original{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;}
+    .member-name{display:flex;align-items:center;gap:.5rem;font-family:monospace;color:#1a1a2e;}
+    .badge-original{background:#dcfce7;border:1px solid #bbf7d0;color:#166534;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;}
     
     .pairs-table{width:100%;border-collapse:collapse;font-size:.9rem;}
-    .pairs-table th{background:rgba(15,23,42,.6);padding:.75rem;text-align:left;color:#94a3b8;font-weight:600;border-bottom:1px solid rgba(255,255,255,.1);}
-    .pairs-table td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05);color:#cbd5e1;}
-    .pairs-table tbody tr:hover{background:rgba(255,255,255,.03);}
-    .score-cell{font-weight:600;color:#fca5a5;}
+    .pairs-table th{background:#e8edf5;padding:.75rem;text-align:left;color:#1a1a2e;font-weight:600;border-bottom:1px solid #d8e4f0;}
+    .pairs-table td{padding:.75rem;border-bottom:1px solid #e5e7eb;color:#1a1a2e;}
+    .pairs-table tbody tr:hover{background:#f9fafb;}
+    .score-cell{font-weight:600;color:#dc2626;}
     
-    .matrix-container{overflow-x:auto;background:rgba(15,23,42,.4);border-radius:12px;padding:1.5rem;}
+    .matrix-container{overflow-x:auto;background:#f9fafb;border-radius:12px;padding:1.5rem;border:1px solid #e5e7eb;}
     .matrix-table{width:100%;border-collapse:collapse;font-size:.8rem;font-family:monospace;}
-    .matrix-table th,.matrix-table td{padding:.5rem;text-align:center;border:1px solid rgba(255,255,255,.1);}
-    .matrix-table th{background:rgba(79,70,229,.2);color:#818cf8;font-weight:600;}
-    .matrix-table td{color:#cbd5e1;}
-    .matrix-high{background:rgba(239,68,68,.2);color:#fca5a5;font-weight:600;}
-    .matrix-med{background:rgba(234,179,8,.15);color:#fde047;}
-    .matrix-low{background:rgba(16,185,129,.15);color:#6ee7b7;}
+    .matrix-table th,.matrix-table td{padding:.5rem;text-align:center;border:1px solid #e5e7eb;}
+    .matrix-table th{background:#e8edf5;color:#1a1a2e;font-weight:600;}
+    .matrix-table td{color:#1a1a2e;}
+    .matrix-high{background:#fee2e2;color:#991b1b;font-weight:600;}
+    .matrix-med{background:#fef3c7;color:#b45309;}
+    .matrix-low{background:#dcfce7;color:#166534;}
     
     @media(max-width:768px){
       .summary{grid-template-columns:1fr;}
@@ -554,15 +559,21 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
   <div class="orb orb2"></div>
 
   <div class="container">
-    <div class="header">
-      <h1>Batch Plagiarism Analysis Report</h1>
-      <p>Analyzed )HTML";
+    <div class="header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+      <div>
+        <h1>Batch Plagiarism Analysis Report</h1>
+        <p>Analyzed )HTML";
   out << batchResult.totalFiles;
   out << R"HTML( files • )HTML";
   out << batchResult.totalSuspiciousPairs;
   out << R"HTML( suspicious pairs • )HTML";
   out << batchResult.clusters.size();
   out << R"HTML( clusters detected</p>
+      </div>
+      <a href="/" class="btn" style="white-space:nowrap;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+        Analyze Another
+      </a>
     </div>
 
     <div class="card">
@@ -612,7 +623,7 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
       </div>
       
       <div class="member-list">
-        <div style="font-size:.9rem;font-weight:600;color:#94a3b8;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;">Member Files</div>)HTML";
+        <div style="font-size:.9rem;font-weight:600;color:#4a5568;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;">Member Files</div>)HTML";
 
     for (const auto &member : cluster.members) {
       out << R"HTML(
@@ -625,7 +636,7 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
       }
       out << R"HTML(
           </div>
-          <div style="color:#64748b;font-size:.85rem;">)HTML";
+          <div style="color:#6b7280;font-size:.85rem;">)HTML";
       out << member.degree;
       out << R"HTML( match)HTML" << (member.degree != 1 ? "es" : "")
           << R"HTML(</div>
@@ -636,7 +647,7 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
       </div>
       
       <div style="margin-top:1.5rem;">
-        <div style="font-size:.9rem;font-weight:600;color:#94a3b8;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;">Pairwise Similarity</div>
+        <div style="font-size:.9rem;font-weight:600;color:#4a5568;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;">Pairwise Similarity</div>
         <table class="pairs-table">
           <thead>
             <tr>
@@ -651,7 +662,9 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
     for (const auto &pair : cluster.internalPairs) {
       double score = 100.0 * pair.similarity;
       std::string status = score >= 60.0 ? "Plagiarism" : "Suspicious";
-      std::string statusColor = score >= 60.0 ? "#ef4444" : "#eab308";
+      std::string statusBg = score >= 60.0 ? "#fee2e2" : "#fef3c7";
+      std::string statusBorder = score >= 60.0 ? "#fecaca" : "#fcd34d";
+      std::string statusText = score >= 60.0 ? "#991b1b" : "#b45309";
       
       out << R"HTML(
             <tr>
@@ -660,8 +673,8 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
               <td>)HTML" << escapeHTML(batchResult.filenames[pair.fileIdx2])
           << R"HTML(</td>
               <td class="score-cell">)HTML" << fmt(score) << R"HTML(%</td>
-              <td><span style="background:)HTML" << statusColor << R"HTML(20;border:1px solid )HTML"
-          << statusColor << R"HTML(40;color:)HTML" << statusColor << R"HTML(;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;">)HTML"
+              <td><span style="background:)HTML" << statusBg << R"HTML(;border:1px solid )HTML"
+          << statusBorder << R"HTML(;color:)HTML" << statusText << R"HTML(;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;">)HTML"
           << status << R"HTML(</span></td>
             </tr>)HTML";
     }
@@ -677,7 +690,7 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
 
     <!-- Full Similarity Matrix -->
     <div class="card">
-      <div style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;color:#e2e8f0;">Complete Similarity Matrix (All Files)</div>
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;color:#1a1a2e;">Complete Similarity Matrix (All Files)</div>
       <div class="matrix-container">
         <table class="matrix-table">
           <thead>
@@ -718,23 +731,23 @@ void generateBatchReport(const Detector::BatchSimilarityMatrix &batchResult) {
       <div style="margin-top:1rem;padding:1rem;background:rgba(15,23,42,.4);border-radius:8px;font-size:.85rem;color:#94a3b8;">
         <div style="display:flex;gap:1rem;flex-wrap:wrap;">
           <div style="display:flex;align-items:center;gap:.5rem;">
-            <span style="width:20px;height:20px;background:rgba(239,68,68,.2);border:1px solid rgba(239,68,68,.4);border-radius:4px;"></span>
-            <span>High Risk (≥60%)</span>
+            <span style="width:20px;height:20px;background:#fee2e2;border:1px solid #fecaca;border-radius:4px;"></span>
+            <span style="color:#1a1a2e;">High Risk (≥60%)</span>
           </div>
           <div style="display:flex;align-items:center;gap:.5rem;">
-            <span style="width:20px;height:20px;background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);border-radius:4px;"></span>
-            <span>Medium Risk (30-60%)</span>
+            <span style="width:20px;height:20px;background:#fef3c7;border:1px solid #fcd34d;border-radius:4px;"></span>
+            <span style="color:#1a1a2e;">Medium Risk (30-60%)</span>
           </div>
           <div style="display:flex;align-items:center;gap:.5rem;">
-            <span style="width:20px;height:20px;background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);border-radius:4px;"></span>
-            <span>Low Risk (<30%)</span>
+            <span style="width:20px;height:20px;background:#dcfce7;border:1px solid #bbf7d0;border-radius:4px;"></span>
+            <span style="color:#1a1a2e;">Low Risk (<30%)</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);">
-      <p style="color:#64748b;font-size:.9rem;">Generated by C++ Plagiarism Detector | Fingerprint threshold: 30% | Full analysis threshold: 60%</p>
+    <div style="text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid #e5e7eb;">
+      <p style="color:#4a5568;font-size:.9rem;">Generated by C++ Plagiarism Detector | Fingerprint threshold: 30% | Full analysis threshold: 60%</p>
     </div>
 
   </div>

@@ -8,10 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 55%,#020617 100%);
-      min-height:100vh;padding:2rem 1.5rem;color:#f8fafc;display:flex;justify-content:center;align-items:flex-start;}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#e8edf5 0%,#f5f7fa 50%,#eef1f8 100%);
+      min-height:100vh;padding:2rem 1.5rem;color:#1a1a2e;display:flex;justify-content:center;align-items:flex-start;}
     
-    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.12;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}
+    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.06;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}
     .orb1{width:500px;height:500px;background:#4f46e5;top:-100px;left:-100px;}
     .orb2{width:400px;height:400px;background:#0891b2;bottom:-100px;right:-100px;animation-delay:3s;}
     @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
@@ -19,58 +19,58 @@
     .container{position:relative;z-index:1;width:100%;max-width:1100px;padding-bottom:3rem;}
     
     .header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;}
-    .header-bar h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;background:linear-gradient(135deg,#e2e8f0,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .header-bar h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;color:#1a1a2e;}
     
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e2e8f0;text-decoration:none;font-size:.9rem;font-weight:600;transition:all .2s;}
-    .btn:hover{background:rgba(255,255,255,.1);transform:translateY(-1px);}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:#2563eb;border:1px solid #1e40af;border-radius:8px;color:#ffffff;text-decoration:none;font-size:.9rem;font-weight:600;transition:all .2s;}
+    .btn:hover{background:#1d4ed8;transform:translateY(-1px);}
 
-    .card{background:rgba(30,41,59,.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.2);}
+    .card{background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.08);}
     
     .grid-2{display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;}
     
-    .files-compare{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2.5rem;padding:1.5rem;background:rgba(15,23,42,.4);border-radius:12px;}
+    .files-compare{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2.5rem;padding:1.5rem;background:#f9fafb;border-radius:12px;}
     .file-box{flex:1;text-align:center;width:100%;overflow:hidden;}
-    .file-box .lbl{display:block;font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}
-    .file-box .name{font-size:.95rem;font-family:monospace;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,.05);padding:.5rem;border-radius:6px;border:1px solid rgba(255,255,255,.05);}
-    .vs-circ{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#4f46e5,#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;box-shadow:0 0 15px rgba(79,70,229,.4);}
+    .file-box .lbl{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}
+    .file-box .name{font-size:.95rem;font-family:monospace;color:#1a1a2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#f3f4f6;padding:.5rem;border-radius:6px;border:1px solid #e5e7eb;}
+    .vs-circ{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#4f46e5,#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#ffffff;box-shadow:0 4px 12px rgba(79,70,229,.3);}
 
     .score-ui{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;}
     .ring{position:relative;width:160px;height:160px;}
     .ring svg{width:160px;height:160px;transform:rotate(-90deg);}
     .ring circle{fill:none;stroke-width:10;}
-    .ring .bg{stroke:rgba(255,255,255,.05);}
-    .ring .prog{stroke-dasharray:408.4;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;}
+    .ring .bg{stroke:#e5e7eb;}
+    .ring .prog{stroke-dasharray:439.82;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;}
     .ring-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-    .ring-pct{font-size:2.5rem;font-weight:800;line-height:1;letter-spacing:-.03em;}
-    .ring-lbl{font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem;}
+    .ring-pct{font-size:1.8rem;font-weight:800;line-height:1;letter-spacing:-.03em;color:#1a1a2e;}
+    .ring-lbl{font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem;}
     
     .verdict{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;}
-    .plagiarized{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#fca5a5;}
-    .original{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;}
+    .plagiarized{background:#fee2e2;border:1px solid #fecaca;color:#991b1b;}
+    .original{background:#dcfce7;border:1px solid #bbf7d0;color:#166534;}
 
-    .analytics h3{font-size:.9rem;color:#cbd5e1;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:.05em;}
+    .analytics h3{font-size:.9rem;color:#4a5568;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:.05em;}
     .metric-group{margin-bottom:2rem;}
     .metric{display:grid;grid-template-columns:130px 1fr 50px;align-items:center;gap:1rem;margin-bottom:1rem;}
-    .m-label{font-size:.85rem;color:#94a3b8;font-weight:500;}
-    .bar-bg{background:rgba(255,255,255,.05);border-radius:50px;height:8px;overflow:hidden;}
+    .m-label{font-size:.85rem;color:#6b7280;font-weight:500;}
+    .bar-bg{background:#e2e8f0;border-radius:50px;height:8px;overflow:hidden;}
     .bar-fg{height:100%;border-radius:50px;}
-    .m-val{font-size:.85rem;font-weight:700;color:#e2e8f0;text-align:right;}
+    .m-val{font-size:.85rem;font-weight:700;color:#1a1a2e;text-align:right;}
     
     .insights{margin-top:1.5rem;}
-    .insights h3{font-size:.85rem;color:#94a3b8;margin-bottom:1rem;}
+    .insights h3{font-size:.85rem;color:#4a5568;margin-bottom:1rem;}
     .tags{display:flex;flex-wrap:wrap;gap:.5rem;}
-    .tag{background:rgba(79,70,229,.15);border:1px solid rgba(79,70,229,.3);color:#a5b4fc;padding:.3rem .8rem;border-radius:6px;font-family:monospace;font-size:.8rem;}
+    .tag{background:#eef2ff;border:1px solid #e0e7ff;color:#4338ca;padding:.3rem .8rem;border-radius:6px;font-family:monospace;font-size:.8rem;}
     
-    .split-title{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#e2e8f0;}
-    .code-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);}
-    .code-pane{background:rgba(15,23,42,.8);height:500px;overflow:auto;font-family:monospace;font-size:.8rem;line-height:1.6;}
-    .pane-header{background:#0f172a;padding:.75rem 1rem;font-size:.8rem;font-weight:600;color:#94a3b8;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:0;}
+    .split-title{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#1a1a2e;}
+    .code-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#f3f4f6;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;}
+    .code-pane{background:#fafafa;height:500px;overflow:auto;font-family:monospace;font-size:.8rem;line-height:1.6;}
+    .pane-header{background:#f3f4f6;padding:.75rem 1rem;font-size:.8rem;font-weight:600;color:#4a5568;border-bottom:1px solid #e5e7eb;position:sticky;top:0;}
     .code-line{display:flex;padding:0 .5rem;}
-    .code-line:hover{background:rgba(255,255,255,.03);}
-    .hl{background:rgba(239,68,68,.15);}
-    .hl .code-content{color:#fca5a5;}
-    .code-line .ln{width:35px;flex-shrink:0;text-align:right;padding-right:10px;color:#475569;user-select:none;border-right:1px solid rgba(255,255,255,.05);margin-right:10px;}
-    .code-content{white-space:pre;color:#cbd5e1;word-break:break-all;}
+    .code-line:hover{background:#f9fafb;}
+    .hl{background:rgba(255,220,0,0.2);}
+    .hl .code-content{color:#b8860b;font-weight:500;}
+    .code-line .ln{width:35px;flex-shrink:0;text-align:right;padding-right:10px;color:#9ca3af;user-select:none;border-right:1px solid #e5e7eb;margin-right:10px;}
+    .code-content{white-space:pre;color:#1f2937;word-break:break-all;}
 
     @media(max-width:768px){
       .grid-2{grid-template-columns:1fr;}
@@ -96,12 +96,12 @@
     <div class="files-compare">
       <div class="file-box">
         <span class="lbl">Source File</span>
-        <div class="name">ass2.cpp</div>
+        <div class="name">test2.cpp</div>
       </div>
       <div class="vs-circ">VS</div>
       <div class="file-box">
         <span class="lbl">Target File</span>
-        <div class="name">ass3.cpp</div>
+        <div class="name">main.cpp</div>
       </div>
     </div>
 
@@ -110,10 +110,10 @@
         <div class="ring">
           <svg viewBox="0 0 160 160">
             <circle class="bg" cx="80" cy="80" r="70"/>
-            <circle class="prog" cx="80" cy="80" r="70" stroke="#10b981" stroke-dashoffset="266.8"/>
+            <circle class="prog" cx="80" cy="80" r="70" stroke="#10b981" stroke-dashoffset="430.6"/>
           </svg>
           <div class="ring-inner">
-            <div class="ring-pct" style="color:#10b981">34.7%</div>
+            <div class="ring-pct" style="color:#10b981">2.1%</div>
             <div class="ring-lbl">Match</div>
           </div>
         </div>
@@ -125,18 +125,18 @@
           <h3>Text Similarity Analysis</h3>
           <div class="metric">
             <div class="m-label">Unigram (Words)</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:32.4%;background:linear-gradient(90deg,#4f46e5,#818cf8);"></div></div>
-            <div class="m-val">32.4%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:13.5%;background:linear-gradient(90deg,#4f46e5,#818cf8);"></div></div>
+            <div class="m-val">13.5%</div>
           </div>
           <div class="metric">
             <div class="m-label">Bigram (Phrases)</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:1.2%;background:linear-gradient(90deg,#0891b2,#22d3ee);"></div></div>
-            <div class="m-val">1.2%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:1.8%;background:linear-gradient(90deg,#0891b2,#22d3ee);"></div></div>
+            <div class="m-val">1.8%</div>
           </div>
           <div class="metric">
             <div class="m-label">Trigram (Logic)</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:0.8%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);"></div></div>
-            <div class="m-val">0.8%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:0.0%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);"></div></div>
+            <div class="m-val">0.0%</div>
           </div>
         </div>
 
@@ -144,8 +144,8 @@
           <h3>Code Structure Analysis</h3>
           <div class="metric">
             <div class="m-label">AST Structure</div>
-            <div class="bar-bg"><div class="bar-fg" style="width:44.4%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
-            <div class="m-val">44.4%</div>
+            <div class="bar-bg"><div class="bar-fg" style="width:0.7%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
+            <div class="m-val">0.7%</div>
           </div>
         </div>
       </div>
@@ -153,7 +153,7 @@
 
     <div class="card insights">
       <h3>Plagiarism Match Insights (Overlapping Terms)</h3>
-      <div class="tags"><span class="tag">new</span><span class="tag">empty</span><span class="tag">n</span><span class="tag">void</span><span class="tag">endl</span><span class="tag">if</span><span class="tag">cout</span><span class="tag">while</span><span class="tag">struct</span><span class="tag">int</span><span class="tag">1</span><span class="tag">namespace</span><span class="tag">found</span><span class="tag">class</span><span class="tag">iostream</span><span class="tag">include</span><span class="tag">using</span><span class="tag">return</span><span class="tag">0</span><span class="tag">std</span><span class="tag">else</span><span class="tag">node</span><span class="tag">main</span><span class="tag">i</span><span class="tag">public</span>
+      <div class="tags"><span class="tag">return</span><span class="tag">0</span><span class="tag">i</span><span class="tag">int</span><span class="tag">iostream</span><span class="tag">namespace</span><span class="tag">include</span>
       </div>
     </div>
     
@@ -163,364 +163,782 @@
     </div>
     <div class="code-split">
       <div class="code-pane">
-        <div class="pane-header">ass2.cpp</div>
+        <div class="pane-header">test2.cpp</div>
         <div class="code-line hl"><span class="ln">1</span><span class="code-content">#include &lt;iostream&gt;</span></div>
-<div class="code-line"><span class="ln">2</span><span class="code-content">#include &lt;cstdlib&gt;</span></div>
-<div class="code-line"><span class="ln">3</span><span class="code-content"></span></div>
-<div class="code-line hl"><span class="ln">4</span><span class="code-content">using namespace std;</span></div>
-<div class="code-line"><span class="ln">5</span><span class="code-content"></span></div>
-<div class="code-line hl"><span class="ln">6</span><span class="code-content">struct node {</span></div>
-<div class="code-line"><span class="ln">7</span><span class="code-content">    int key;</span></div>
-<div class="code-line"><span class="ln">8</span><span class="code-content">    node *left, *right, *parent;</span></div>
-<div class="code-line"><span class="ln">9</span><span class="code-content">    int bf;</span></div>
-<div class="code-line"><span class="ln">10</span><span class="code-content">};</span></div>
-<div class="code-line"><span class="ln">11</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">12</span><span class="code-content">class AVL {</span></div>
-<div class="code-line"><span class="ln">13</span><span class="code-content">    node *root;</span></div>
-<div class="code-line"><span class="ln">14</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">15</span><span class="code-content">    int max(int a, int b) { return a &gt; b ? a : b; }</span></div>
-<div class="code-line"><span class="ln">16</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">17</span><span class="code-content">    int ht(node *p) {</span></div>
-<div class="code-line"><span class="ln">18</span><span class="code-content">        if (!p) return -1;</span></div>
-<div class="code-line"><span class="ln">19</span><span class="code-content">        return 1 + max(ht(p-&gt;left), ht(p-&gt;right));</span></div>
-<div class="code-line"><span class="ln">20</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">21</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">22</span><span class="code-content">    void update_bf(node *p) {</span></div>
-<div class="code-line"><span class="ln">23</span><span class="code-content">        while (p) {</span></div>
-<div class="code-line"><span class="ln">24</span><span class="code-content">            p-&gt;bf = ht(p-&gt;left) - ht(p-&gt;right);</span></div>
-<div class="code-line"><span class="ln">25</span><span class="code-content">            p = p-&gt;parent;</span></div>
-<div class="code-line"><span class="ln">26</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">27</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">28</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">29</span><span class="code-content">    void transplant(node *par, node *old_child, node *new_child) {</span></div>
-<div class="code-line"><span class="ln">30</span><span class="code-content">        if (!par)</span></div>
-<div class="code-line"><span class="ln">31</span><span class="code-content">            root = new_child;</span></div>
-<div class="code-line"><span class="ln">32</span><span class="code-content">        else if (par-&gt;left == old_child)</span></div>
-<div class="code-line"><span class="ln">33</span><span class="code-content">            par-&gt;left = new_child;</span></div>
-<div class="code-line hl"><span class="ln">34</span><span class="code-content">        else</span></div>
-<div class="code-line"><span class="ln">35</span><span class="code-content">            par-&gt;right = new_child;</span></div>
-<div class="code-line"><span class="ln">36</span><span class="code-content">        if (new_child) new_child-&gt;parent = par;</span></div>
-<div class="code-line"><span class="ln">37</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">38</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">39</span><span class="code-content">    void LLRotate(node *i) {</span></div>
-<div class="code-line"><span class="ln">40</span><span class="code-content">        node *iL  = i-&gt;left;</span></div>
-<div class="code-line"><span class="ln">41</span><span class="code-content">        node *iLR = iL-&gt;right;</span></div>
-<div class="code-line"><span class="ln">42</span><span class="code-content">        node *ip  = i-&gt;parent;</span></div>
-<div class="code-line"><span class="ln">43</span><span class="code-content">        transplant(ip, i, iL);</span></div>
-<div class="code-line"><span class="ln">44</span><span class="code-content">        iL-&gt;right = i;</span></div>
-<div class="code-line"><span class="ln">45</span><span class="code-content">        i-&gt;parent = iL;</span></div>
-<div class="code-line"><span class="ln">46</span><span class="code-content">        i-&gt;left   = iLR;</span></div>
-<div class="code-line"><span class="ln">47</span><span class="code-content">        if (iLR) iLR-&gt;parent = i;</span></div>
-<div class="code-line"><span class="ln">48</span><span class="code-content">        update_bf(i);</span></div>
-<div class="code-line"><span class="ln">49</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">50</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">51</span><span class="code-content">    void RRRotate(node *i) {</span></div>
-<div class="code-line"><span class="ln">52</span><span class="code-content">        node *iR  = i-&gt;right;</span></div>
-<div class="code-line"><span class="ln">53</span><span class="code-content">        node *iRL = iR-&gt;left;</span></div>
-<div class="code-line"><span class="ln">54</span><span class="code-content">        node *ip  = i-&gt;parent;</span></div>
-<div class="code-line"><span class="ln">55</span><span class="code-content">        transplant(ip, i, iR);</span></div>
-<div class="code-line"><span class="ln">56</span><span class="code-content">        iR-&gt;left  = i;</span></div>
-<div class="code-line"><span class="ln">57</span><span class="code-content">        i-&gt;parent = iR;</span></div>
-<div class="code-line"><span class="ln">58</span><span class="code-content">        i-&gt;right  = iRL;</span></div>
-<div class="code-line"><span class="ln">59</span><span class="code-content">        if (iRL) iRL-&gt;parent = i;</span></div>
-<div class="code-line"><span class="ln">60</span><span class="code-content">        update_bf(i);</span></div>
-<div class="code-line"><span class="ln">61</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">62</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">63</span><span class="code-content">    void LRRotate(node *i) {</span></div>
-<div class="code-line"><span class="ln">64</span><span class="code-content">        RRRotate(i-&gt;left);</span></div>
-<div class="code-line"><span class="ln">65</span><span class="code-content">        LLRotate(i);</span></div>
-<div class="code-line"><span class="ln">66</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">67</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">68</span><span class="code-content">    void RLRotate(node *i) {</span></div>
-<div class="code-line"><span class="ln">69</span><span class="code-content">        LLRotate(i-&gt;right);</span></div>
-<div class="code-line"><span class="ln">70</span><span class="code-content">        RRRotate(i);</span></div>
-<div class="code-line"><span class="ln">71</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">72</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">73</span><span class="code-content">    void rebalance_up(node *p) {</span></div>
-<div class="code-line"><span class="ln">74</span><span class="code-content">        while (p) {</span></div>
-<div class="code-line"><span class="ln">75</span><span class="code-content">            p-&gt;bf = ht(p-&gt;left) - ht(p-&gt;right);</span></div>
-<div class="code-line"><span class="ln">76</span><span class="code-content">            if (p-&gt;bf == 2) {</span></div>
-<div class="code-line"><span class="ln">77</span><span class="code-content">                if (p-&gt;left &amp;&amp; p-&gt;left-&gt;bf &gt;= 0)</span></div>
-<div class="code-line"><span class="ln">78</span><span class="code-content">                    LLRotate(p);</span></div>
-<div class="code-line hl"><span class="ln">79</span><span class="code-content">                else</span></div>
-<div class="code-line"><span class="ln">80</span><span class="code-content">                    LRRotate(p);</span></div>
-<div class="code-line hl"><span class="ln">81</span><span class="code-content">                return;</span></div>
-<div class="code-line"><span class="ln">82</span><span class="code-content">            } else if (p-&gt;bf == -2) {</span></div>
-<div class="code-line"><span class="ln">83</span><span class="code-content">                if (p-&gt;right &amp;&amp; p-&gt;right-&gt;bf &lt;= 0)</span></div>
-<div class="code-line"><span class="ln">84</span><span class="code-content">                    RRRotate(p);</span></div>
-<div class="code-line hl"><span class="ln">85</span><span class="code-content">                else</span></div>
-<div class="code-line"><span class="ln">86</span><span class="code-content">                    RLRotate(p);</span></div>
-<div class="code-line hl"><span class="ln">87</span><span class="code-content">                return;</span></div>
-<div class="code-line"><span class="ln">88</span><span class="code-content">            }</span></div>
-<div class="code-line"><span class="ln">89</span><span class="code-content">            p = p-&gt;parent;</span></div>
-<div class="code-line"><span class="ln">90</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">91</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">92</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">93</span><span class="code-content">    node* min_node(node *p) {</span></div>
-<div class="code-line"><span class="ln">94</span><span class="code-content">        while (p-&gt;left) p = p-&gt;left;</span></div>
-<div class="code-line"><span class="ln">95</span><span class="code-content">        return p;</span></div>
-<div class="code-line"><span class="ln">96</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">97</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">98</span><span class="code-content">    void delete_node(node *p) {</span></div>
-<div class="code-line"><span class="ln">99</span><span class="code-content">        if (!p-&gt;left &amp;&amp; !p-&gt;right) {</span></div>
-<div class="code-line"><span class="ln">100</span><span class="code-content">            node *par = p-&gt;parent;</span></div>
-<div class="code-line"><span class="ln">101</span><span class="code-content">            transplant(par, p, nullptr);</span></div>
-<div class="code-line"><span class="ln">102</span><span class="code-content">            delete p;</span></div>
-<div class="code-line"><span class="ln">103</span><span class="code-content">            rebalance_up(par);</span></div>
-<div class="code-line"><span class="ln">104</span><span class="code-content">        } else if (!p-&gt;left) {</span></div>
-<div class="code-line"><span class="ln">105</span><span class="code-content">            node *par = p-&gt;parent;</span></div>
-<div class="code-line"><span class="ln">106</span><span class="code-content">            transplant(par, p, p-&gt;right);</span></div>
-<div class="code-line"><span class="ln">107</span><span class="code-content">            delete p;</span></div>
-<div class="code-line"><span class="ln">108</span><span class="code-content">            rebalance_up(par);</span></div>
-<div class="code-line"><span class="ln">109</span><span class="code-content">        } else if (!p-&gt;right) {</span></div>
-<div class="code-line"><span class="ln">110</span><span class="code-content">            node *par = p-&gt;parent;</span></div>
-<div class="code-line"><span class="ln">111</span><span class="code-content">            transplant(par, p, p-&gt;left);</span></div>
-<div class="code-line"><span class="ln">112</span><span class="code-content">            delete p;</span></div>
-<div class="code-line"><span class="ln">113</span><span class="code-content">            rebalance_up(par);</span></div>
-<div class="code-line"><span class="ln">114</span><span class="code-content">        } else {</span></div>
-<div class="code-line"><span class="ln">115</span><span class="code-content">            node *succ = min_node(p-&gt;right);</span></div>
-<div class="code-line"><span class="ln">116</span><span class="code-content">            p-&gt;key = succ-&gt;key;</span></div>
-<div class="code-line"><span class="ln">117</span><span class="code-content">            delete_node(succ);</span></div>
-<div class="code-line"><span class="ln">118</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">119</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">120</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">121</span><span class="code-content">    node* search_node(int data) {</span></div>
-<div class="code-line"><span class="ln">122</span><span class="code-content">        node *ptr = root;</span></div>
-<div class="code-line"><span class="ln">123</span><span class="code-content">        while (ptr) {</span></div>
-<div class="code-line"><span class="ln">124</span><span class="code-content">            if (ptr-&gt;key == data) return ptr;</span></div>
-<div class="code-line"><span class="ln">125</span><span class="code-content">            ptr = (ptr-&gt;key &lt; data) ? ptr-&gt;right : ptr-&gt;left;</span></div>
-<div class="code-line"><span class="ln">126</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">127</span><span class="code-content">        return nullptr;</span></div>
-<div class="code-line"><span class="ln">128</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">129</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">130</span><span class="code-content">    void inorder_rec(node *p) {</span></div>
-<div class="code-line"><span class="ln">131</span><span class="code-content">        if (!p) return;</span></div>
-<div class="code-line"><span class="ln">132</span><span class="code-content">        inorder_rec(p-&gt;left);</span></div>
-<div class="code-line"><span class="ln">133</span><span class="code-content">        cout &lt;&lt; p-&gt;key &lt;&lt; &quot;\t(bf=&quot; &lt;&lt; p-&gt;bf &lt;&lt; &quot;)\n&quot;;</span></div>
-<div class="code-line"><span class="ln">134</span><span class="code-content">        inorder_rec(p-&gt;right);</span></div>
-<div class="code-line"><span class="ln">135</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">136</span><span class="code-content"> </span></div>
-<div class="code-line hl"><span class="ln">137</span><span class="code-content">public:</span></div>
-<div class="code-line"><span class="ln">138</span><span class="code-content">    AVL() { root = nullptr; }</span></div>
-<div class="code-line"><span class="ln">139</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">140</span><span class="code-content">    int height() { return ht(root); }</span></div>
-<div class="code-line"><span class="ln">141</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">142</span><span class="code-content">    void insert(int data) {</span></div>
-<div class="code-line"><span class="ln">143</span><span class="code-content">        node *nn = new node;</span></div>
-<div class="code-line"><span class="ln">144</span><span class="code-content">        nn-&gt;key = data;</span></div>
-<div class="code-line"><span class="ln">145</span><span class="code-content">        nn-&gt;left = nn-&gt;right = nn-&gt;parent = nullptr;</span></div>
-<div class="code-line"><span class="ln">146</span><span class="code-content">        nn-&gt;bf = 0;</span></div>
-<div class="code-line"><span class="ln">147</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">148</span><span class="code-content">        if (!root) { root = nn; return; }</span></div>
-<div class="code-line"><span class="ln">149</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">150</span><span class="code-content">        node *ptr = root;</span></div>
-<div class="code-line"><span class="ln">151</span><span class="code-content">        while (ptr) {</span></div>
-<div class="code-line"><span class="ln">152</span><span class="code-content">            if (ptr-&gt;key == data) { delete nn; return; }</span></div>
-<div class="code-line"><span class="ln">153</span><span class="code-content">            if (ptr-&gt;key &lt; data) {</span></div>
-<div class="code-line"><span class="ln">154</span><span class="code-content">                if (!ptr-&gt;right) { ptr-&gt;right = nn; nn-&gt;parent = ptr; break; }</span></div>
-<div class="code-line"><span class="ln">155</span><span class="code-content">                ptr = ptr-&gt;right;</span></div>
-<div class="code-line"><span class="ln">156</span><span class="code-content">            } else {</span></div>
-<div class="code-line"><span class="ln">157</span><span class="code-content">                if (!ptr-&gt;left) { ptr-&gt;left = nn; nn-&gt;parent = ptr; break; }</span></div>
-<div class="code-line"><span class="ln">158</span><span class="code-content">                ptr = ptr-&gt;left;</span></div>
-<div class="code-line"><span class="ln">159</span><span class="code-content">            }</span></div>
-<div class="code-line"><span class="ln">160</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">161</span><span class="code-content">        rebalance_up(nn);</span></div>
-<div class="code-line"><span class="ln">162</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">163</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">164</span><span class="code-content">    void remove(int data) {</span></div>
-<div class="code-line"><span class="ln">165</span><span class="code-content">        node *p = search_node(data);</span></div>
-<div class="code-line"><span class="ln">166</span><span class="code-content">        if (!p) { cout &lt;&lt; &quot;Key &quot; &lt;&lt; data &lt;&lt; &quot; not found.\n&quot;; return; }</span></div>
-<div class="code-line"><span class="ln">167</span><span class="code-content">        delete_node(p);</span></div>
-<div class="code-line"><span class="ln">168</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">169</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">170</span><span class="code-content">    void search(int data) {</span></div>
-<div class="code-line"><span class="ln">171</span><span class="code-content">        if (!root) { cout &lt;&lt; &quot;Empty tree.\n&quot;; return; }</span></div>
-<div class="code-line"><span class="ln">172</span><span class="code-content">        int cmp = 0;</span></div>
-<div class="code-line"><span class="ln">173</span><span class="code-content">        node *ptr = root;</span></div>
-<div class="code-line"><span class="ln">174</span><span class="code-content">        while (ptr) {</span></div>
-<div class="code-line"><span class="ln">175</span><span class="code-content">            if (ptr-&gt;key == data) {</span></div>
-<div class="code-line"><span class="ln">176</span><span class="code-content">                cout &lt;&lt; &quot;Found &quot; &lt;&lt; data &lt;&lt; &quot; after &quot; &lt;&lt; cmp &lt;&lt; &quot; comparisons.\n&quot;;</span></div>
-<div class="code-line hl"><span class="ln">177</span><span class="code-content">                return;</span></div>
-<div class="code-line"><span class="ln">178</span><span class="code-content">            }</span></div>
-<div class="code-line"><span class="ln">179</span><span class="code-content">            ptr = (ptr-&gt;key &lt; data) ? ptr-&gt;right : ptr-&gt;left;</span></div>
-<div class="code-line"><span class="ln">180</span><span class="code-content">            cmp++;</span></div>
-<div class="code-line"><span class="ln">181</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">182</span><span class="code-content">        cout &lt;&lt; &quot;Key &quot; &lt;&lt; data &lt;&lt; &quot; not found.\n&quot;;</span></div>
-<div class="code-line"><span class="ln">183</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">184</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">185</span><span class="code-content">    void inorder() {</span></div>
-<div class="code-line"><span class="ln">186</span><span class="code-content">        inorder_rec(root);</span></div>
-<div class="code-line"><span class="ln">187</span><span class="code-content">        cout &lt;&lt; endl;</span></div>
-<div class="code-line"><span class="ln">188</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">189</span><span class="code-content">};</span></div>
-<div class="code-line"><span class="ln">190</span><span class="code-content"> </span></div>
-<div class="code-line"><span class="ln">191</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">192</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">193</span><span class="code-content">int32_t main() {</span></div>
-<div class="code-line"><span class="ln">194</span><span class="code-content">    </span></div>
-<div class="code-line hl"><span class="ln">195</span><span class="code-content">    return 0;</span></div>
-<div class="code-line"><span class="ln">196</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">2</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">3</span><span class="code-content">using namespace std;</span></div>
+<div class="code-line"><span class="ln">4</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">5</span><span class="code-content">int main() {</span></div>
+<div class="code-line"><span class="ln">6</span><span class="code-content">    int i = 0;</span></div>
+<div class="code-line"><span class="ln">7</span><span class="code-content">    while(i &lt; 5) {</span></div>
+<div class="code-line"><span class="ln">8</span><span class="code-content">        cout &lt;&lt; i &lt;&lt; &quot; &quot;;</span></div>
+<div class="code-line"><span class="ln">9</span><span class="code-content">        i++;</span></div>
+<div class="code-line"><span class="ln">10</span><span class="code-content">    }</span></div>
+<div class="code-line hl"><span class="ln">11</span><span class="code-content">    return 0;</span></div>
+<div class="code-line"><span class="ln">12</span><span class="code-content">}</span></div>
 
       </div>
       <div class="code-pane">
-        <div class="pane-header">ass3.cpp</div>
-        <div class="code-line hl"><span class="ln">1</span><span class="code-content">#include &lt;iostream&gt;</span></div>
-<div class="code-line hl"><span class="ln">2</span><span class="code-content">using namespace std;</span></div>
-<div class="code-line"><span class="ln">3</span><span class="code-content"></span></div>
-<div class="code-line hl"><span class="ln">4</span><span class="code-content">struct node {</span></div>
-<div class="code-line"><span class="ln">5</span><span class="code-content">    int x, y;</span></div>
-<div class="code-line"><span class="ln">6</span><span class="code-content">};</span></div>
-<div class="code-line"><span class="ln">7</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">8</span><span class="code-content">class queue1 {</span></div>
-<div class="code-line"><span class="ln">9</span><span class="code-content">private:</span></div>
-<div class="code-line"><span class="ln">10</span><span class="code-content">    node *arr;</span></div>
-<div class="code-line"><span class="ln">11</span><span class="code-content">    int front, rear, size;</span></div>
+        <div class="pane-header">main.cpp</div>
+        <div class="code-line"><span class="ln">1</span><span class="code-content">#include &quot;detector.h&quot;</span></div>
+<div class="code-line"><span class="ln">2</span><span class="code-content">#include &lt;algorithm&gt;</span></div>
+<div class="code-line"><span class="ln">3</span><span class="code-content">#include &lt;cmath&gt;</span></div>
+<div class="code-line"><span class="ln">4</span><span class="code-content">#include &lt;filesystem&gt;</span></div>
+<div class="code-line"><span class="ln">5</span><span class="code-content">#include &lt;fstream&gt;</span></div>
+<div class="code-line"><span class="ln">6</span><span class="code-content">#include &lt;iomanip&gt;</span></div>
+<div class="code-line hl"><span class="ln">7</span><span class="code-content">#include &lt;iostream&gt;</span></div>
+<div class="code-line"><span class="ln">8</span><span class="code-content">#include &lt;sstream&gt;</span></div>
+<div class="code-line"><span class="ln">9</span><span class="code-content">#include &lt;unordered_set&gt;</span></div>
+<div class="code-line"><span class="ln">10</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">11</span><span class="code-content">namespace fs = std::filesystem;</span></div>
 <div class="code-line"><span class="ln">12</span><span class="code-content"></span></div>
-<div class="code-line hl"><span class="ln">13</span><span class="code-content">public:</span></div>
-<div class="code-line"><span class="ln">14</span><span class="code-content">    queue1(int n) {</span></div>
-<div class="code-line"><span class="ln">15</span><span class="code-content">        size = n;</span></div>
-<div class="code-line"><span class="ln">16</span><span class="code-content">        arr = new node[size];</span></div>
-<div class="code-line"><span class="ln">17</span><span class="code-content">        front = 0;</span></div>
-<div class="code-line"><span class="ln">18</span><span class="code-content">        rear = 0;</span></div>
-<div class="code-line"><span class="ln">19</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">20</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">21</span><span class="code-content">    void push(int x, int y) {</span></div>
-<div class="code-line"><span class="ln">22</span><span class="code-content">        arr[rear].x = x;</span></div>
-<div class="code-line"><span class="ln">23</span><span class="code-content">        arr[rear].y = y;</span></div>
-<div class="code-line"><span class="ln">24</span><span class="code-content">        rear++;</span></div>
-<div class="code-line"><span class="ln">25</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">26</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">27</span><span class="code-content">    node pop() {</span></div>
-<div class="code-line"><span class="ln">28</span><span class="code-content">        return arr[front++];</span></div>
-<div class="code-line"><span class="ln">29</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">30</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">31</span><span class="code-content">    bool empty() {</span></div>
-<div class="code-line"><span class="ln">32</span><span class="code-content">        return front == rear;</span></div>
-<div class="code-line"><span class="ln">33</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">34</span><span class="code-content">};</span></div>
-<div class="code-line"><span class="ln">35</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">36</span><span class="code-content">class graph {</span></div>
-<div class="code-line"><span class="ln">37</span><span class="code-content">private:</span></div>
-<div class="code-line"><span class="ln">38</span><span class="code-content">    int **maze;</span></div>
-<div class="code-line"><span class="ln">39</span><span class="code-content">    bool **vis;</span></div>
-<div class="code-line"><span class="ln">40</span><span class="code-content">    int r, c;</span></div>
-<div class="code-line"><span class="ln">41</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">42</span><span class="code-content">    int dx[4] = {-1, 1, 0, 0};</span></div>
-<div class="code-line"><span class="ln">43</span><span class="code-content">    int dy[4] = {0, 0, -1, 1};</span></div>
-<div class="code-line"><span class="ln">44</span><span class="code-content"></span></div>
-<div class="code-line hl"><span class="ln">45</span><span class="code-content">public:</span></div>
-<div class="code-line"><span class="ln">46</span><span class="code-content">    graph(int row, int col) {</span></div>
-<div class="code-line"><span class="ln">47</span><span class="code-content">        r = row;</span></div>
-<div class="code-line"><span class="ln">48</span><span class="code-content">        c = col;</span></div>
-<div class="code-line"><span class="ln">49</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">50</span><span class="code-content">        maze = new int*[r];</span></div>
-<div class="code-line"><span class="ln">51</span><span class="code-content">        vis = new bool*[r];</span></div>
-<div class="code-line"><span class="ln">52</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">53</span><span class="code-content">        for (int i = 0; i &lt; r; i++) {</span></div>
-<div class="code-line"><span class="ln">54</span><span class="code-content">            maze[i] = new int[c];</span></div>
-<div class="code-line"><span class="ln">55</span><span class="code-content">            vis[i] = new bool[c];</span></div>
-<div class="code-line"><span class="ln">56</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">57</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">58</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">59</span><span class="code-content">    void input() {</span></div>
-<div class="code-line"><span class="ln">60</span><span class="code-content">        for (int i = 0; i &lt; r; i++) {</span></div>
-<div class="code-line"><span class="ln">61</span><span class="code-content">            for (int j = 0; j &lt; c; j++) {</span></div>
-<div class="code-line"><span class="ln">62</span><span class="code-content">                cin &gt;&gt; maze[i][j];</span></div>
-<div class="code-line"><span class="ln">63</span><span class="code-content">                vis[i][j] = false;</span></div>
-<div class="code-line"><span class="ln">64</span><span class="code-content">            }</span></div>
-<div class="code-line"><span class="ln">65</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">66</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">13</span><span class="code-content">static std::string basename(const std::string &amp;path) {</span></div>
+<div class="code-line"><span class="ln">14</span><span class="code-content">  size_t pos = path.find_last_of(&quot;/\\&quot;);</span></div>
+<div class="code-line"><span class="ln">15</span><span class="code-content">  return (pos == std::string::npos) ? path : path.substr(pos + 1);</span></div>
+<div class="code-line"><span class="ln">16</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">17</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">18</span><span class="code-content">static std::string fmt(double v) {</span></div>
+<div class="code-line"><span class="ln">19</span><span class="code-content">  std::ostringstream ss;</span></div>
+<div class="code-line"><span class="ln">20</span><span class="code-content">  ss &lt;&lt; std::fixed &lt;&lt; std::setprecision(1) &lt;&lt; v;</span></div>
+<div class="code-line"><span class="ln">21</span><span class="code-content">  return ss.str();</span></div>
+<div class="code-line"><span class="ln">22</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">23</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">24</span><span class="code-content">static std::string escapeHTML(const std::string &amp;data) {</span></div>
+<div class="code-line"><span class="ln">25</span><span class="code-content">  std::string buffer;</span></div>
+<div class="code-line"><span class="ln">26</span><span class="code-content">  buffer.reserve(data.size() * 1.1);</span></div>
+<div class="code-line"><span class="ln">27</span><span class="code-content">  for (size_t pos = 0; pos != data.size(); ++pos) {</span></div>
+<div class="code-line"><span class="ln">28</span><span class="code-content">    switch (data[pos]) {</span></div>
+<div class="code-line"><span class="ln">29</span><span class="code-content">    case &apos;&amp;&apos;:</span></div>
+<div class="code-line"><span class="ln">30</span><span class="code-content">      buffer.append(&quot;&amp;amp;&quot;);</span></div>
+<div class="code-line"><span class="ln">31</span><span class="code-content">      break;</span></div>
+<div class="code-line"><span class="ln">32</span><span class="code-content">    case &apos;\&quot;&apos;:</span></div>
+<div class="code-line"><span class="ln">33</span><span class="code-content">      buffer.append(&quot;&amp;quot;&quot;);</span></div>
+<div class="code-line"><span class="ln">34</span><span class="code-content">      break;</span></div>
+<div class="code-line"><span class="ln">35</span><span class="code-content">    case &apos;\&apos;&apos;:</span></div>
+<div class="code-line"><span class="ln">36</span><span class="code-content">      buffer.append(&quot;&amp;apos;&quot;);</span></div>
+<div class="code-line"><span class="ln">37</span><span class="code-content">      break;</span></div>
+<div class="code-line"><span class="ln">38</span><span class="code-content">    case &apos;&lt;&apos;:</span></div>
+<div class="code-line"><span class="ln">39</span><span class="code-content">      buffer.append(&quot;&amp;lt;&quot;);</span></div>
+<div class="code-line"><span class="ln">40</span><span class="code-content">      break;</span></div>
+<div class="code-line"><span class="ln">41</span><span class="code-content">    case &apos;&gt;&apos;:</span></div>
+<div class="code-line"><span class="ln">42</span><span class="code-content">      buffer.append(&quot;&amp;gt;&quot;);</span></div>
+<div class="code-line"><span class="ln">43</span><span class="code-content">      break;</span></div>
+<div class="code-line"><span class="ln">44</span><span class="code-content">    default:</span></div>
+<div class="code-line"><span class="ln">45</span><span class="code-content">      buffer.append(&amp;data[pos], 1);</span></div>
+<div class="code-line"><span class="ln">46</span><span class="code-content">      break;</span></div>
+<div class="code-line"><span class="ln">47</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">48</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">49</span><span class="code-content">  return buffer;</span></div>
+<div class="code-line"><span class="ln">50</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">51</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">52</span><span class="code-content">static std::unordered_set&lt;std::string&gt; extractLines(const std::string &amp;text) {</span></div>
+<div class="code-line"><span class="ln">53</span><span class="code-content">  std::unordered_set&lt;std::string&gt; lines;</span></div>
+<div class="code-line"><span class="ln">54</span><span class="code-content">  std::istringstream ss(text);</span></div>
+<div class="code-line"><span class="ln">55</span><span class="code-content">  std::string line;</span></div>
+<div class="code-line"><span class="ln">56</span><span class="code-content">  while (std::getline(ss, line)) {</span></div>
+<div class="code-line"><span class="ln">57</span><span class="code-content">    auto start = line.find_first_not_of(&quot; \t\r\n&quot;);</span></div>
+<div class="code-line"><span class="ln">58</span><span class="code-content">    if (start != std::string::npos) {</span></div>
+<div class="code-line"><span class="ln">59</span><span class="code-content">      auto end = line.find_last_not_of(&quot; \t\r\n&quot;);</span></div>
+<div class="code-line"><span class="ln">60</span><span class="code-content">      std::string t = line.substr(start, end - start + 1);</span></div>
+<div class="code-line"><span class="ln">61</span><span class="code-content">      if (t.length() &gt; 3)</span></div>
+<div class="code-line"><span class="ln">62</span><span class="code-content">        lines.insert(t);</span></div>
+<div class="code-line"><span class="ln">63</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">64</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">65</span><span class="code-content">  return lines;</span></div>
+<div class="code-line"><span class="ln">66</span><span class="code-content">}</span></div>
 <div class="code-line"><span class="ln">67</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">68</span><span class="code-content">    bool valid(int x, int y) {</span></div>
-<div class="code-line"><span class="ln">69</span><span class="code-content">        return (x &gt;= 0 &amp;&amp; x &lt; r &amp;&amp;</span></div>
-<div class="code-line"><span class="ln">70</span><span class="code-content">                y &gt;= 0 &amp;&amp; y &lt; c &amp;&amp;</span></div>
-<div class="code-line"><span class="ln">71</span><span class="code-content">                maze[x][y] == 0 &amp;&amp;</span></div>
-<div class="code-line"><span class="ln">72</span><span class="code-content">                !vis[x][y]);</span></div>
-<div class="code-line"><span class="ln">73</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">74</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">75</span><span class="code-content">    void bfs(int sx, int sy, int gx, int gy) {</span></div>
-<div class="code-line"><span class="ln">76</span><span class="code-content">        queue1 q(r * c);</span></div>
-<div class="code-line"><span class="ln">77</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">78</span><span class="code-content">        q.push(sx, sy);</span></div>
-<div class="code-line"><span class="ln">79</span><span class="code-content">        vis[sx][sy] = true;</span></div>
-<div class="code-line"><span class="ln">80</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">81</span><span class="code-content">        while (!q.empty()) {</span></div>
-<div class="code-line"><span class="ln">82</span><span class="code-content">            node cur = q.pop();</span></div>
-<div class="code-line"><span class="ln">83</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">84</span><span class="code-content">            if (cur.x == gx &amp;&amp; cur.y == gy) {</span></div>
-<div class="code-line"><span class="ln">85</span><span class="code-content">                cout &lt;&lt; &quot;path found using bfs\n&quot;;</span></div>
-<div class="code-line hl"><span class="ln">86</span><span class="code-content">                return;</span></div>
-<div class="code-line"><span class="ln">87</span><span class="code-content">            }</span></div>
-<div class="code-line"><span class="ln">88</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">89</span><span class="code-content">            for (int i = 0; i &lt; 4; i++) {</span></div>
-<div class="code-line"><span class="ln">90</span><span class="code-content">                int nx = cur.x + dx[i];</span></div>
-<div class="code-line"><span class="ln">91</span><span class="code-content">                int ny = cur.y + dy[i];</span></div>
-<div class="code-line"><span class="ln">92</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">93</span><span class="code-content">                if (valid(nx, ny)) {</span></div>
-<div class="code-line"><span class="ln">94</span><span class="code-content">                    q.push(nx, ny);</span></div>
-<div class="code-line"><span class="ln">95</span><span class="code-content">                    vis[nx][ny] = true;</span></div>
-<div class="code-line"><span class="ln">96</span><span class="code-content">                }</span></div>
-<div class="code-line"><span class="ln">97</span><span class="code-content">            }</span></div>
-<div class="code-line"><span class="ln">98</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">99</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">100</span><span class="code-content">        cout &lt;&lt; &quot;no path found using bfs\n&quot;;</span></div>
-<div class="code-line"><span class="ln">101</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">102</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">103</span><span class="code-content">    bool found = false;</span></div>
-<div class="code-line"><span class="ln">104</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">105</span><span class="code-content">    void dfs(int x, int y, int gx, int gy) {</span></div>
-<div class="code-line"><span class="ln">106</span><span class="code-content">        if (x == gx &amp;&amp; y == gy) {</span></div>
-<div class="code-line"><span class="ln">107</span><span class="code-content">            found = true;</span></div>
-<div class="code-line hl"><span class="ln">108</span><span class="code-content">            return;</span></div>
-<div class="code-line"><span class="ln">109</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">110</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">111</span><span class="code-content">        vis[x][y] = true;</span></div>
+<div class="code-line"><span class="ln">68</span><span class="code-content">static std::string</span></div>
+<div class="code-line"><span class="ln">69</span><span class="code-content">getHighlighted(const std::string &amp;text,</span></div>
+<div class="code-line"><span class="ln">70</span><span class="code-content">               const std::unordered_set&lt;std::string&gt; &amp;otherLines) {</span></div>
+<div class="code-line"><span class="ln">71</span><span class="code-content">  std::ostringstream res;</span></div>
+<div class="code-line"><span class="ln">72</span><span class="code-content">  std::istringstream ss(text);</span></div>
+<div class="code-line"><span class="ln">73</span><span class="code-content">  std::string line;</span></div>
+<div class="code-line"><span class="ln">74</span><span class="code-content">  int lineNum = 1;</span></div>
+<div class="code-line"><span class="ln">75</span><span class="code-content">  while (std::getline(ss, line)) {</span></div>
+<div class="code-line"><span class="ln">76</span><span class="code-content">    std::string t = line;</span></div>
+<div class="code-line"><span class="ln">77</span><span class="code-content">    auto start = line.find_first_not_of(&quot; \t\r\n&quot;);</span></div>
+<div class="code-line"><span class="ln">78</span><span class="code-content">    bool highlight = false;</span></div>
+<div class="code-line"><span class="ln">79</span><span class="code-content">    if (start != std::string::npos) {</span></div>
+<div class="code-line"><span class="ln">80</span><span class="code-content">      auto end = line.find_last_not_of(&quot; \t\r\n&quot;);</span></div>
+<div class="code-line"><span class="ln">81</span><span class="code-content">      t = line.substr(start, end - start + 1);</span></div>
+<div class="code-line"><span class="ln">82</span><span class="code-content">      if (t.length() &gt; 3 &amp;&amp; otherLines.count(t))</span></div>
+<div class="code-line"><span class="ln">83</span><span class="code-content">        highlight = true;</span></div>
+<div class="code-line"><span class="ln">84</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">85</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">86</span><span class="code-content">    res &lt;&lt; &quot;&lt;div class=\&quot;code-line&quot; &lt;&lt; (highlight ? &quot; hl&quot; : &quot;&quot;) &lt;&lt; &quot;\&quot;&gt;&quot;;</span></div>
+<div class="code-line"><span class="ln">87</span><span class="code-content">    res &lt;&lt; &quot;&lt;span class=\&quot;ln\&quot;&gt;&quot; &lt;&lt; lineNum++ &lt;&lt; &quot;&lt;/span&gt;&quot;;</span></div>
+<div class="code-line"><span class="ln">88</span><span class="code-content">    res &lt;&lt; &quot;&lt;span class=\&quot;code-content\&quot;&gt;&quot; &lt;&lt; escapeHTML(line) &lt;&lt; &quot;&lt;/span&gt;&quot;;</span></div>
+<div class="code-line"><span class="ln">89</span><span class="code-content">    res &lt;&lt; &quot;&lt;/div&gt;\n&quot;;</span></div>
+<div class="code-line"><span class="ln">90</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">91</span><span class="code-content">  return res.str();</span></div>
+<div class="code-line"><span class="ln">92</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">93</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">94</span><span class="code-content">// Forward declaration for batch report</span></div>
+<div class="code-line"><span class="ln">95</span><span class="code-content">void generateBatchReport(const Detector::BatchSimilarityMatrix &amp;batchResult);</span></div>
+<div class="code-line"><span class="ln">96</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">97</span><span class="code-content">// Helper: Generate 2-file report (existing mode, unchanged)</span></div>
+<div class="code-line"><span class="ln">98</span><span class="code-content">void generateTwoFileReport(const std::string &amp;file1, const std::string &amp;file2) {</span></div>
+<div class="code-line"><span class="ln">99</span><span class="code-content">  std::string text1 = Detector::readFile(file1);</span></div>
+<div class="code-line"><span class="ln">100</span><span class="code-content">  std::string text2 = Detector::readFile(file2);</span></div>
+<div class="code-line"><span class="ln">101</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">102</span><span class="code-content">  if (text1.empty() &amp;&amp; text2.empty()) {</span></div>
+<div class="code-line"><span class="ln">103</span><span class="code-content">    std::cerr &lt;&lt; &quot;Both files are empty or could not be read.&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">104</span><span class="code-content">    return;</span></div>
+<div class="code-line"><span class="ln">105</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">106</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">107</span><span class="code-content"> auto ast1 = Detector::buildAST(text1);</span></div>
+<div class="code-line"><span class="ln">108</span><span class="code-content">  auto ast2 = Detector::buildAST(text2);</span></div>
+<div class="code-line"><span class="ln">109</span><span class="code-content">  auto astResult = Detector::calculateASTSimilarity(ast1, ast2);</span></div>
+<div class="code-line"><span class="ln">110</span><span class="code-content">  delete ast1;</span></div>
+<div class="code-line"><span class="ln">111</span><span class="code-content">  delete ast2;</span></div>
 <div class="code-line"><span class="ln">112</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">113</span><span class="code-content">        for (int i = 0; i &lt; 4; i++) {</span></div>
-<div class="code-line"><span class="ln">114</span><span class="code-content">            int nx = x + dx[i];</span></div>
-<div class="code-line"><span class="ln">115</span><span class="code-content">            int ny = y + dy[i];</span></div>
-<div class="code-line"><span class="ln">116</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">117</span><span class="code-content">            if (valid(nx, ny)) {</span></div>
-<div class="code-line"><span class="ln">118</span><span class="code-content">                dfs(nx, ny, gx, gy);</span></div>
-<div class="code-line"><span class="ln">119</span><span class="code-content">            }</span></div>
-<div class="code-line"><span class="ln">120</span><span class="code-content">        }</span></div>
-<div class="code-line"><span class="ln">121</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">122</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">123</span><span class="code-content">    void reset() {</span></div>
-<div class="code-line"><span class="ln">124</span><span class="code-content">        for (int i = 0; i &lt; r; i++)</span></div>
-<div class="code-line"><span class="ln">125</span><span class="code-content">            for (int j = 0; j &lt; c; j++)</span></div>
-<div class="code-line"><span class="ln">126</span><span class="code-content">                vis[i][j] = false;</span></div>
-<div class="code-line"><span class="ln">127</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">128</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">129</span><span class="code-content">    void solve() {</span></div>
-<div class="code-line"><span class="ln">130</span><span class="code-content">        bfs(0, 0, r - 1, c - 1);</span></div>
-<div class="code-line"><span class="ln">131</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">132</span><span class="code-content">        reset();</span></div>
-<div class="code-line"><span class="ln">133</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">134</span><span class="code-content">        dfs(0, 0, r - 1, c - 1);</span></div>
+<div class="code-line"><span class="ln">113</span><span class="code-content">  std::string cleaned1 = Detector::cleanText(text1);</span></div>
+<div class="code-line"><span class="ln">114</span><span class="code-content">  std::string cleaned2 = Detector::cleanText(text2);</span></div>
+<div class="code-line"><span class="ln">115</span><span class="code-content">  auto words1 = Detector::tokenize(cleaned1);</span></div>
+<div class="code-line"><span class="ln">116</span><span class="code-content">  auto words2 = Detector::tokenize(cleaned2);</span></div>
+<div class="code-line"><span class="ln">117</span><span class="code-content">  auto freq1 = Detector::getWordFrequencies(cleaned1);</span></div>
+<div class="code-line"><span class="ln">118</span><span class="code-content">  auto freq2 = Detector::getWordFrequencies(cleaned2);</span></div>
+<div class="code-line"><span class="ln">119</span><span class="code-content">  auto bigram1 = Detector::getNgramFrequencies(words1, 2);</span></div>
+<div class="code-line"><span class="ln">120</span><span class="code-content">  auto bigram2 = Detector::getNgramFrequencies(words2, 2);</span></div>
+<div class="code-line"><span class="ln">121</span><span class="code-content">  auto trigram1 = Detector::getNgramFrequencies(words1, 3);</span></div>
+<div class="code-line"><span class="ln">122</span><span class="code-content">  auto trigram2 = Detector::getNgramFrequencies(words2, 3);</span></div>
+<div class="code-line"><span class="ln">123</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">124</span><span class="code-content">  auto unigramResult = Detector::calculateDetailedSimilarity(freq1, freq2);</span></div>
+<div class="code-line"><span class="ln">125</span><span class="code-content">  auto bigramResult = Detector::calculateDetailedSimilarity(bigram1, bigram2);</span></div>
+<div class="code-line"><span class="ln">126</span><span class="code-content">  auto trigramResult = Detector::calculateDetailedSimilarity(trigram1, trigram2);</span></div>
+<div class="code-line"><span class="ln">127</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">128</span><span class="code-content">  double astPct = astResult.score * 100.0;</span></div>
+<div class="code-line"><span class="ln">129</span><span class="code-content">  double unigramPct = unigramResult.score * 100.0;</span></div>
+<div class="code-line"><span class="ln">130</span><span class="code-content">  double bigramPct = bigramResult.score * 100.0;</span></div>
+<div class="code-line"><span class="ln">131</span><span class="code-content">  double trigramPct = trigramResult.score * 100.0;</span></div>
+<div class="code-line"><span class="ln">132</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">133</span><span class="code-content">  bool hasBigrams = !bigram1.empty() &amp;&amp; !bigram2.empty();</span></div>
+<div class="code-line"><span class="ln">134</span><span class="code-content">  bool hasTrigrams = !trigram1.empty() &amp;&amp; !trigram2.empty();</span></div>
 <div class="code-line"><span class="ln">135</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">136</span><span class="code-content">        if (found)</span></div>
-<div class="code-line"><span class="ln">137</span><span class="code-content">            cout &lt;&lt; &quot;path found using dfs\n&quot;;</span></div>
-<div class="code-line hl"><span class="ln">138</span><span class="code-content">        else</span></div>
-<div class="code-line"><span class="ln">139</span><span class="code-content">            cout &lt;&lt; &quot;no path found using dfs\n&quot;;</span></div>
-<div class="code-line"><span class="ln">140</span><span class="code-content">    }</span></div>
-<div class="code-line"><span class="ln">141</span><span class="code-content">};</span></div>
-<div class="code-line"><span class="ln">142</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">143</span><span class="code-content">int main() {</span></div>
-<div class="code-line"><span class="ln">144</span><span class="code-content">    int r, c;</span></div>
-<div class="code-line"><span class="ln">145</span><span class="code-content">    cout &lt;&lt; &quot;Enter values for the row and columns of the maze : &quot; &lt;&lt; endl;</span></div>
-<div class="code-line"><span class="ln">146</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">147</span><span class="code-content">    cin &gt;&gt; r &gt;&gt; c;</span></div>
+<div class="code-line"><span class="ln">136</span><span class="code-content">  double textScore;</span></div>
+<div class="code-line"><span class="ln">137</span><span class="code-content">  if (hasBigrams &amp;&amp; hasTrigrams) {</span></div>
+<div class="code-line"><span class="ln">138</span><span class="code-content">    textScore = 0.35 * unigramPct + 0.40 * bigramPct + 0.25 * trigramPct;</span></div>
+<div class="code-line"><span class="ln">139</span><span class="code-content">  } else if (hasBigrams) {</span></div>
+<div class="code-line"><span class="ln">140</span><span class="code-content">    textScore = 0.45 * unigramPct + 0.55 * bigramPct;</span></div>
+<div class="code-line"><span class="ln">141</span><span class="code-content">  } else {</span></div>
+<div class="code-line"><span class="ln">142</span><span class="code-content">    textScore = unigramPct;</span></div>
+<div class="code-line"><span class="ln">143</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">144</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">145</span><span class="code-content">  double combinedScore = 0.70 * astPct + 0.30 * textScore;</span></div>
+<div class="code-line"><span class="ln">146</span><span class="code-content">  const double PLAGIARISM_THRESHOLD = 60.0;</span></div>
+<div class="code-line"><span class="ln">147</span><span class="code-content">  bool isPlagiarized = combinedScore &gt;= PLAGIARISM_THRESHOLD;</span></div>
 <div class="code-line"><span class="ln">148</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">149</span><span class="code-content">    graph g(r, c);</span></div>
-<div class="code-line"><span class="ln">150</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">151</span><span class="code-content">    cout &lt;&lt; &quot;Now Enter the maze (0-blocked, 1-open): &quot; &lt;&lt; endl;</span></div>
-<div class="code-line"><span class="ln">152</span><span class="code-content">    g.input();</span></div>
-<div class="code-line"><span class="ln">153</span><span class="code-content"></span></div>
-<div class="code-line"><span class="ln">154</span><span class="code-content">    g.solve();</span></div>
+<div class="code-line"><span class="ln">149</span><span class="code-content">  std::string name1 = basename(file1);</span></div>
+<div class="code-line"><span class="ln">150</span><span class="code-content">  std::string name2 = basename(file2);</span></div>
+<div class="code-line"><span class="ln">151</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">152</span><span class="code-content">  std::string scoreColor = combinedScore &gt;= 75.0   ? &quot;#ef4444&quot;</span></div>
+<div class="code-line"><span class="ln">153</span><span class="code-content">                           : combinedScore &gt;= 40.0 ? &quot;#eab308&quot;</span></div>
+<div class="code-line"><span class="ln">154</span><span class="code-content">                                                   : &quot;#10b981&quot;;</span></div>
 <div class="code-line"><span class="ln">155</span><span class="code-content"></span></div>
-<div class="code-line hl"><span class="ln">156</span><span class="code-content">    return 0;</span></div>
-<div class="code-line"><span class="ln">157</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">156</span><span class="code-content">  std::string verdictClass = isPlagiarized ? &quot;plagiarized&quot; : &quot;original&quot;;</span></div>
+<div class="code-line"><span class="ln">157</span><span class="code-content">  std::string verdictText =</span></div>
+<div class="code-line"><span class="ln">158</span><span class="code-content">      isPlagiarized ? &quot;High Plagiarism Risk&quot; : &quot;Low Similarity&quot;;</span></div>
+<div class="code-line"><span class="ln">159</span><span class="code-content">  std::string verdictIcon =</span></div>
+<div class="code-line"><span class="ln">160</span><span class="code-content">      isPlagiarized</span></div>
+<div class="code-line"><span class="ln">161</span><span class="code-content">          ? &quot;&lt;svg width=\&quot;18\&quot; height=\&quot;18\&quot; fill=\&quot;none\&quot; &quot;</span></div>
+<div class="code-line"><span class="ln">162</span><span class="code-content">            &quot;stroke=\&quot;currentColor\&quot; stroke-width=\&quot;2\&quot; viewBox=\&quot;0 0 24 &quot;</span></div>
+<div class="code-line"><span class="ln">163</span><span class="code-content">            &quot;24\&quot;&gt;&lt;path d=\&quot;M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 &quot;</span></div>
+<div class="code-line"><span class="ln">164</span><span class="code-content">            &quot;0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\&quot;&gt;&lt;/path&gt;&lt;line x1=\&quot;12\&quot; &quot;</span></div>
+<div class="code-line"><span class="ln">165</span><span class="code-content">            &quot;y1=\&quot;9\&quot; x2=\&quot;12\&quot; y2=\&quot;13\&quot;&gt;&lt;/line&gt;&lt;line x1=\&quot;12\&quot; y1=\&quot;17\&quot; &quot;</span></div>
+<div class="code-line"><span class="ln">166</span><span class="code-content">            &quot;x2=\&quot;12.01\&quot; y2=\&quot;17\&quot;&gt;&lt;/line&gt;&lt;/svg&gt;&quot;</span></div>
+<div class="code-line"><span class="ln">167</span><span class="code-content">          : &quot;&lt;svg width=\&quot;18\&quot; height=\&quot;18\&quot; fill=\&quot;none\&quot; &quot;</span></div>
+<div class="code-line"><span class="ln">168</span><span class="code-content">            &quot;stroke=\&quot;currentColor\&quot; stroke-width=\&quot;2\&quot; viewBox=\&quot;0 0 24 &quot;</span></div>
+<div class="code-line"><span class="ln">169</span><span class="code-content">            &quot;24\&quot;&gt;&lt;path d=\&quot;M22 11.08V12a10 10 0 1 &quot;</span></div>
+<div class="code-line"><span class="ln">170</span><span class="code-content">            &quot;1-5.93-9.14\&quot;&gt;&lt;/path&gt;&lt;polyline &quot;</span></div>
+<div class="code-line"><span class="ln">171</span><span class="code-content">            &quot;points=\&quot;22 4 12 14.01 9 11.01\&quot;&gt;&lt;/polyline&gt;&lt;/svg&gt;&quot;;</span></div>
+<div class="code-line"><span class="ln">172</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">173</span><span class="code-content">  // Fix circular gauge at 100%: calculate correct circumference and clamp score</span></div>
+<div class="code-line"><span class="ln">174</span><span class="code-content">  const double SVG_RADIUS = 70.0;</span></div>
+<div class="code-line"><span class="ln">175</span><span class="code-content">  const double SVG_CIRCUMFERENCE = 2.0 * M_PI * SVG_RADIUS;  // ~439.82</span></div>
+<div class="code-line"><span class="ln">176</span><span class="code-content">  const double clampedScore = std::min(combinedScore, 100.0);</span></div>
+<div class="code-line"><span class="ln">177</span><span class="code-content">  double dashOffset = SVG_CIRCUMFERENCE - (clampedScore / 100.0) * SVG_CIRCUMFERENCE;</span></div>
+<div class="code-line"><span class="ln">178</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">179</span><span class="code-content">  auto lines1 = extractLines(text1);</span></div>
+<div class="code-line"><span class="ln">180</span><span class="code-content">  auto lines2 = extractLines(text2);</span></div>
+<div class="code-line"><span class="ln">181</span><span class="code-content">  std::string marked1 = getHighlighted(text1, lines2);</span></div>
+<div class="code-line"><span class="ln">182</span><span class="code-content">  std::string marked2 = getHighlighted(text2, lines1);</span></div>
+<div class="code-line"><span class="ln">183</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">184</span><span class="code-content">  std::ofstream out(&quot;report.html&quot;);</span></div>
+<div class="code-line"><span class="ln">185</span><span class="code-content">  if (!out.is_open()) {</span></div>
+<div class="code-line"><span class="ln">186</span><span class="code-content">    std::cerr &lt;&lt; &quot;Error: Could not create report.html&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">187</span><span class="code-content">    return;</span></div>
+<div class="code-line"><span class="ln">188</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">189</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">190</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&lt;!DOCTYPE html&gt;</span></div>
+<div class="code-line"><span class="ln">191</span><span class="code-content">&lt;html lang=&quot;en&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">192</span><span class="code-content">&lt;head&gt;</span></div>
+<div class="code-line"><span class="ln">193</span><span class="code-content">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">194</span><span class="code-content">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">195</span><span class="code-content">  &lt;title&gt;Plagiarism Analysis Report&lt;/title&gt;</span></div>
+<div class="code-line"><span class="ln">196</span><span class="code-content">  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">197</span><span class="code-content">  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">198</span><span class="code-content">  &lt;style&gt;</span></div>
+<div class="code-line"><span class="ln">199</span><span class="code-content">    *{margin:0;padding:0;box-sizing:border-box;}</span></div>
+<div class="code-line"><span class="ln">200</span><span class="code-content">    body{font-family:&apos;Inter&apos;,sans-serif;background:linear-gradient(135deg,#e8edf5 0%,#f5f7fa 50%,#eef1f8 100%);</span></div>
+<div class="code-line"><span class="ln">201</span><span class="code-content">      min-height:100vh;padding:2rem 1.5rem;color:#1a1a2e;display:flex;justify-content:center;align-items:flex-start;}</span></div>
+<div class="code-line"><span class="ln">202</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">203</span><span class="code-content">    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.06;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}</span></div>
+<div class="code-line"><span class="ln">204</span><span class="code-content">    .orb1{width:500px;height:500px;background:#4f46e5;top:-100px;left:-100px;}</span></div>
+<div class="code-line"><span class="ln">205</span><span class="code-content">    .orb2{width:400px;height:400px;background:#0891b2;bottom:-100px;right:-100px;animation-delay:3s;}</span></div>
+<div class="code-line"><span class="ln">206</span><span class="code-content">    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}</span></div>
+<div class="code-line"><span class="ln">207</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">208</span><span class="code-content">    .container{position:relative;z-index:1;width:100%;max-width:1100px;padding-bottom:3rem;}</span></div>
+<div class="code-line"><span class="ln">209</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">210</span><span class="code-content">    .header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;}</span></div>
+<div class="code-line"><span class="ln">211</span><span class="code-content">    .header-bar h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">212</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">213</span><span class="code-content">    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:#2563eb;border:1px solid #1e40af;border-radius:8px;color:#ffffff;text-decoration:none;font-size:.9rem;font-weight:600;transition:all .2s;}</span></div>
+<div class="code-line"><span class="ln">214</span><span class="code-content">    .btn:hover{background:#1d4ed8;transform:translateY(-1px);}</span></div>
+<div class="code-line"><span class="ln">215</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">216</span><span class="code-content">    .card{background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.08);}</span></div>
+<div class="code-line"><span class="ln">217</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">218</span><span class="code-content">    .grid-2{display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;}</span></div>
+<div class="code-line"><span class="ln">219</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">220</span><span class="code-content">    .files-compare{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2.5rem;padding:1.5rem;background:#f9fafb;border-radius:12px;}</span></div>
+<div class="code-line"><span class="ln">221</span><span class="code-content">    .file-box{flex:1;text-align:center;width:100%;overflow:hidden;}</span></div>
+<div class="code-line"><span class="ln">222</span><span class="code-content">    .file-box .lbl{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}</span></div>
+<div class="code-line"><span class="ln">223</span><span class="code-content">    .file-box .name{font-size:.95rem;font-family:monospace;color:#1a1a2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#f3f4f6;padding:.5rem;border-radius:6px;border:1px solid #e5e7eb;}</span></div>
+<div class="code-line"><span class="ln">224</span><span class="code-content">    .vs-circ{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#4f46e5,#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#ffffff;box-shadow:0 4px 12px rgba(79,70,229,.3);}</span></div>
+<div class="code-line"><span class="ln">225</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">226</span><span class="code-content">    .score-ui{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;}</span></div>
+<div class="code-line"><span class="ln">227</span><span class="code-content">    .ring{position:relative;width:160px;height:160px;}</span></div>
+<div class="code-line"><span class="ln">228</span><span class="code-content">    .ring svg{width:160px;height:160px;transform:rotate(-90deg);}</span></div>
+<div class="code-line"><span class="ln">229</span><span class="code-content">    .ring circle{fill:none;stroke-width:10;}</span></div>
+<div class="code-line"><span class="ln">230</span><span class="code-content">    .ring .bg{stroke:#e5e7eb;}</span></div>
+<div class="code-line"><span class="ln">231</span><span class="code-content">    .ring .prog{stroke-dasharray:439.82;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;}</span></div>
+<div class="code-line"><span class="ln">232</span><span class="code-content">    .ring-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}</span></div>
+<div class="code-line"><span class="ln">233</span><span class="code-content">    .ring-pct{font-size:1.8rem;font-weight:800;line-height:1;letter-spacing:-.03em;color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">234</span><span class="code-content">    .ring-lbl{font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem;}</span></div>
+<div class="code-line"><span class="ln">235</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">236</span><span class="code-content">    .verdict{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;}</span></div>
+<div class="code-line"><span class="ln">237</span><span class="code-content">    .plagiarized{background:#fee2e2;border:1px solid #fecaca;color:#991b1b;}</span></div>
+<div class="code-line"><span class="ln">238</span><span class="code-content">    .original{background:#dcfce7;border:1px solid #bbf7d0;color:#166534;}</span></div>
+<div class="code-line"><span class="ln">239</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">240</span><span class="code-content">    .analytics h3{font-size:.9rem;color:#4a5568;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:.05em;}</span></div>
+<div class="code-line"><span class="ln">241</span><span class="code-content">    .metric-group{margin-bottom:2rem;}</span></div>
+<div class="code-line"><span class="ln">242</span><span class="code-content">    .metric{display:grid;grid-template-columns:130px 1fr 50px;align-items:center;gap:1rem;margin-bottom:1rem;}</span></div>
+<div class="code-line"><span class="ln">243</span><span class="code-content">    .m-label{font-size:.85rem;color:#6b7280;font-weight:500;}</span></div>
+<div class="code-line"><span class="ln">244</span><span class="code-content">    .bar-bg{background:#e2e8f0;border-radius:50px;height:8px;overflow:hidden;}</span></div>
+<div class="code-line"><span class="ln">245</span><span class="code-content">    .bar-fg{height:100%;border-radius:50px;}</span></div>
+<div class="code-line"><span class="ln">246</span><span class="code-content">    .m-val{font-size:.85rem;font-weight:700;color:#1a1a2e;text-align:right;}</span></div>
+<div class="code-line"><span class="ln">247</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">248</span><span class="code-content">    .insights{margin-top:1.5rem;}</span></div>
+<div class="code-line"><span class="ln">249</span><span class="code-content">    .insights h3{font-size:.85rem;color:#4a5568;margin-bottom:1rem;}</span></div>
+<div class="code-line"><span class="ln">250</span><span class="code-content">    .tags{display:flex;flex-wrap:wrap;gap:.5rem;}</span></div>
+<div class="code-line"><span class="ln">251</span><span class="code-content">    .tag{background:#eef2ff;border:1px solid #e0e7ff;color:#4338ca;padding:.3rem .8rem;border-radius:6px;font-family:monospace;font-size:.8rem;}</span></div>
+<div class="code-line"><span class="ln">252</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">253</span><span class="code-content">    .split-title{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">254</span><span class="code-content">    .code-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#f3f4f6;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;}</span></div>
+<div class="code-line"><span class="ln">255</span><span class="code-content">    .code-pane{background:#fafafa;height:500px;overflow:auto;font-family:monospace;font-size:.8rem;line-height:1.6;}</span></div>
+<div class="code-line"><span class="ln">256</span><span class="code-content">    .pane-header{background:#f3f4f6;padding:.75rem 1rem;font-size:.8rem;font-weight:600;color:#4a5568;border-bottom:1px solid #e5e7eb;position:sticky;top:0;}</span></div>
+<div class="code-line"><span class="ln">257</span><span class="code-content">    .code-line{display:flex;padding:0 .5rem;}</span></div>
+<div class="code-line"><span class="ln">258</span><span class="code-content">    .code-line:hover{background:#f9fafb;}</span></div>
+<div class="code-line"><span class="ln">259</span><span class="code-content">    .hl{background:rgba(255,220,0,0.2);}</span></div>
+<div class="code-line"><span class="ln">260</span><span class="code-content">    .hl .code-content{color:#b8860b;font-weight:500;}</span></div>
+<div class="code-line"><span class="ln">261</span><span class="code-content">    .code-line .ln{width:35px;flex-shrink:0;text-align:right;padding-right:10px;color:#9ca3af;user-select:none;border-right:1px solid #e5e7eb;margin-right:10px;}</span></div>
+<div class="code-line"><span class="ln">262</span><span class="code-content">    .code-content{white-space:pre;color:#1f2937;word-break:break-all;}</span></div>
+<div class="code-line"><span class="ln">263</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">264</span><span class="code-content">    @media(max-width:768px){</span></div>
+<div class="code-line"><span class="ln">265</span><span class="code-content">      .grid-2{grid-template-columns:1fr;}</span></div>
+<div class="code-line"><span class="ln">266</span><span class="code-content">      .code-split{grid-template-columns:1fr;height:auto;}</span></div>
+<div class="code-line"><span class="ln">267</span><span class="code-content">      .code-pane{height:300px;}</span></div>
+<div class="code-line"><span class="ln">268</span><span class="code-content">      .metric{grid-template-columns:100px 1fr 40px;}</span></div>
+<div class="code-line"><span class="ln">269</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">270</span><span class="code-content">  &lt;/style&gt;</span></div>
+<div class="code-line"><span class="ln">271</span><span class="code-content">&lt;/head&gt;</span></div>
+<div class="code-line"><span class="ln">272</span><span class="code-content">&lt;body&gt;</span></div>
+<div class="code-line"><span class="ln">273</span><span class="code-content">  &lt;div class=&quot;orb orb1&quot;&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">274</span><span class="code-content">  &lt;div class=&quot;orb orb2&quot;&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">275</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">276</span><span class="code-content">  &lt;div class=&quot;container&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">277</span><span class="code-content">    &lt;div class=&quot;header-bar&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">278</span><span class="code-content">      &lt;h1&gt;Plagiarism Analysis Report&lt;/h1&gt;</span></div>
+<div class="code-line"><span class="ln">279</span><span class="code-content">      &lt;a href=&quot;/&quot; class=&quot;btn&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">280</span><span class="code-content">        &lt;svg width=&quot;16&quot; height=&quot;16&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M19 12H5M12 19l-7-7 7-7&quot;/&gt;&lt;/svg&gt;</span></div>
+<div class="code-line"><span class="ln">281</span><span class="code-content">        Analyze Another</span></div>
+<div class="code-line"><span class="ln">282</span><span class="code-content">      &lt;/a&gt;</span></div>
+<div class="code-line"><span class="ln">283</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">284</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">285</span><span class="code-content">    &lt;div class=&quot;files-compare&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">286</span><span class="code-content">      &lt;div class=&quot;file-box&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">287</span><span class="code-content">        &lt;span class=&quot;lbl&quot;&gt;Source File&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">288</span><span class="code-content">        &lt;div class=&quot;name&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">289</span><span class="code-content">  out &lt;&lt; name1;</span></div>
+<div class="code-line"><span class="ln">290</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">291</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">292</span><span class="code-content">      &lt;div class=&quot;vs-circ&quot;&gt;VS&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">293</span><span class="code-content">      &lt;div class=&quot;file-box&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">294</span><span class="code-content">        &lt;span class=&quot;lbl&quot;&gt;Target File&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">295</span><span class="code-content">        &lt;div class=&quot;name&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">296</span><span class="code-content">  out &lt;&lt; name2;</span></div>
+<div class="code-line"><span class="ln">297</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">298</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">299</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">300</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">301</span><span class="code-content">    &lt;div class=&quot;card grid-2&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">302</span><span class="code-content">      &lt;div class=&quot;score-ui&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">303</span><span class="code-content">        &lt;div class=&quot;ring&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">304</span><span class="code-content">          &lt;svg viewBox=&quot;0 0 160 160&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">305</span><span class="code-content">            &lt;circle class=&quot;bg&quot; cx=&quot;80&quot; cy=&quot;80&quot; r=&quot;70&quot;/&gt;</span></div>
+<div class="code-line"><span class="ln">306</span><span class="code-content">            &lt;circle class=&quot;prog&quot; cx=&quot;80&quot; cy=&quot;80&quot; r=&quot;70&quot; stroke=&quot;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">307</span><span class="code-content">  out &lt;&lt; scoreColor;</span></div>
+<div class="code-line"><span class="ln">308</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&quot; stroke-dashoffset=&quot;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">309</span><span class="code-content">  out &lt;&lt; fmt(dashOffset);</span></div>
+<div class="code-line"><span class="ln">310</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&quot;/&gt;</span></div>
+<div class="code-line"><span class="ln">311</span><span class="code-content">          &lt;/svg&gt;</span></div>
+<div class="code-line"><span class="ln">312</span><span class="code-content">          &lt;div class=&quot;ring-inner&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">313</span><span class="code-content">            &lt;div class=&quot;ring-pct&quot; style=&quot;color:)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">314</span><span class="code-content">  out &lt;&lt; scoreColor;</span></div>
+<div class="code-line"><span class="ln">315</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&quot;&gt;)HTML&quot; &lt;&lt; fmt(combinedScore) &lt;&lt; R&quot;HTML(%&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">316</span><span class="code-content">            &lt;div class=&quot;ring-lbl&quot;&gt;Match&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">317</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">318</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">319</span><span class="code-content">        &lt;div class=&quot;verdict )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">320</span><span class="code-content">  out &lt;&lt; verdictClass;</span></div>
+<div class="code-line"><span class="ln">321</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&quot;&gt;)HTML&quot; &lt;&lt; verdictIcon &lt;&lt; R&quot;HTML( &lt;span&gt;)HTML&quot; &lt;&lt; verdictText</span></div>
+<div class="code-line"><span class="ln">322</span><span class="code-content">      &lt;&lt; R&quot;HTML(&lt;/span&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">323</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">324</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">325</span><span class="code-content">      &lt;div class=&quot;analytics&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">326</span><span class="code-content">        &lt;div class=&quot;metric-group&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">327</span><span class="code-content">          &lt;h3&gt;Text Similarity Analysis&lt;/h3&gt;</span></div>
+<div class="code-line"><span class="ln">328</span><span class="code-content">          &lt;div class=&quot;metric&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">329</span><span class="code-content">            &lt;div class=&quot;m-label&quot;&gt;Unigram (Words)&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">330</span><span class="code-content">            &lt;div class=&quot;bar-bg&quot;&gt;&lt;div class=&quot;bar-fg&quot; style=&quot;width:)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">331</span><span class="code-content">  out &lt;&lt; fmt(unigramPct);</span></div>
+<div class="code-line"><span class="ln">332</span><span class="code-content">  out &lt;&lt; R&quot;HTML(%;background:linear-gradient(90deg,#4f46e5,#818cf8);&quot;&gt;&lt;/div&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">333</span><span class="code-content">            &lt;div class=&quot;m-val&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">334</span><span class="code-content">      &lt;&lt; fmt(unigramPct) &lt;&lt; R&quot;HTML(%&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">335</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">336</span><span class="code-content">          &lt;div class=&quot;metric&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">337</span><span class="code-content">            &lt;div class=&quot;m-label&quot;&gt;Bigram (Phrases)&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">338</span><span class="code-content">            &lt;div class=&quot;bar-bg&quot;&gt;&lt;div class=&quot;bar-fg&quot; style=&quot;width:)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">339</span><span class="code-content">  out &lt;&lt; fmt(bigramPct);</span></div>
+<div class="code-line"><span class="ln">340</span><span class="code-content">  out &lt;&lt; R&quot;HTML(%;background:linear-gradient(90deg,#0891b2,#22d3ee);&quot;&gt;&lt;/div&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">341</span><span class="code-content">            &lt;div class=&quot;m-val&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">342</span><span class="code-content">      &lt;&lt; fmt(bigramPct) &lt;&lt; R&quot;HTML(%&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">343</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">344</span><span class="code-content">          &lt;div class=&quot;metric&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">345</span><span class="code-content">            &lt;div class=&quot;m-label&quot;&gt;Trigram (Logic)&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">346</span><span class="code-content">            &lt;div class=&quot;bar-bg&quot;&gt;&lt;div class=&quot;bar-fg&quot; style=&quot;width:)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">347</span><span class="code-content">  out &lt;&lt; fmt(trigramPct);</span></div>
+<div class="code-line"><span class="ln">348</span><span class="code-content">  out &lt;&lt; R&quot;HTML(%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);&quot;&gt;&lt;/div&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">349</span><span class="code-content">            &lt;div class=&quot;m-val&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">350</span><span class="code-content">      &lt;&lt; fmt(trigramPct) &lt;&lt; R&quot;HTML(%&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">351</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">352</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">353</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">354</span><span class="code-content">        &lt;div class=&quot;metric-group&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">355</span><span class="code-content">          &lt;h3&gt;Code Structure Analysis&lt;/h3&gt;</span></div>
+<div class="code-line"><span class="ln">356</span><span class="code-content">          &lt;div class=&quot;metric&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">357</span><span class="code-content">            &lt;div class=&quot;m-label&quot;&gt;AST Structure&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">358</span><span class="code-content">            &lt;div class=&quot;bar-bg&quot;&gt;&lt;div class=&quot;bar-fg&quot; style=&quot;width:)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">359</span><span class="code-content">  out &lt;&lt; fmt(astPct);</span></div>
+<div class="code-line"><span class="ln">360</span><span class="code-content">  out &lt;&lt; R&quot;HTML(%;background:linear-gradient(90deg,#10b981,#34d399);&quot;&gt;&lt;/div&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">361</span><span class="code-content">            &lt;div class=&quot;m-val&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">362</span><span class="code-content">      &lt;&lt; fmt(astPct) &lt;&lt; R&quot;HTML(%&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">363</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">364</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">365</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">366</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">367</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">368</span><span class="code-content">    &lt;div class=&quot;card insights&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">369</span><span class="code-content">      &lt;h3&gt;Plagiarism Match Insights (Overlapping Terms)&lt;/h3&gt;</span></div>
+<div class="code-line"><span class="ln">370</span><span class="code-content">      &lt;div class=&quot;tags&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">371</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">372</span><span class="code-content">  int count = 0;</span></div>
+<div class="code-line"><span class="ln">373</span><span class="code-content">  for (const auto &amp;term : unigramResult.commonTerms) {</span></div>
+<div class="code-line"><span class="ln">374</span><span class="code-content">    if (count++ &gt;= 30) {</span></div>
+<div class="code-line"><span class="ln">375</span><span class="code-content">      out &lt;&lt; R&quot;HTML(&lt;span class=&quot;tag&quot; style=&quot;background:transparent;border:0;color:#64748b;&quot;&gt;&amp;#8230;&lt;/span&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">376</span><span class="code-content">      break;</span></div>
+<div class="code-line"><span class="ln">377</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">378</span><span class="code-content">    out &lt;&lt; R&quot;HTML(&lt;span class=&quot;tag&quot;&gt;)HTML&quot; &lt;&lt; term &lt;&lt; R&quot;HTML(&lt;/span&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">379</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">380</span><span class="code-content">  if (unigramResult.commonTerms.empty()) {</span></div>
+<div class="code-line"><span class="ln">381</span><span class="code-content">    out &lt;&lt; R&quot;HTML(&lt;span style=&quot;color:#64748b;font-size:0.85rem;font-style:italic;&quot;&gt;No matching identifiers found.&lt;/span&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">382</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">383</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">384</span><span class="code-content">  out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">385</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">386</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">387</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">388</span><span class="code-content">    &lt;div class=&quot;split-title&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">389</span><span class="code-content">      &lt;svg width=&quot;20&quot; height=&quot;20&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z&quot;&gt;&lt;/path&gt;&lt;polyline points=&quot;14 2 14 8 20 8&quot;&gt;&lt;/polyline&gt;&lt;line x1=&quot;16&quot; y1=&quot;13&quot; x2=&quot;8&quot; y2=&quot;13&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;16&quot; y1=&quot;17&quot; x2=&quot;8&quot; y2=&quot;17&quot;&gt;&lt;/line&gt;&lt;polyline points=&quot;10 9 9 9 8 9&quot;&gt;&lt;/polyline&gt;&lt;/svg&gt;</span></div>
+<div class="code-line"><span class="ln">390</span><span class="code-content">      Code Comparison Viewer</span></div>
+<div class="code-line"><span class="ln">391</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">392</span><span class="code-content">    &lt;div class=&quot;code-split&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">393</span><span class="code-content">      &lt;div class=&quot;code-pane&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">394</span><span class="code-content">        &lt;div class=&quot;pane-header&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">395</span><span class="code-content">      &lt;&lt; name1 &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">396</span><span class="code-content">        )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">397</span><span class="code-content">  out &lt;&lt; marked1;</span></div>
+<div class="code-line"><span class="ln">398</span><span class="code-content">  out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">399</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">400</span><span class="code-content">      &lt;div class=&quot;code-pane&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">401</span><span class="code-content">        &lt;div class=&quot;pane-header&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">402</span><span class="code-content">      &lt;&lt; name2 &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">403</span><span class="code-content">        )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">404</span><span class="code-content">  out &lt;&lt; marked2;</span></div>
+<div class="code-line"><span class="ln">405</span><span class="code-content">  out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">406</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">407</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">408</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">409</span><span class="code-content">    &lt;div style=&quot;text-align:center;margin-top:2.5rem;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">410</span><span class="code-content">      &lt;a href=&quot;/&quot; class=&quot;btn&quot; style=&quot;padding:1rem 2rem;font-size:1rem;background:linear-gradient(135deg,#4f46e5,#0891b2);border:none;box-shadow:0 10px 20px rgba(79,70,229,.3);&quot;&gt;Analyze Another Document Pair&lt;/a&gt;</span></div>
+<div class="code-line"><span class="ln">411</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">412</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">413</span><span class="code-content">  &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">414</span><span class="code-content">&lt;/body&gt;</span></div>
+<div class="code-line"><span class="ln">415</span><span class="code-content">&lt;/html&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">416</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">417</span><span class="code-content">  out.close();</span></div>
+<div class="code-line"><span class="ln">418</span><span class="code-content">  std::cout &lt;&lt; &quot;Report generated: report.html&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">419</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">420</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">421</span><span class="code-content">// Helper: Get all supported files from directory</span></div>
+<div class="code-line"><span class="ln">422</span><span class="code-content">std::vector&lt;std::string&gt; getFilesFromDirectory(const std::string &amp;dirPath) {</span></div>
+<div class="code-line"><span class="ln">423</span><span class="code-content">  std::vector&lt;std::string&gt; files;</span></div>
+<div class="code-line"><span class="ln">424</span><span class="code-content">  if (!fs::is_directory(dirPath)) {</span></div>
+<div class="code-line"><span class="ln">425</span><span class="code-content">    std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; dirPath &lt;&lt; &quot; is not a valid directory.&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">426</span><span class="code-content">    return files;</span></div>
+<div class="code-line"><span class="ln">427</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">428</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">429</span><span class="code-content">  for (const auto &amp;entry : fs::directory_iterator(dirPath)) {</span></div>
+<div class="code-line"><span class="ln">430</span><span class="code-content">    if (entry.is_regular_file()) {</span></div>
+<div class="code-line"><span class="ln">431</span><span class="code-content">      std::string ext = entry.path().extension().string();</span></div>
+<div class="code-line"><span class="ln">432</span><span class="code-content">      if (ext == &quot;.cpp&quot; || ext == &quot;.h&quot; || ext == &quot;.txt&quot; || ext == &quot;.c&quot; ||</span></div>
+<div class="code-line"><span class="ln">433</span><span class="code-content">          ext == &quot;.cc&quot; || ext == &quot;.cxx&quot;) {</span></div>
+<div class="code-line"><span class="ln">434</span><span class="code-content">        files.push_back(entry.path().string());</span></div>
+<div class="code-line"><span class="ln">435</span><span class="code-content">      }</span></div>
+<div class="code-line"><span class="ln">436</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">437</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">438</span><span class="code-content">  </span></div>
+<div class="code-line"><span class="ln">439</span><span class="code-content">  if (files.empty()) {</span></div>
+<div class="code-line"><span class="ln">440</span><span class="code-content">    std::cerr &lt;&lt; &quot;No supported files (.cpp, .h, .txt, .c) found in &quot; &lt;&lt; dirPath</span></div>
+<div class="code-line"><span class="ln">441</span><span class="code-content">             &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">442</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">443</span><span class="code-content">  </span></div>
+<div class="code-line"><span class="ln">444</span><span class="code-content">  return files;</span></div>
+<div class="code-line"><span class="ln">445</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">446</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">447</span><span class="code-content">void generateBatchReport(const Detector::BatchSimilarityMatrix &amp;batchResult);</span></div>
+<div class="code-line"><span class="ln">448</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">449</span><span class="code-content">int main(int argc, char *argv[]) {</span></div>
+<div class="code-line"><span class="ln">450</span><span class="code-content">  if (argc &lt; 2) {</span></div>
+<div class="code-line"><span class="ln">451</span><span class="code-content">    std::cerr &lt;&lt; &quot;Usage:&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">452</span><span class="code-content">    std::cerr &lt;&lt; &quot;  Two-file mode:  &quot; &lt;&lt; argv[0] &lt;&lt; &quot; &lt;file1&gt; &lt;file2&gt;&quot;</span></div>
+<div class="code-line"><span class="ln">453</span><span class="code-content">             &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">454</span><span class="code-content">    std::cerr &lt;&lt; &quot;  Batch mode:     &quot; &lt;&lt; argv[0] &lt;&lt; &quot; --batch &lt;directory&gt;&quot;</span></div>
+<div class="code-line"><span class="ln">455</span><span class="code-content">             &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">456</span><span class="code-content">    return 1;</span></div>
+<div class="code-line"><span class="ln">457</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">458</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">459</span><span class="code-content">  // Check for batch mode</span></div>
+<div class="code-line"><span class="ln">460</span><span class="code-content">  if (argc &gt;= 3 &amp;&amp; std::string(argv[1]) == &quot;--batch&quot;) {</span></div>
+<div class="code-line"><span class="ln">461</span><span class="code-content">    std::string dirPath = argv[2];</span></div>
+<div class="code-line"><span class="ln">462</span><span class="code-content">    std::cout &lt;&lt; &quot;Running batch analysis on directory: &quot; &lt;&lt; dirPath &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">463</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">464</span><span class="code-content">    auto files = getFilesFromDirectory(dirPath);</span></div>
+<div class="code-line"><span class="ln">465</span><span class="code-content">    if (files.empty()) {</span></div>
+<div class="code-line"><span class="ln">466</span><span class="code-content">      return 1;</span></div>
+<div class="code-line"><span class="ln">467</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">468</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">469</span><span class="code-content">    std::cout &lt;&lt; &quot;Found &quot; &lt;&lt; files.size() &lt;&lt; &quot; files. Starting analysis...&quot;</span></div>
+<div class="code-line"><span class="ln">470</span><span class="code-content">             &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">471</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">472</span><span class="code-content">    auto batchResult = Detector::conductBatchAnalysis(files);</span></div>
+<div class="code-line"><span class="ln">473</span><span class="code-content">    generateBatchReport(batchResult);</span></div>
+<div class="code-line hl"><span class="ln">474</span><span class="code-content">    return 0;</span></div>
+<div class="code-line"><span class="ln">475</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">476</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">477</span><span class="code-content">  // Standard 2-file mode</span></div>
+<div class="code-line"><span class="ln">478</span><span class="code-content">  if (argc != 3) {</span></div>
+<div class="code-line"><span class="ln">479</span><span class="code-content">    std::cerr &lt;&lt; &quot;Usage: &quot; &lt;&lt; argv[0] &lt;&lt; &quot; &lt;file1&gt; &lt;file2&gt;&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">480</span><span class="code-content">    return 1;</span></div>
+<div class="code-line"><span class="ln">481</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">482</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">483</span><span class="code-content">  generateTwoFileReport(argv[1], argv[2]);</span></div>
+<div class="code-line hl"><span class="ln">484</span><span class="code-content">  return 0;</span></div>
+<div class="code-line"><span class="ln">485</span><span class="code-content">}</span></div>
+<div class="code-line"><span class="ln">486</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">487</span><span class="code-content">void generateBatchReport(const Detector::BatchSimilarityMatrix &amp;batchResult) {</span></div>
+<div class="code-line"><span class="ln">488</span><span class="code-content">  std::ofstream out(&quot;batch_report.html&quot;);</span></div>
+<div class="code-line"><span class="ln">489</span><span class="code-content">  if (!out.is_open()) {</span></div>
+<div class="code-line"><span class="ln">490</span><span class="code-content">    std::cerr &lt;&lt; &quot;Error: Could not create batch_report.html&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">491</span><span class="code-content">    return;</span></div>
+<div class="code-line"><span class="ln">492</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">493</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">494</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&lt;!DOCTYPE html&gt;</span></div>
+<div class="code-line"><span class="ln">495</span><span class="code-content">&lt;html lang=&quot;en&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">496</span><span class="code-content">&lt;head&gt;</span></div>
+<div class="code-line"><span class="ln">497</span><span class="code-content">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">498</span><span class="code-content">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">499</span><span class="code-content">  &lt;title&gt;Batch Plagiarism Analysis Report&lt;/title&gt;</span></div>
+<div class="code-line"><span class="ln">500</span><span class="code-content">  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">501</span><span class="code-content">  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">502</span><span class="code-content">  &lt;style&gt;</span></div>
+<div class="code-line"><span class="ln">503</span><span class="code-content">    *{margin:0;padding:0;box-sizing:border-box;}</span></div>
+<div class="code-line"><span class="ln">504</span><span class="code-content">    body{font-family:&apos;Inter&apos;,sans-serif;background:linear-gradient(135deg,#e8edf5 0%,#f5f7fa 50%,#eef1f8 100%);</span></div>
+<div class="code-line"><span class="ln">505</span><span class="code-content">      min-height:100vh;padding:2rem 1.5rem;color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">506</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">507</span><span class="code-content">    .orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.06;pointer-events:none;z-index:0;animation:pulse 10s ease-in-out infinite;}</span></div>
+<div class="code-line"><span class="ln">508</span><span class="code-content">    .orb1{width:600px;height:600px;background:#4f46e5;top:-100px;left:-100px;}</span></div>
+<div class="code-line"><span class="ln">509</span><span class="code-content">    .orb2{width:500px;height:500px;background:#0891b2;bottom:-100px;right:-100px;animation-delay:3s;}</span></div>
+<div class="code-line"><span class="ln">510</span><span class="code-content">    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}</span></div>
+<div class="code-line"><span class="ln">511</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">512</span><span class="code-content">    .container{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding-bottom:3rem;}</span></div>
+<div class="code-line"><span class="ln">513</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">514</span><span class="code-content">    .header{margin-bottom:2.5rem;}</span></div>
+<div class="code-line"><span class="ln">515</span><span class="code-content">    .header h1{font-size:2rem;font-weight:800;color:#1a1a2e;margin-bottom:.5rem;}</span></div>
+<div class="code-line"><span class="ln">516</span><span class="code-content">    .header p{color:#4a5568;font-size:1rem;}</span></div>
+<div class="code-line"><span class="ln">517</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">518</span><span class="code-content">    .card{background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.08);}</span></div>
+<div class="code-line"><span class="ln">519</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">520</span><span class="code-content">    .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:2rem;}</span></div>
+<div class="code-line"><span class="ln">521</span><span class="code-content">    .stat-box{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;text-align:center;}</span></div>
+<div class="code-line"><span class="ln">522</span><span class="code-content">    .stat-val{font-size:2.5rem;font-weight:800;color:#2563eb;line-height:1;}</span></div>
+<div class="code-line"><span class="ln">523</span><span class="code-content">    .stat-lbl{font-size:.85rem;color:#6b7280;margin-top:.5rem;text-transform:uppercase;letter-spacing:.05em;}</span></div>
+<div class="code-line"><span class="ln">524</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">525</span><span class="code-content">    .cluster-section{margin-bottom:2rem;}</span></div>
+<div class="code-line"><span class="ln">526</span><span class="code-content">    .cluster-title{display:flex;align-items:center;gap:.75rem;font-size:1.2rem;font-weight:700;margin-bottom:1.25rem;color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">527</span><span class="code-content">    .cluster-badge{background:#ef4444;color:#fff;padding:.3rem .8rem;border-radius:6px;font-size:.8rem;font-weight:600;}</span></div>
+<div class="code-line"><span class="ln">528</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">529</span><span class="code-content">    .member-list{background:#f9fafb;border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;border:1px solid #e5e7eb;}</span></div>
+<div class="code-line"><span class="ln">530</span><span class="code-content">    .member-item{display:flex;align-items:center;justify-content:space-between;padding:.75rem;border-bottom:1px solid #e5e7eb;}</span></div>
+<div class="code-line"><span class="ln">531</span><span class="code-content">    .member-item:last-child{border-bottom:none;}</span></div>
+<div class="code-line"><span class="ln">532</span><span class="code-content">    .member-name{display:flex;align-items:center;gap:.5rem;font-family:monospace;color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">533</span><span class="code-content">    .badge-original{background:#dcfce7;border:1px solid #bbf7d0;color:#166534;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;}</span></div>
+<div class="code-line"><span class="ln">534</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">535</span><span class="code-content">    .pairs-table{width:100%;border-collapse:collapse;font-size:.9rem;}</span></div>
+<div class="code-line"><span class="ln">536</span><span class="code-content">    .pairs-table th{background:#e8edf5;padding:.75rem;text-align:left;color:#1a1a2e;font-weight:600;border-bottom:1px solid #d8e4f0;}</span></div>
+<div class="code-line"><span class="ln">537</span><span class="code-content">    .pairs-table td{padding:.75rem;border-bottom:1px solid #e5e7eb;color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">538</span><span class="code-content">    .pairs-table tbody tr:hover{background:#f9fafb;}</span></div>
+<div class="code-line"><span class="ln">539</span><span class="code-content">    .score-cell{font-weight:600;color:#dc2626;}</span></div>
+<div class="code-line"><span class="ln">540</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">541</span><span class="code-content">    .matrix-container{overflow-x:auto;background:#f9fafb;border-radius:12px;padding:1.5rem;border:1px solid #e5e7eb;}</span></div>
+<div class="code-line"><span class="ln">542</span><span class="code-content">    .matrix-table{width:100%;border-collapse:collapse;font-size:.8rem;font-family:monospace;}</span></div>
+<div class="code-line"><span class="ln">543</span><span class="code-content">    .matrix-table th,.matrix-table td{padding:.5rem;text-align:center;border:1px solid #e5e7eb;}</span></div>
+<div class="code-line"><span class="ln">544</span><span class="code-content">    .matrix-table th{background:#e8edf5;color:#1a1a2e;font-weight:600;}</span></div>
+<div class="code-line"><span class="ln">545</span><span class="code-content">    .matrix-table td{color:#1a1a2e;}</span></div>
+<div class="code-line"><span class="ln">546</span><span class="code-content">    .matrix-high{background:#fee2e2;color:#991b1b;font-weight:600;}</span></div>
+<div class="code-line"><span class="ln">547</span><span class="code-content">    .matrix-med{background:#fef3c7;color:#b45309;}</span></div>
+<div class="code-line"><span class="ln">548</span><span class="code-content">    .matrix-low{background:#dcfce7;color:#166534;}</span></div>
+<div class="code-line"><span class="ln">549</span><span class="code-content">    </span></div>
+<div class="code-line"><span class="ln">550</span><span class="code-content">    @media(max-width:768px){</span></div>
+<div class="code-line"><span class="ln">551</span><span class="code-content">      .summary{grid-template-columns:1fr;}</span></div>
+<div class="code-line"><span class="ln">552</span><span class="code-content">      .pairs-table{font-size:.8rem;}</span></div>
+<div class="code-line"><span class="ln">553</span><span class="code-content">      .matrix-table{font-size:.7rem;}</span></div>
+<div class="code-line"><span class="ln">554</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">555</span><span class="code-content">  &lt;/style&gt;</span></div>
+<div class="code-line"><span class="ln">556</span><span class="code-content">&lt;/head&gt;</span></div>
+<div class="code-line"><span class="ln">557</span><span class="code-content">&lt;body&gt;</span></div>
+<div class="code-line"><span class="ln">558</span><span class="code-content">  &lt;div class=&quot;orb orb1&quot;&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">559</span><span class="code-content">  &lt;div class=&quot;orb orb2&quot;&gt;&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">560</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">561</span><span class="code-content">  &lt;div class=&quot;container&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">562</span><span class="code-content">    &lt;div class=&quot;header&quot; style=&quot;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">563</span><span class="code-content">      &lt;div&gt;</span></div>
+<div class="code-line"><span class="ln">564</span><span class="code-content">        &lt;h1&gt;Batch Plagiarism Analysis Report&lt;/h1&gt;</span></div>
+<div class="code-line"><span class="ln">565</span><span class="code-content">        &lt;p&gt;Analyzed )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">566</span><span class="code-content">  out &lt;&lt; batchResult.totalFiles;</span></div>
+<div class="code-line"><span class="ln">567</span><span class="code-content">  out &lt;&lt; R&quot;HTML( files • )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">568</span><span class="code-content">  out &lt;&lt; batchResult.totalSuspiciousPairs;</span></div>
+<div class="code-line"><span class="ln">569</span><span class="code-content">  out &lt;&lt; R&quot;HTML( suspicious pairs • )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">570</span><span class="code-content">  out &lt;&lt; batchResult.clusters.size();</span></div>
+<div class="code-line"><span class="ln">571</span><span class="code-content">  out &lt;&lt; R&quot;HTML( clusters detected&lt;/p&gt;</span></div>
+<div class="code-line"><span class="ln">572</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">573</span><span class="code-content">      &lt;a href=&quot;/&quot; class=&quot;btn&quot; style=&quot;white-space:nowrap;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">574</span><span class="code-content">        &lt;svg width=&quot;16&quot; height=&quot;16&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M19 12H5M12 19l-7-7 7-7&quot;&gt;&lt;/path&gt;&lt;/svg&gt;</span></div>
+<div class="code-line"><span class="ln">575</span><span class="code-content">        Analyze Another</span></div>
+<div class="code-line"><span class="ln">576</span><span class="code-content">      &lt;/a&gt;</span></div>
+<div class="code-line"><span class="ln">577</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">578</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">579</span><span class="code-content">    &lt;div class=&quot;card&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">580</span><span class="code-content">      &lt;div class=&quot;summary&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">581</span><span class="code-content">        &lt;div class=&quot;stat-box&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">582</span><span class="code-content">          &lt;div class=&quot;stat-val&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">583</span><span class="code-content">  out &lt;&lt; batchResult.totalFiles;</span></div>
+<div class="code-line"><span class="ln">584</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">585</span><span class="code-content">          &lt;div class=&quot;stat-lbl&quot;&gt;Total Files&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">586</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">587</span><span class="code-content">        &lt;div class=&quot;stat-box&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">588</span><span class="code-content">          &lt;div class=&quot;stat-val&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">589</span><span class="code-content">  out &lt;&lt; batchResult.totalSuspiciousPairs;</span></div>
+<div class="code-line"><span class="ln">590</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">591</span><span class="code-content">          &lt;div class=&quot;stat-lbl&quot;&gt;Suspicious Pairs&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">592</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">593</span><span class="code-content">        &lt;div class=&quot;stat-box&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">594</span><span class="code-content">          &lt;div class=&quot;stat-val&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">595</span><span class="code-content">  out &lt;&lt; batchResult.clusters.size();</span></div>
+<div class="code-line"><span class="ln">596</span><span class="code-content">  out &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">597</span><span class="code-content">          &lt;div class=&quot;stat-lbl&quot;&gt;Clusters Found&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">598</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">599</span><span class="code-content">        &lt;div class=&quot;stat-box&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">600</span><span class="code-content">          &lt;div class=&quot;stat-val&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">601</span><span class="code-content">  if (batchResult.totalFiles &gt; 1) {</span></div>
+<div class="code-line"><span class="ln">602</span><span class="code-content">    out &lt;&lt; fmt(100.0 * batchResult.totalSuspiciousPairs / (batchResult.totalFiles * (batchResult.totalFiles - 1) / 2));</span></div>
+<div class="code-line"><span class="ln">603</span><span class="code-content">  } else {</span></div>
+<div class="code-line"><span class="ln">604</span><span class="code-content">    out &lt;&lt; &quot;0&quot;;</span></div>
+<div class="code-line"><span class="ln">605</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">606</span><span class="code-content">  out &lt;&lt; R&quot;HTML(%&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">607</span><span class="code-content">          &lt;div class=&quot;stat-lbl&quot;&gt;Suspicion Rate&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">608</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">609</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">610</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">611</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">612</span><span class="code-content">    )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">613</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">614</span><span class="code-content">  int clusterNum = 1;</span></div>
+<div class="code-line"><span class="ln">615</span><span class="code-content">  for (const auto &amp;cluster : batchResult.clusters) {</span></div>
+<div class="code-line"><span class="ln">616</span><span class="code-content">    out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">617</span><span class="code-content">    &lt;div class=&quot;card cluster-section&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">618</span><span class="code-content">      &lt;div class=&quot;cluster-title&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">619</span><span class="code-content">        &lt;span class=&quot;cluster-badge&quot;&gt;Cluster )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">620</span><span class="code-content">    out &lt;&lt; clusterNum++;</span></div>
+<div class="code-line"><span class="ln">621</span><span class="code-content">    out &lt;&lt; R&quot;HTML(&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">622</span><span class="code-content">        &lt;span&gt;)HTML&quot; &lt;&lt; cluster.members.size() &lt;&lt; R&quot;HTML( files&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">623</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">624</span><span class="code-content">      </span></div>
+<div class="code-line"><span class="ln">625</span><span class="code-content">      &lt;div class=&quot;member-list&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">626</span><span class="code-content">        &lt;div style=&quot;font-size:.9rem;font-weight:600;color:#4a5568;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;&quot;&gt;Member Files&lt;/div&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">627</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">628</span><span class="code-content">    for (const auto &amp;member : cluster.members) {</span></div>
+<div class="code-line"><span class="ln">629</span><span class="code-content">      out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">630</span><span class="code-content">        &lt;div class=&quot;member-item&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">631</span><span class="code-content">          &lt;div class=&quot;member-name&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">632</span><span class="code-content">            &lt;span&gt;)HTML&quot; &lt;&lt; escapeHTML(member.filename) &lt;&lt; R&quot;HTML(&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">633</span><span class="code-content">            )HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">634</span><span class="code-content">      if (member.isProbableOriginal) {</span></div>
+<div class="code-line"><span class="ln">635</span><span class="code-content">        out &lt;&lt; R&quot;HTML(&lt;span class=&quot;badge-original&quot;&gt;Probable Original&lt;/span&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">636</span><span class="code-content">      }</span></div>
+<div class="code-line"><span class="ln">637</span><span class="code-content">      out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">638</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">639</span><span class="code-content">          &lt;div style=&quot;color:#6b7280;font-size:.85rem;&quot;&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">640</span><span class="code-content">      out &lt;&lt; member.degree;</span></div>
+<div class="code-line"><span class="ln">641</span><span class="code-content">      out &lt;&lt; R&quot;HTML( match)HTML&quot; &lt;&lt; (member.degree != 1 ? &quot;es&quot; : &quot;&quot;)</span></div>
+<div class="code-line"><span class="ln">642</span><span class="code-content">          &lt;&lt; R&quot;HTML(&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">643</span><span class="code-content">        &lt;/div&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">644</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">645</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">646</span><span class="code-content">    out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">647</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">648</span><span class="code-content">      </span></div>
+<div class="code-line"><span class="ln">649</span><span class="code-content">      &lt;div style=&quot;margin-top:1.5rem;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">650</span><span class="code-content">        &lt;div style=&quot;font-size:.9rem;font-weight:600;color:#4a5568;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;&quot;&gt;Pairwise Similarity&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">651</span><span class="code-content">        &lt;table class=&quot;pairs-table&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">652</span><span class="code-content">          &lt;thead&gt;</span></div>
+<div class="code-line"><span class="ln">653</span><span class="code-content">            &lt;tr&gt;</span></div>
+<div class="code-line"><span class="ln">654</span><span class="code-content">              &lt;th&gt;File 1&lt;/th&gt;</span></div>
+<div class="code-line"><span class="ln">655</span><span class="code-content">              &lt;th&gt;File 2&lt;/th&gt;</span></div>
+<div class="code-line"><span class="ln">656</span><span class="code-content">              &lt;th&gt;Similarity&lt;/th&gt;</span></div>
+<div class="code-line"><span class="ln">657</span><span class="code-content">              &lt;th&gt;Status&lt;/th&gt;</span></div>
+<div class="code-line"><span class="ln">658</span><span class="code-content">            &lt;/tr&gt;</span></div>
+<div class="code-line"><span class="ln">659</span><span class="code-content">          &lt;/thead&gt;</span></div>
+<div class="code-line"><span class="ln">660</span><span class="code-content">          &lt;tbody&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">661</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">662</span><span class="code-content">    for (const auto &amp;pair : cluster.internalPairs) {</span></div>
+<div class="code-line"><span class="ln">663</span><span class="code-content">      double score = 100.0 * pair.similarity;</span></div>
+<div class="code-line"><span class="ln">664</span><span class="code-content">      std::string status = score &gt;= 60.0 ? &quot;Plagiarism&quot; : &quot;Suspicious&quot;;</span></div>
+<div class="code-line"><span class="ln">665</span><span class="code-content">      std::string statusBg = score &gt;= 60.0 ? &quot;#fee2e2&quot; : &quot;#fef3c7&quot;;</span></div>
+<div class="code-line"><span class="ln">666</span><span class="code-content">      std::string statusBorder = score &gt;= 60.0 ? &quot;#fecaca&quot; : &quot;#fcd34d&quot;;</span></div>
+<div class="code-line"><span class="ln">667</span><span class="code-content">      std::string statusText = score &gt;= 60.0 ? &quot;#991b1b&quot; : &quot;#b45309&quot;;</span></div>
+<div class="code-line"><span class="ln">668</span><span class="code-content">      </span></div>
+<div class="code-line"><span class="ln">669</span><span class="code-content">      out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">670</span><span class="code-content">            &lt;tr&gt;</span></div>
+<div class="code-line"><span class="ln">671</span><span class="code-content">              &lt;td&gt;)HTML&quot; &lt;&lt; escapeHTML(batchResult.filenames[pair.fileIdx1])</span></div>
+<div class="code-line"><span class="ln">672</span><span class="code-content">          &lt;&lt; R&quot;HTML(&lt;/td&gt;</span></div>
+<div class="code-line"><span class="ln">673</span><span class="code-content">              &lt;td&gt;)HTML&quot; &lt;&lt; escapeHTML(batchResult.filenames[pair.fileIdx2])</span></div>
+<div class="code-line"><span class="ln">674</span><span class="code-content">          &lt;&lt; R&quot;HTML(&lt;/td&gt;</span></div>
+<div class="code-line"><span class="ln">675</span><span class="code-content">              &lt;td class=&quot;score-cell&quot;&gt;)HTML&quot; &lt;&lt; fmt(score) &lt;&lt; R&quot;HTML(%&lt;/td&gt;</span></div>
+<div class="code-line"><span class="ln">676</span><span class="code-content">              &lt;td&gt;&lt;span style=&quot;background:)HTML&quot; &lt;&lt; statusBg &lt;&lt; R&quot;HTML(;border:1px solid )HTML&quot;</span></div>
+<div class="code-line"><span class="ln">677</span><span class="code-content">          &lt;&lt; statusBorder &lt;&lt; R&quot;HTML(;color:)HTML&quot; &lt;&lt; statusText &lt;&lt; R&quot;HTML(;padding:.25rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600;&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">678</span><span class="code-content">          &lt;&lt; status &lt;&lt; R&quot;HTML(&lt;/span&gt;&lt;/td&gt;</span></div>
+<div class="code-line"><span class="ln">679</span><span class="code-content">            &lt;/tr&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">680</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">681</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">682</span><span class="code-content">    out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">683</span><span class="code-content">          &lt;/tbody&gt;</span></div>
+<div class="code-line"><span class="ln">684</span><span class="code-content">        &lt;/table&gt;</span></div>
+<div class="code-line"><span class="ln">685</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">686</span><span class="code-content">    &lt;/div&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">687</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">688</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">689</span><span class="code-content">  out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">690</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">691</span><span class="code-content">    &lt;!-- Full Similarity Matrix --&gt;</span></div>
+<div class="code-line"><span class="ln">692</span><span class="code-content">    &lt;div class=&quot;card&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">693</span><span class="code-content">      &lt;div style=&quot;font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;color:#1a1a2e;&quot;&gt;Complete Similarity Matrix (All Files)&lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">694</span><span class="code-content">      &lt;div class=&quot;matrix-container&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">695</span><span class="code-content">        &lt;table class=&quot;matrix-table&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">696</span><span class="code-content">          &lt;thead&gt;</span></div>
+<div class="code-line"><span class="ln">697</span><span class="code-content">            &lt;tr&gt;</span></div>
+<div class="code-line"><span class="ln">698</span><span class="code-content">              &lt;th style=&quot;text-align:right;&quot;&gt;File&lt;/th&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">699</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">700</span><span class="code-content">  for (size_t i = 0; i &lt; batchResult.filenames.size(); ++i) {</span></div>
+<div class="code-line"><span class="ln">701</span><span class="code-content">    out &lt;&lt; R&quot;HTML(&lt;th&gt;)HTML&quot; &lt;&lt; (i + 1) &lt;&lt; R&quot;HTML(&lt;/th&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">702</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">703</span><span class="code-content">  out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">704</span><span class="code-content">            &lt;/tr&gt;</span></div>
+<div class="code-line"><span class="ln">705</span><span class="code-content">          &lt;/thead&gt;</span></div>
+<div class="code-line"><span class="ln">706</span><span class="code-content">          &lt;tbody&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">707</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">708</span><span class="code-content">  for (size_t i = 0; i &lt; batchResult.filenames.size(); ++i) {</span></div>
+<div class="code-line"><span class="ln">709</span><span class="code-content">    out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">710</span><span class="code-content">            &lt;tr&gt;</span></div>
+<div class="code-line"><span class="ln">711</span><span class="code-content">              &lt;td style=&quot;text-align:right;font-weight:600;&quot;&gt;)HTML&quot; &lt;&lt; (i + 1)</span></div>
+<div class="code-line"><span class="ln">712</span><span class="code-content">        &lt;&lt; R&quot;HTML(&lt;/td&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">713</span><span class="code-content">    for (size_t j = 0; j &lt; batchResult.filenames.size(); ++j) {</span></div>
+<div class="code-line"><span class="ln">714</span><span class="code-content">      double score = 100.0 * batchResult.matrix[i][j];</span></div>
+<div class="code-line"><span class="ln">715</span><span class="code-content">      std::string scoreClass = &quot;matrix-low&quot;;</span></div>
+<div class="code-line"><span class="ln">716</span><span class="code-content">      if (score &gt;= 60.0) scoreClass = &quot;matrix-high&quot;;</span></div>
+<div class="code-line"><span class="ln">717</span><span class="code-content">      else if (score &gt;= 30.0) scoreClass = &quot;matrix-med&quot;;</span></div>
+<div class="code-line"><span class="ln">718</span><span class="code-content">      </span></div>
+<div class="code-line"><span class="ln">719</span><span class="code-content">      out &lt;&lt; R&quot;HTML(&lt;td class=&quot;)HTML&quot; &lt;&lt; scoreClass &lt;&lt; R&quot;HTML(&quot;&gt;)HTML&quot;</span></div>
+<div class="code-line"><span class="ln">720</span><span class="code-content">          &lt;&lt; fmt(score) &lt;&lt; R&quot;HTML(%&lt;/td&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">721</span><span class="code-content">    }</span></div>
+<div class="code-line"><span class="ln">722</span><span class="code-content">    out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">723</span><span class="code-content">            &lt;/tr&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">724</span><span class="code-content">  }</span></div>
+<div class="code-line"><span class="ln">725</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">726</span><span class="code-content">  out &lt;&lt; R&quot;HTML(</span></div>
+<div class="code-line"><span class="ln">727</span><span class="code-content">          &lt;/tbody&gt;</span></div>
+<div class="code-line"><span class="ln">728</span><span class="code-content">        &lt;/table&gt;</span></div>
+<div class="code-line"><span class="ln">729</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">730</span><span class="code-content">      </span></div>
+<div class="code-line"><span class="ln">731</span><span class="code-content">      &lt;div style=&quot;margin-top:1rem;padding:1rem;background:rgba(15,23,42,.4);border-radius:8px;font-size:.85rem;color:#94a3b8;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">732</span><span class="code-content">        &lt;div style=&quot;display:flex;gap:1rem;flex-wrap:wrap;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">733</span><span class="code-content">          &lt;div style=&quot;display:flex;align-items:center;gap:.5rem;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">734</span><span class="code-content">            &lt;span style=&quot;width:20px;height:20px;background:#fee2e2;border:1px solid #fecaca;border-radius:4px;&quot;&gt;&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">735</span><span class="code-content">            &lt;span style=&quot;color:#1a1a2e;&quot;&gt;High Risk (≥60%)&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">736</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">737</span><span class="code-content">          &lt;div style=&quot;display:flex;align-items:center;gap:.5rem;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">738</span><span class="code-content">            &lt;span style=&quot;width:20px;height:20px;background:#fef3c7;border:1px solid #fcd34d;border-radius:4px;&quot;&gt;&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">739</span><span class="code-content">            &lt;span style=&quot;color:#1a1a2e;&quot;&gt;Medium Risk (30-60%)&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">740</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">741</span><span class="code-content">          &lt;div style=&quot;display:flex;align-items:center;gap:.5rem;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">742</span><span class="code-content">            &lt;span style=&quot;width:20px;height:20px;background:#dcfce7;border:1px solid #bbf7d0;border-radius:4px;&quot;&gt;&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">743</span><span class="code-content">            &lt;span style=&quot;color:#1a1a2e;&quot;&gt;Low Risk (&lt;30%)&lt;/span&gt;</span></div>
+<div class="code-line"><span class="ln">744</span><span class="code-content">          &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">745</span><span class="code-content">        &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">746</span><span class="code-content">      &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">747</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">748</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">749</span><span class="code-content">    &lt;div style=&quot;text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid #e5e7eb;&quot;&gt;</span></div>
+<div class="code-line"><span class="ln">750</span><span class="code-content">      &lt;p style=&quot;color:#4a5568;font-size:.9rem;&quot;&gt;Generated by C++ Plagiarism Detector | Fingerprint threshold: 30% | Full analysis threshold: 60%&lt;/p&gt;</span></div>
+<div class="code-line"><span class="ln">751</span><span class="code-content">    &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">752</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">753</span><span class="code-content">  &lt;/div&gt;</span></div>
+<div class="code-line"><span class="ln">754</span><span class="code-content">&lt;/body&gt;</span></div>
+<div class="code-line"><span class="ln">755</span><span class="code-content">&lt;/html&gt;)HTML&quot;;</span></div>
+<div class="code-line"><span class="ln">756</span><span class="code-content"></span></div>
+<div class="code-line"><span class="ln">757</span><span class="code-content">  out.close();</span></div>
+<div class="code-line"><span class="ln">758</span><span class="code-content">  std::cout &lt;&lt; &quot;Report generated: batch_report.html&quot; &lt;&lt; std::endl;</span></div>
+<div class="code-line"><span class="ln">759</span><span class="code-content">}</span></div>
 
       </div>
     </div>
